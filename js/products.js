@@ -44,9 +44,11 @@ function showProducts(productArray) {
         filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
     }
 
+
     let template = ``;
 
     for (let product of filteredProducts) {
+        const stockValidation = product.soldCount === 0 ? "Sin Stock" : "Stock:" + product.soldCount
 
         template +=
             `
@@ -59,7 +61,7 @@ function showProducts(productArray) {
                         <p class="card-text">${product.description}</p>
                         </div>
                         <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Stock: ${product.soldCount}</li>
+                        <li class="list-group-item">${stockValidation}</li>
                         </ul>
                     <div class="card-footer">
                         <a href="#" class="btn btn-primary">Buy now</a>
