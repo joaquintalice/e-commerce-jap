@@ -1,9 +1,18 @@
 const productContainer = document.getElementById('productContainer');
-const URL = 'https://japceibal.github.io/emercado-api/cats_products/101.json'
+const storedValue = localStorage.getItem('catID'); // Se obtiene el catID que se encuentra en el localstorage, el cual fue guardado en categories.js
+console.log(storedValue)
+const URL = `https://japceibal.github.io/emercado-api/cats_products/${storedValue}.json`
+
+const pageTitle = document.getElementById('page-title');
+const prodTitle = document.getElementById('product-title');
+
 let minCount = 0;
 let maxCount = Infinity;
 let sortOption = 'count'; // Valor por defecto
 let productsDataGlobal = [] // Contendrá el array de productos disponible para usar globalmente en caso de que el fetch los traiga correctamente.
+
+
+
 
 async function getProducts() {
 
@@ -13,11 +22,15 @@ async function getProducts() {
 
     const data = await response.json();
 
-    const { products } = data;
+    const { products, catName } = data;
 
     showProducts(products);
 
+    prodTitle.innerHTML = catName;
+    pageTitle.innerHTML = `eMercado - ${catName}`
+
     productsDataGlobal = products; // Guardamos los products en una variable global para poderla usar afuera de este scope.
+
 }
 
 function showProducts(productArray) {
