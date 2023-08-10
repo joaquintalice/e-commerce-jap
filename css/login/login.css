@@ -1,0 +1,160 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: lightblue;
+}
+
+main {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 50px;
+    box-shadow: 0 5px 10px black;
+    background-color: lightcyan;
+}
+
+form .title {
+    font-size: 60px;
+    font-weight: 100;
+    color: black;
+    margin-bottom: 30px;
+}
+
+form label {
+    margin: 10px;
+    font-size: 30px;
+}
+
+form input {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 20px;
+    background-color: lightcyan
+}
+
+#recuerdame {
+    font-size: 20px;
+}
+
+.checkbx {
+    --input-focus: #2d8cf0;
+    --input-out-of-focus: #ccc;
+    --bg-color: #fff;
+    --bg-color-alt: #666;
+    --main-color: #323232;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+}
+
+.checkbx input {
+    position: absolute;
+    opacity: 0;
+}
+
+.checkmark {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    top: 0;
+    left: 0;
+    border: 2px solid var(--main-color);
+    border-radius: 5px;
+    box-shadow: 4px 4px var(--main-color);
+    background-color: var(--input-out-of-focus);
+    transition: all 0.3s;
+}
+
+.checkbx input:checked~.checkmark {
+    background-color: var(--input-focus);
+}
+
+.checkmark:after {
+    content: "";
+    width: 7px;
+    height: 15px;
+    position: absolute;
+    top: 2px;
+    left: 8px;
+    display: none;
+    border: solid var(--bg-color);
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+}
+
+.checkbx input:checked~.checkmark:after {
+    display: block;
+}
+
+.forgt {
+    font-size: 18px;
+}
+
+footer {
+    padding: 0;
+    margin-top: 50px;
+}
+
+@media screen and (max-width: 480px) {
+    main {
+        padding: 20px;
+    }
+
+    form {
+        padding: 5px 10px;
+    }
+
+    footer {
+        margin-top: 80px;
+    }
+
+    form .title {
+        font-size: 30px;
+    }
+
+    form label {
+        font-size: 15px;
+    }
+
+    form input {
+        font-size: 15px;
+    }
+
+    #recuerdame {
+        font-size: 12px;
+    }
+
+    .checkmark {
+        width: 18px;
+        height: 18px;
+    }
+
+    .checkmark:after {
+        width: 5px;
+        height: 10px;
+        top: 1px;
+        left: 5px;
+    }
+
+    .forgt {
+        font-size: 12px;
+    }
+
+    #submitbtn {
+        padding: 5px;
+    }
+}
