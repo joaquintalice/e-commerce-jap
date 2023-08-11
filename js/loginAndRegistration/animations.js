@@ -48,5 +48,4 @@ let currentBulletIndex = 0;
 setInterval(() => {
     simulateClick(currentBulletIndex);
     currentBulletIndex = (currentBulletIndex + 1) % bullets.length;
-    console.log(currentBulletIndex)
 }, 3000);
