@@ -11,4 +11,8 @@ document.addEventListener("DOMContentLoaded", function(){
         localStorage.setItem("catID", 103);
         window.location = "products.html"
     });
+
+    if(!UserIsLogged()) { // from js/navbar/navbar.js
+        window.location = "loginAndRegistration.html"
+    }
 });

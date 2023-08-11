@@ -23,21 +23,22 @@ formRegistro.addEventListener('submit', (e) => {
     const password = pwRegister.value;
     const passwordVerify = pwRegisterVerify.value;
 
-    // Validar que las contraseñas sean iguales
-    if (password !== passwordVerify) {
-        alert('Las contraseñas no coinciden.');
-        throw new Error(`Las contraseñas no coinciden`);
-    }
-
     // Valida si ya existe el usuario que se quiere registrar
     const storedUser = localStorage.getItem('userData');
+
     if (storedUser) {
         const parsedUser = JSON.parse(storedUser);
         if (username === parsedUser.username || email === parsedUser.email) {
-            alert('Ya estás registrado. Puedes iniciar sesión o crear un nuevo usuario para continuar (Eliminará la sesión local del usuario anterior)')
-            throw new Error(`No es posible registrarse porque el usuario ya ha sido registrado anteriormente`);
+            showAlert('danger', 'Ya estás registrado. Puedes iniciar sesión o crear un nuevo usuario para continuar (Eliminará la sesión local del usuario anterior)');
+            return; // Si el usuario ya existe, no se ejecuta el resto del código
         }
     }
+
+    // Validar que las contraseñas sean iguales
+    if (password !== passwordVerify) {
+        showAlert('danger', 'Las contraseñas no coinciden');
+        return; // Si las contraseñas no coinciden, no se ejecuta el resto del código
+    }   
 
 
     // Registra el usuario en el localStorage en caso de que pase la validación anterior
@@ -48,9 +49,13 @@ formRegistro.addEventListener('submit', (e) => {
     };
 
     localStorage.setItem('userData', JSON.stringify(user));
-    alert('Usuario registrado exitosamente.');
-    // Redirige al usuario al index.html
-    window.location.replace("loginAndRegistration.html");
+    
+    showAlert('success', 'Usuario registrado exitosamente.', "formRegistro");
+
+    setTimeout(() => {
+        window.location.replace("loginAndRegistration.html");
+    }, 1500);
+
 });
 
 // Creamos la función que maneja el evento para el formulario de login
@@ -64,17 +69,31 @@ formLogin.addEventListener('submit', (e) => {
     // Obtener el usuario almacenado en localStorage
     const storedUser = localStorage.getItem('userData');
 
-
     if (storedUser) {
         const parsedUser = JSON.parse(storedUser);
-        // Validar usuario y contraseña
         if (parsedUser.username === username && parsedUser.password === password) {
-            alert('Inicio de sesión exitoso.');
-            window.location.replace("index.html");
-        } else {
-            alert('Usuario o contraseña incorrectos.');
+            showAlert('success', 'Inicio de sesión exitoso.', "formLogin");
+            setTimeout(() => {
+                window.location.replace("index.html");
+            }, 1500);
+            return
         }
-    } else {
-        alert('Usuario no encontrado.');
-    }
+        showAlert('danger', 'Usuario o contraseña incorrectos.', "formLogin"); 
+        return;
+    } 
+
+    showAlert('danger', 'Usuario no encontrado.', "formLogin");
+
 });
+
+function showAlert(typeAlert, message, form) {
+    let alert = document.getElementById("alert-message-register")
+
+    if(form === "formLogin"){
+        alert = document.getElementById("alert-message-login")
+    }
+    alert.className = ''; // Quita todas las clases que tenga el elemento, para que no se acumulen
+    alert.style.display = 'block';
+    alert.classList.add('alert',`alert-${typeAlert}`)
+    alert.textContent = message
+}
