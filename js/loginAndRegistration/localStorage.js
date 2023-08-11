@@ -31,11 +31,14 @@ formRegistro.addEventListener('submit', (e) => {
 
     // Valida si ya existe el usuario que se quiere registrar
     const storedUser = localStorage.getItem('userData');
-    const parsedUser = JSON.parse(storedUser);
-    if (username === parsedUser.username || email === parsedUser.email) {
-        alert('Ya estás registrado. Puedes iniciar sesión o crear un nuevo usuario para continuar (Eliminará la sesión local del usuario anterior)')
-        throw new Error(`No es posible registrarse porque el usuario ya ha sido registrado anteriormente`);
+    if (storedUser) {
+        const parsedUser = JSON.parse(storedUser);
+        if (username === parsedUser.username || email === parsedUser.email) {
+            alert('Ya estás registrado. Puedes iniciar sesión o crear un nuevo usuario para continuar (Eliminará la sesión local del usuario anterior)')
+            throw new Error(`No es posible registrarse porque el usuario ya ha sido registrado anteriormente`);
+        }
     }
+
 
     // Registra el usuario en el localStorage en caso de que pase la validación anterior
     const user = {
