@@ -113,7 +113,7 @@ form.sign-up-form {
 }
 
 .toggle:hover {
-    color: #8371fd;
+    color: #EE9004;
 }
 
 .input-wrap {
@@ -171,7 +171,7 @@ label {
 }
 
 .sign-btn:hover {
-    background-color: #8371fd;
+    background-color: #EE9004;
 }
 
 .text {
@@ -185,7 +185,7 @@ label {
 }
 
 .text a:hover {
-    color: #8371fd;
+    color: #EE9004;
 }
 
 main.sign-up-mode form.sign-in-form {
@@ -301,6 +301,37 @@ main.sign-up-mode .carousel {
     background-color: #151111;
     border-radius: 1rem;
 }
+
+/*bootstrap de las alertas*/
+
+.alert {
+    position: relative;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem
+}
+
+.alert-success {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc
+}
+
+.alert-success {
+    color: #0c4128
+}
+
+.alert-danger {
+    color: #842029;
+    background-color: #faebeb;
+    border-color: #e6dadc
+}
+
+.alert-danger {
+    color: #6a1a21
+}
+
 
 @media (max-width: 850px) {
     .box {
