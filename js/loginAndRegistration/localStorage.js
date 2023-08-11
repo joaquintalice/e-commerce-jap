@@ -50,21 +50,23 @@ formRegistro.addEventListener('submit', (e) => {
     window.location.replace("loginAndRegistration.html");
 });
 
-// Manejador de evento para el formulario de login
+// Creamos la función que maneja el evento para el formulario de login
 formLogin.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    //Asigna los datos de los input a las variables correspondientes
     const username = userLogin.value;
     const password = pwLogin.value;
 
     // Obtener el usuario almacenado en localStorage
     const storedUser = localStorage.getItem('userData');
 
+
     if (storedUser) {
         const parsedUser = JSON.parse(storedUser);
         // Validar usuario y contraseña
         if (parsedUser.username === username && parsedUser.password === password) {
-            console.log('Inicio de sesión exitoso.');
+            alert('Inicio de sesión exitoso.');
             window.location.replace("index.html");
         } else {
             alert('Usuario o contraseña incorrectos.');
@@ -73,7 +75,3 @@ formLogin.addEventListener('submit', (e) => {
         alert('Usuario no encontrado.');
     }
 });
-
-const storedUsers = localStorage.getItem('userData');
-
-console.log(JSON.parse(storedUsers));
