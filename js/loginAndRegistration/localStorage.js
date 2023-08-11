@@ -29,7 +29,7 @@ formRegistro.addEventListener('submit', (e) => {
     if (storedUser) {
         const parsedUser = JSON.parse(storedUser);
         if (username === parsedUser.username || email === parsedUser.email) {
-            showAlert('danger', 'Ya estás registrado. Puedes iniciar sesión o crear un nuevo usuario para continuar (Eliminará la sesión local del usuario anterior)');
+            showAlert('danger', 'Ya te encuentras registrado');
             return; // Si el usuario ya existe, no se ejecuta el resto del código
         }
     }
@@ -38,7 +38,7 @@ formRegistro.addEventListener('submit', (e) => {
     if (password !== passwordVerify) {
         showAlert('danger', 'Las contraseñas no coinciden');
         return; // Si las contraseñas no coinciden, no se ejecuta el resto del código
-    }   
+    }
 
 
     // Registra el usuario en el localStorage en caso de que pase la validación anterior
@@ -49,7 +49,7 @@ formRegistro.addEventListener('submit', (e) => {
     };
 
     localStorage.setItem('userData', JSON.stringify(user));
-    
+
     showAlert('success', 'Usuario registrado exitosamente.', "formRegistro");
 
     setTimeout(() => {
@@ -78,9 +78,9 @@ formLogin.addEventListener('submit', (e) => {
             }, 1500);
             return
         }
-        showAlert('danger', 'Usuario o contraseña incorrectos.', "formLogin"); 
+        showAlert('danger', 'Usuario o contraseña incorrectos.', "formLogin");
         return;
-    } 
+    }
 
     showAlert('danger', 'Usuario no encontrado.', "formLogin");
 
@@ -89,11 +89,11 @@ formLogin.addEventListener('submit', (e) => {
 function showAlert(typeAlert, message, form) {
     let alert = document.getElementById("alert-message-register")
 
-    if(form === "formLogin"){
+    if (form === "formLogin") {
         alert = document.getElementById("alert-message-login")
     }
     alert.className = ''; // Quita todas las clases que tenga el elemento, para que no se acumulen
     alert.style.display = 'block';
-    alert.classList.add('alert',`alert-${typeAlert}`)
+    alert.classList.add('alert', `alert-${typeAlert}`)
     alert.textContent = message
 }
