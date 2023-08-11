@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,8 +7,34 @@
     <title>eMercado - Todo lo que busques está aquí</title>
     <link rel="stylesheet" href="./css/loginAndRegistration/styles.css" />
     <link rel="icon" href="./img/loginAndRegistration/icon-jap.svg" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
 </head>
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+          <li class="nav-item">
+            <a id="login" class="nav-link" href="loginAndRegistration.html">Iniciar Sesión</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 <body>
     <main>
         <div class="box">
@@ -39,6 +64,8 @@
                                     id="password-login" required />
                                 <label>Contraseña</label>
                             </div>
+
+                            <div id="alert-message-login" style="display: none;" class="alert" role="alert"></div>
 
                             <input type="submit" value="Ingresar" class="sign-btn" />
 
@@ -86,6 +113,8 @@
                                 <label>Contraseña</label>
                             </div>
 
+                            <div id="alert-message-register" style="display: none;" class="alert" role="alert"></div>
+
                             <input type="submit" value="Registrarme" class="sign-btn" />
 
                             <p class="text">
@@ -128,6 +157,6 @@
 
     <script src="./js/loginAndRegistration/animations.js"></script>
     <script src="./js/loginAndRegistration/localStorage.js"></script>
+    <script src="js/navbar/navbar.js"></script>
 </body>
-
 </html>
