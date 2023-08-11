@@ -37,3 +37,16 @@ function moveSlider() {
 bullets.forEach((bullet) => {
     bullet.addEventListener("click", moveSlider);
 });
+
+function simulateClick(index) {
+    bullets[index].click();
+}
+
+let currentBulletIndex = 0;
+
+// Simulate click every 3 seconds
+setInterval(() => {
+    simulateClick(currentBulletIndex);
+    currentBulletIndex = (currentBulletIndex + 1) % bullets.length;
+    console.log(currentBulletIndex)
+}, 3000);
