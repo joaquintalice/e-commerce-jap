@@ -1,15 +1,20 @@
-if (UserIsLogged()) {
+document.addEventListener('DOMContentLoaded', () => {
     let loginLink = document.getElementById("login");
-    loginLink.textContent = "Cerrar Sesión"
-    loginLink.href = "";
+    const localStorageData = localStorage.getItem("userData");
+
+    if (!localStorageData) {
+        window.location = "loginAndRegistration.html" // Al eliminarse el usuario del localStorage, lo redirige al login
+    }
+
+    if (localStorageData) {
+        loginLink.textContent = "Cerrar Sesión"
+        loginLink.href = "";
+    }
+
     loginLink.addEventListener("click", deleteUserStorage);
-}
 
-function UserIsLogged() {
-    return localStorage.getItem("userData");
-}
-
-function deleteUserStorage() {
-    localStorage.removeItem("userData");
-    window.location = "loginAndRegister.html" // Al eliminarse el usuario del localStorage, lo redirige al login
-}
+    function deleteUserStorage() {
+        localStorage.removeItem("userData");
+        window.location = "loginAndRegistration.html" // Al eliminarse el usuario del localStorage, lo redirige al login
+    }
+})
