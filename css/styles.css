@@ -177,6 +177,7 @@ footer p {
 
 main {
   min-height: calc(100vh - 210px);
+  background-color: #F8F9FA;
 }
 
 a.custom-card,
