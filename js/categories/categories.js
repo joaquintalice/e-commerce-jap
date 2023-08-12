@@ -52,7 +52,7 @@ function showCategoriesList() {
             <div onclick="setCatID(${category.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
-                        <img src="${category.imgSrc}" alt="${category.description}" class="img-thumbnail">
+                        <img src="${changeImgExtension(category.imgSrc)}" alt="${category.description}" class="img-thumbnail">
                     </div>
                     <div class="col">
                         <div class="d-flex w-100 justify-content-between">
@@ -68,6 +68,10 @@ function showCategoriesList() {
 
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     }
+}
+
+function changeImgExtension(imgSrc) {
+    return imgSrc.replace(".jpg", ".webp");
 }
 
 function sortAndShowCategories(sortCriteria, categoriesArray) {
