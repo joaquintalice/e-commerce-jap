@@ -1,17 +1,18 @@
 const productContainer = document.getElementById('productContainer');
+
 const storedValue = localStorage.getItem('catID'); // Se obtiene el catID que se encuentra en el localstorage, el cual fue guardado en categories.js
-console.log(storedValue)
+
 const URL = `https://japceibal.github.io/emercado-api/cats_products/${storedValue}.json`
 
 const pageTitle = document.getElementById('page-title');
 const prodTitle = document.getElementById('product-title');
 
+// Valores por defecto
 let minCount = 0;
 let maxCount = Infinity;
-let sortOption = 'count'; // Valor por defecto
+let sortOption = 'count';
 let productsDataGlobal = [] // Contendrá el array de productos disponible para usar globalmente en caso de que el fetch los traiga correctamente.
-
-
+let globalImg = '';
 
 
 async function getProducts() {
@@ -27,7 +28,7 @@ async function getProducts() {
     showProducts(products);
 
     prodTitle.innerHTML = catName;
-    pageTitle.innerHTML = `eMercado - ${catName}`
+    pageTitle.innerHTML = `eMercado - ${catName}`;
 
     productsDataGlobal = products; // Guardamos los products en una variable global para poderla usar afuera de este scope.
 
@@ -54,7 +55,7 @@ function showProducts(productArray) {
             `
             <div class="col-12 col-md-4 col-xxl-3 d-flex mt-5">
                 <div class="card" >
-                    <img class="card-img-top" src="../${changeImgExtension(product.image)}" alt="Card image cap">
+                    <img class="card-img-top" src="../${product.image}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">${product.name}</h5>
                         <p>${product.currency} ${product.cost}</p>
@@ -74,9 +75,7 @@ function showProducts(productArray) {
     productContainer.innerHTML = template;
 }
 
-function changeImgExtension(imgSrc) {
-    return imgSrc.replace(".jpg", ".webp");
-}
+
 
 //Funcionalidad de los input radio 
 document.getElementById('sortAsc').addEventListener('change', () => {
