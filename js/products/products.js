@@ -87,19 +87,26 @@ function showProducts(productArray) {
 
 
 //Funcionalidad de los input radio 
-document.getElementById('sortAsc').addEventListener('change', () => {
+const sortAsc = document.getElementById('sortAsc');
+const sortCount = document.getElementById('sortByCount');
+const sortDesc = document.getElementById('sortDesc');
+
+sortAsc.addEventListener('change', () => {
     sortOption = 'asc';
     showProducts(productsDataGlobal);
+    sortAsc.checked = false
 });
 
-document.getElementById('sortDesc').addEventListener('change', () => {
+sortDesc.addEventListener('change', () => {
     sortOption = 'desc';
     showProducts(productsDataGlobal);
+    sortDesc.checked = false
 });
 
-document.getElementById('sortByCount').addEventListener('change', () => {
+sortCount.addEventListener('change', () => {
     sortOption = 'count';
     showProducts(productsDataGlobal);
+    sortCount.checked = false
 });
 
 
