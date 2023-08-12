@@ -10,7 +10,7 @@ const prodTitle = document.getElementById('product-title');
 // Valores por defecto
 let minCount = 0;
 let maxCount = Infinity;
-let sortOption = 'count';
+let sortOption = '';
 let productsDataGlobal = [] // Contendrá el array de productos disponible para usar globalmente en caso de que el fetch los traiga correctamente.
 let globalImg = '';
 
@@ -39,11 +39,20 @@ function showProducts(productArray) {
     // Los cuales, se modifican en base a los eventos que ocurren en los input radio
     const filteredProducts = productArray.filter(product => product.soldCount >= minCount && product.soldCount <= maxCount);
 
-    if (sortOption === 'asc') {
-        filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
-    } else if (sortOption === 'desc') {
-        filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
+    switch (sortOption) {
+        case 'asc':
+            filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+        case 'desc':
+            filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
+            break;
+        case 'count':
+            filteredProducts.sort((a, b) => b.soldCount - a.soldCount);
+            break;
+        default:
+
     }
+
 
 
     let template = ``;
@@ -88,6 +97,13 @@ document.getElementById('sortDesc').addEventListener('change', () => {
     showProducts(productsDataGlobal);
 });
 
+document.getElementById('sortByCount').addEventListener('change', () => {
+    sortOption = 'count';
+    showProducts(productsDataGlobal);
+});
+
+
+
 //Funcionalidad de los botónes de filtrar y limpiar
 
 const inputMin = document.getElementById('rangeFilterCountMin');
@@ -105,6 +121,7 @@ document.getElementById('clearRangeFilter').addEventListener('click', () => {
     inputMax.value = '';
     minCount = 0;
     maxCount = Infinity;
+    sortOption = '';
     showProducts(productsDataGlobal);
 });
 
