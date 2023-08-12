@@ -54,7 +54,7 @@ function showProducts(productArray) {
             `
             <div class="col-12 col-md-4 col-xxl-3 d-flex mt-5">
                 <div class="card" >
-                    <img class="card-img-top" src="../${product.image}" alt="Card image cap">
+                    <img class="card-img-top" src="../${changeImgExtension(product.image)}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">${product.name}</h5>
                         <p>${product.currency} ${product.cost}</p>
@@ -72,6 +72,10 @@ function showProducts(productArray) {
     };
 
     productContainer.innerHTML = template;
+}
+
+function changeImgExtension(imgSrc) {
+    return imgSrc.replace(".jpg", ".webp");
 }
 
 //Funcionalidad de los input radio 
