@@ -14,17 +14,21 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
     <div class="container">
+      <a class="navbar-brand d-lg-none" href="#">
+        <img src="./img/loginAndRegistration/icon.svg" alt="Logo" width="180">
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
+        <ul class="navbar-nav w-100 justify-content-between align-items-center">
           <li class="nav-item">
-            <img src="./img/loginAndRegistration/icon.svg" width="180px">
+            <a class="navbar-brand d-none d-lg-block" href="#">
+              <img src="./img/loginAndRegistration/icon.svg" alt="Logo" width="180">
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="index.html">Inicio</a>
@@ -36,12 +40,13 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-            <a id="login" class="nav-link" href="loginAndRegistration.html">Iniciar Sesión</a>
+            <a id="login" class="nav-link" href="loginAndRegistration.html"></a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
   <main>
     <section class="carousel-container">
       <div class="slider-wrapper">
@@ -52,6 +57,12 @@
             alt="3D rendering of an imaginary green planet in space" />
           <img id="slide-3" class="img-fluid" src="img/carBanner.svg"
             alt="3D rendering of an imaginary blue planet in space" />
+          <img id="slide-3" class="img-fluid" src="img/toolsBanner.svg"
+            alt="3D rendering of an imaginary blue planet in space" />
+          <img id="slide-3" class="img-fluid" src="img/techBanner.svg"
+            alt="3D rendering of an imaginary blue planet in space" />
+          <img id="slide-3" class="img-fluid" src="img/toysBanner.svg"
+            alt="3D rendering of an imaginary blue planet in space" />
         </div>
         <div class="slider-nav">
         </div>
@@ -61,39 +72,40 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <div class="card mb-4 shadow-sm custom-card cursor-active" id="autos">
-              <img class="bd-placeholder-img card-img-top" src="img/cars_index.jpg"
-                alt="Imgagen representativa de la categoría 'Autos'">
-              <h3 class="m-3">Autos</h3>
+            <div class="card mb-4 shadow-sm border-0 rounded custom-card cursor-pointer" id="autos">
+              <img class="card-img-top" src="img/cars_index.jpg" alt="Imagen representativa de la categoría 'Autos'">
               <div class="card-body">
-                <p class="card-text">Los mejores precios en autos 0 kilómetro, de alta y media gama.</p>
+                <h3 class="card-title">Autos</h3>
+                <p class="card-text">Explora los mejores precios en autos 0 kilómetro y de alta gama.</p>
               </div>
             </div>
           </div>
           <div class="col-md-4">
-            <div class="card mb-4 shadow-sm custom-card cursor-active" id="juguetes">
-              <img class="bd-placeholder-img card-img-top" src="img/toys_index.jpg"
-                alt="Imgagen representativa de la categoría 'Juguetes'">
-              <h3 class="m-3">Juguetes</h3>
+            <div class="card mb-4 shadow-sm border-0 rounded custom-card cursor-pointer" id="juguetes">
+              <img class="card-img-top" src="img/toys_index.jpg" alt="Imagen representativa de la categoría 'Juguetes'">
               <div class="card-body">
-                <p class="card-text">Encuentra aquí los mejores precios para niños/as de cualquier edad.</p>
+                <h3 class="card-title">Juguetes</h3>
+                <p class="card-text">Encuentra los mejores precios en juguetes para niños/as de todas las edades.</p>
               </div>
             </div>
           </div>
           <div class="col-md-4">
-            <div class="card mb-4 shadow-sm custom-card cursor-active" id="muebles">
-              <img class="bd-placeholder-img card-img-top" src="img/furniture_index.jpg"
-                alt="Imgagen representativa de la categoría 'Muebles'">
-              <h3 class="m-3">Muebles</h3>
+            <div class="card mb-4 shadow-sm border-0 rounded custom-card cursor-pointer" id="muebles">
+              <img class="card-img-top" src="img/muebles_index.png"
+                alt="Imagen representativa de la categoría 'Muebles'">
               <div class="card-body">
-                <p class="card-text">Muebles antiguos, nuevos y para ser armados por uno mismo.</p>
+                <h3 class="card-title">Muebles</h3>
+                <p class="card-text">Descubre una variedad de muebles antiguos y modernos para todos los gustos.</p>
               </div>
             </div>
           </div>
         </div>
         <div class="row">
-          <a class="btn btn-light btn-lg btn-block" href="categories.html">Y mucho más!</a>
+          <div class="col text-center">
+            <a class="btn btn-outline-primary btn-lg" href="categories.html">¡Y mucho más!</a>
+          </div>
         </div>
+
       </div>
     </div>
   </main>
