@@ -10,6 +10,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link rel="shortcut icon" href="./img/favicon.svg" type="image/x-icon">
+  <link rel="stylesheet" href="css/indexCarousel.css">
 </head>
 
 <body>
@@ -42,7 +43,20 @@
     </div>
   </nav>
   <main>
-    <img src="./img/banner.svg" class="img-fluid"></img>
+    <section class="carousel-container">
+      <div class="slider-wrapper">
+        <div class="slider">
+          <img id="slide-1" class="img-fluid" src="img/banner.svg"
+            alt="3D rendering of an imaginary orange planet in space" />
+          <img id="slide-2" class="img-fluid" src="img/logisticBanner.svg"
+            alt="3D rendering of an imaginary green planet in space" />
+          <img id="slide-3" class="img-fluid" src="img/carBanner.svg"
+            alt="3D rendering of an imaginary blue planet in space" />
+        </div>
+        <div class="slider-nav">
+        </div>
+      </div>
+    </section>
     <div class="album py-5 bg-light">
       <div class="container">
         <div class="row">
@@ -96,6 +110,7 @@
   <script src="js/index.js"></script>
   <script src="js/init.js"></script>
   <script src="js/navbar/navbar.js"></script>
+  <script src="js/indexCarousel.js"></script>
 </body>
 
 </html>
