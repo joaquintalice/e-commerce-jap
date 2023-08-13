@@ -1,6 +1,6 @@
 .carousel-container {
     max-width: 100%;
-    padding: 20px;
+    margin-top: -0.5px;
 }
 
 .slider-wrapper {
