@@ -34,6 +34,7 @@ function sortCategories(criteria, array) {
     return result;
 }
 
+// Esta función es la encargada de enviar al localStorage el ID de la categoría en la que hagamos click en categories.html
 function setCatID(id) {
     localStorage.setItem("catID", id);
     window.location = "products.html"
@@ -48,6 +49,10 @@ function showCategoriesList() {
         if (((minCount == undefined) || (minCount != undefined && parseInt(category.productCount) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(category.productCount) <= maxCount))) {
 
+            // El primer div tiene un eventListener que hace uso de la función setCatID
+            // Gracias a esa función, si hacemos click en la categoria autos, va a aparecer en el localStorage lo siguiente =>  Key=catID Value=101  
+            // Si tocamos en juguetes, va a ser Key=catID Value=102  
+            // Si tocamos en muebles, va a ser Key=catID Value=103 y asi...  
             htmlContentToAppend += `
                 <div onclick="setCatID(${category.id})" class="list-group-item list-group-item-action cursor-pointer border-0">
                 <div class="row">
