@@ -54,21 +54,23 @@ function showCategoriesList() {
             // Si tocamos en juguetes, va a ser Key=catID Value=102  
             // Si tocamos en muebles, va a ser Key=catID Value=103 y asi...  
             htmlContentToAppend += `
-                <div onclick="setCatID(${category.id})" class="list-group-item list-group-item-action cursor-pointer border-0">
-                <div class="row">
-                    <div class="col-md-3">
-                        <img src="${category.imgSrc}" alt="${category.description}" class="img-fluid rounded">
-                    </div>
-                    <div class="col-md">
-                        <div class="d-flex justify-content-between align-items-center">
-                        <h4 class="mb-0">${category.name}</h4>
-                        <small class="text-muted">${category.productCount} artículos</small>
-                    </div>
-                        <p class="mt-2 mb-0">${category.description}</p>
-                    </div>
-                    </div>
+    <div onclick="setCatID(${category.id})" class="list-group-item list-group-item-action cursor-active border-0">
+        <div class="row">
+            <div class="col-md-3">
+                <img src="${category.imgSrc}" alt="${category.description}" class="img-fluid rounded">
+            </div>
+            <div class="col-md">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">${category.name}</h4>
+                    <small class="text-muted">${category.productCount} productos</small>
                 </div>
-            `;
+                <p class="mt-2 mb-0">${category.description}</p>
+            </div>
+        </div>
+    </div>
+`;
+
+
 
         }
 
