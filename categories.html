@@ -10,14 +10,15 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <link rel="shortcut icon" href="./img/favicon.svg" type="image/x-icon">
+  <link rel="shortcut icon" href="img/favicon.svg" type="image/x-icon">
+  <link rel="stylesheet" href="css/indexCarousel.css">
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
     <div class="container">
-      <a class="navbar-brand d-lg-none" href="#">
-        <img src="./img/loginAndRegistration/icon.svg" alt="Logo" width="180">
+      <a class="navbar-brand d-lg-none" href="index.html">
+        <img src="img/loginAndRegistration/icon.svg" alt="Logo" width="180">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,8 +27,8 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between align-items-center">
           <li class="nav-item">
-            <a class="navbar-brand d-none d-lg-block" href="#">
-              <img src="./img/loginAndRegistration/icon.svg" alt="Logo" width="180">
+            <a class="navbar-brand d-none d-lg-block" href="index.html">
+              <img src="img/loginAndRegistration/icon.svg" alt="Logo" width="180">
             </a>
           </li>
           <li class="nav-item">
@@ -39,13 +40,18 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item nav-menu-login">
             <a id="login" class="nav-link" href="loginAndRegistration.html"></a>
+            <div id="menuLogout" class="user-logout">
+              <a class="nav-link" href="index.html">Ver Perfil</a>
+              <a id="logout" class="nav-link" href="index.html">Cerrar Sesión</a>
+            </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
   <main class="pb-5">
     <div class="text-center p-4">
       <h2>Categorías</h2>

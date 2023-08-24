@@ -35,3 +35,27 @@
 .slider-nav a.active {
     background-color: black;
 }
+
+/* Menu */
+
+.user-logout {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    background-color: #212529;
+    padding: .2rem 2rem;
+    width: 200px;
+    margin-left: -30px;
+}
+
+.user-logout a {
+    font-size: .9rem;
+}
+
+.user-logout-d-block {
+    display: block;
+}
+
+.nav-menu-login {
+    position: relative;
+}

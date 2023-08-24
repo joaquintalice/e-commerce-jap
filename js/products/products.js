@@ -6,6 +6,7 @@ const URL = `https://japceibal.github.io/emercado-api/cats_products/${storedValu
 
 const pageTitle = document.getElementById('page-title');
 const prodTitle = document.getElementById('product-title');
+const buscar = document.getElementById('buscar');
 
 // Valores por defecto
 let minCount = 0;
@@ -25,6 +26,7 @@ async function getProducts() {
 
     const { products, catName } = data;
 
+
     showProducts(products);
 
     prodTitle.innerHTML = catName;
@@ -41,24 +43,29 @@ function showProducts(productArray) {
 
     switch (sortOption) {
         case 'asc':
-            filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+            filteredProducts.sort((a, b) => a.cost - b.cost);
             break;
         case 'desc':
-            filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
+            filteredProducts.sort((a, b) => b.cost - a.cost);
             break;
         case 'count':
             filteredProducts.sort((a, b) => b.soldCount - a.soldCount);
             break;
         default:
-
     }
 
 
+    /*
+    Con el listado de productos desplegado:
+    
+    Aplicar filtros a partir de rango de precio definido.
+    Agregar las funcionalidades de orden ascendente y descendente en función del precio y descendente 
+    en función de la relevancia (tomaremos para ello la cantidad de artículos vendidos)
+    */
 
     let template = ``;
 
     for (let product of filteredProducts) {
-        const stockValidation = product.soldCount === 0 ? "Sin Stock" : "Stock:" + product.soldCount
 
         template +=
             `
@@ -71,7 +78,7 @@ function showProducts(productArray) {
                         <p class="card-text">${product.description}</p>
                         </div>
                         <ul class="list-group list-group-flush">
-                        <li class="list-group-item">${stockValidation}</li>
+                        <li class="list-group-item">Vendidos: ${product.soldCount}</li>
                         </ul>
                     <div class="card-footer">
                         <a href="#" class="btn btn-primary">Buy now</a>
@@ -133,4 +140,37 @@ document.getElementById('clearRangeFilter').addEventListener('click', () => {
 });
 
 
+buscar.addEventListener('input', () => {
+    if (buscar.value.length >= 1) {
+        const filteredData = productsDataGlobal.filter((word) => {
+            const name = word.name.toLowerCase().includes(buscar.value.toLowerCase());
+            const descripcion = word.description.toLowerCase().includes(buscar.value.toLowerCase());
+            return name || descripcion;
+        });
+
+        console.log(filteredData);
+        showProducts(filteredData);
+    } else {
+        showProducts(productsDataGlobal);
+    }
+});
+
+
 document.addEventListener('DOMContentLoaded', getProducts);
+
+
+// Codigo que anda antes de que fabi rompa algo xd
+
+// buscar.addEventListener('input', () => {
+//     if (buscar.value.length >= 1) {
+//         const filteredData = productsDataGlobal.filter((word) =>
+
+//         ((word.name).toLowerCase().includes((buscar.value).toLowerCase()) ||
+//             ((word.description).toLowerCase().includes((buscar.value).toLowerCase()))));
+
+//         console.log(filteredData);
+//         showProducts(filteredData);
+//     } else {
+//         showProducts(productsDataGlobal);
+//     }
+// });

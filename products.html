@@ -11,13 +11,15 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link rel="shortcut icon" href="./img/favicon.svg" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="css/indexCarousel.css">
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
     <div class="container">
-      <a class="navbar-brand d-lg-none" href="#">
-        <img src="./img/loginAndRegistration/icon.svg" alt="Logo" width="180">
+      <a class="navbar-brand d-lg-none" href="index.html">
+        <img src="img/loginAndRegistration/icon.svg" alt="Logo" width="180">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,8 +28,8 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between align-items-center">
           <li class="nav-item">
-            <a class="navbar-brand d-none d-lg-block" href="#">
-              <img src="./img/loginAndRegistration/icon.svg" alt="Logo" width="180">
+            <a class="navbar-brand d-none d-lg-block" href="index.html">
+              <img src="img/loginAndRegistration/icon.svg" alt="Logo" width="180">
             </a>
           </li>
           <li class="nav-item">
@@ -39,8 +41,12 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item nav-menu-login">
             <a id="login" class="nav-link" href="loginAndRegistration.html"></a>
+            <div id="menuLogout" class="user-logout">
+              <a class="nav-link" href="index.html">Ver Perfil</a>
+              <a id="logout" class="nav-link" href="index.html">Cerrar Sesión</a>
+            </div>
           </li>
         </ul>
       </div>
@@ -53,37 +59,60 @@
     </div>
     <div class="container">
       <div class="row">
+
+        <div class="col-5">
+          <div class="input-group">
+
+            <input id="buscar" type="search" class="form-control" placeholder="Buscar" aria-label="Buscar"
+              aria-describedby="search-addon" />
+          </div>
+        </div>
+
         <div class="col text-end">
           <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+
             <input type="radio" class="btn-check" name="options" id="sortAsc">
-            <label class="btn btn-light" for="sortAsc">A-Z</label>
+            <label class="btn btn-light" for="sortAsc"><i class="bi bi-currency-dollar"></i>
+              <i class="bi bi-sort-down-alt" style="margin-left: -5px;"></i></label>
+
             <input type="radio" class="btn-check" name="options" id="sortDesc">
-            <label class="btn btn-light" for="sortDesc">Z-A</label>
+            <label class="btn btn-light" for="sortDesc"><i class="bi bi-currency-dollar"></i><i
+                class="bi bi-sort-down"></i></label>
+
             <input type="radio" class="btn-check" name="options" id="sortByCount">
             <label class="btn btn-light" for="sortByCount"><i class="fas fa-sort-amount-down mr-1"></i></label>
           </div>
         </div>
       </div>
       <div class="row">
+
         <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+
           <div class="row container p-0 m-0">
+
             <div class="col">
               <p class="font-weight-normal text-end my-2">Cant.</p>
             </div>
+
             <div class="col">
               <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin" min="0">
             </div>
+
             <div class="col">
               <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax" max="99999999">
             </div>
+
             <div class="col-3 p-0  ">
               <div class="btn-group col-sm " role="group">
                 <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
                 <button class="btn btn-light btn-block d-none d-sm-block" id="clearRangeFilter">Limpiar</button>
               </div>
             </div>
+
           </div>
+
         </div>
+
       </div>
 
       <div id="productContainer" class="row gy-4 gx-4">
