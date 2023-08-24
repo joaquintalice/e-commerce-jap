@@ -39,7 +39,7 @@ async function getProducts() {
 function showProducts(productArray) {
     // Filtra el array de productos para obtener los productos que sean mayores a minCount y menores que maxCount.
     // Los cuales, se modifican en base a los eventos que ocurren en los input radio
-    const filteredProducts = productArray.filter(product => product.soldCount >= minCount && product.soldCount <= maxCount);
+    const filteredProducts = productArray.filter(product => product.cost >= minCount && product.cost <= maxCount);
 
     switch (sortOption) {
         case 'asc':
@@ -53,15 +53,6 @@ function showProducts(productArray) {
             break;
         default:
     }
-
-
-    /*
-    Con el listado de productos desplegado:
-    
-    Aplicar filtros a partir de rango de precio definido.
-    Agregar las funcionalidades de orden ascendente y descendente en función del precio y descendente 
-    en función de la relevancia (tomaremos para ello la cantidad de artículos vendidos)
-    */
 
     let template = ``;
 
@@ -157,20 +148,3 @@ buscar.addEventListener('input', () => {
 
 
 document.addEventListener('DOMContentLoaded', getProducts);
-
-
-// Codigo que anda antes de que fabi rompa algo xd
-
-// buscar.addEventListener('input', () => {
-//     if (buscar.value.length >= 1) {
-//         const filteredData = productsDataGlobal.filter((word) =>
-
-//         ((word.name).toLowerCase().includes((buscar.value).toLowerCase()) ||
-//             ((word.description).toLowerCase().includes((buscar.value).toLowerCase()))));
-
-//         console.log(filteredData);
-//         showProducts(filteredData);
-//     } else {
-//         showProducts(productsDataGlobal);
-//     }
-// });
