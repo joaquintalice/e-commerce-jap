@@ -55,70 +55,53 @@
   <main class="container mt-4">
     <div class="text-center p-4">
       <h2 id="product-title"></h2>
-      <p class="lead">Todos nuestros artículos disponibles</p>
+      <p class="lead">Todos nuestros productos disponibles</p>
     </div>
-    <div class="container">
-      <div class="row">
-
-        <div class="col-5">
-          <div class="input-group">
-
-            <input id="buscar" type="search" class="form-control" placeholder="Buscar" aria-label="Buscar"
-              aria-describedby="search-addon" />
-          </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="input-group">
+          <input id="buscar" type="search" class="form-control" placeholder="Buscar" aria-label="Buscar"
+            aria-describedby="search-addon" />
         </div>
-
-        <div class="col text-end">
-          <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
-
-            <input type="radio" class="btn-check" name="options" id="sortAsc">
-            <label class="btn btn-light" for="sortAsc"><i class="bi bi-currency-dollar"></i>
-              <i class="bi bi-sort-down-alt" style="margin-left: -5px;"></i></label>
-
-            <input type="radio" class="btn-check" name="options" id="sortDesc">
-            <label class="btn btn-light" for="sortDesc"><i class="bi bi-currency-dollar"></i><i
-                class="bi bi-sort-down"></i></label>
-
-            <input type="radio" class="btn-check" name="options" id="sortByCount">
-            <label class="btn btn-light" for="sortByCount"><i class="fas fa-sort-amount-down mr-1"></i></label>
+      </div>
+      <div class="col-md-8 text-md-end">
+        <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+          <input type="radio" class="btn-check" name="options" id="sortAsc">
+          <label class="btn btn-light" for="sortAsc"><i class="bi bi-currency-dollar"></i>
+            <i class="bi bi-sort-down-alt" style="margin-left: -5px;"></i></label>
+          <input type="radio" class="btn-check" name="options" id="sortDesc">
+          <label class="btn btn-light" for="sortDesc"><i class="bi bi-currency-dollar"></i><i
+              class="bi bi-sort-down"></i></label>
+          <input type="radio" class="btn-check" name="options" id="sortByCount">
+          <label class="btn btn-light" for="sortByCount"><i class="fas fa-sort-amount-down mr-1"></i></label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 offset-lg-6 col-md-12 mb-1">
+        <div class="row">
+          <div class="col">
+            <p class="font-weight-normal text-end my-2">Cant.</p>
+          </div>
+          <div class="col">
+            <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin" min="0">
+          </div>
+          <div class="col">
+            <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax" max="99999999">
+          </div>
+          <div class="col-3 p-0">
+            <div class="btn-group col-sm" role="group">
+              <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
+              <button class="btn btn-light btn-block d-none d-sm-block" id="clearRangeFilter">Limpiar</button>
+            </div>
           </div>
         </div>
       </div>
-      <div class="row">
-
-        <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
-
-          <div class="row container p-0 m-0">
-
-            <div class="col">
-              <p class="font-weight-normal text-end my-2">Cant.</p>
-            </div>
-
-            <div class="col">
-              <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin" min="0">
-            </div>
-
-            <div class="col">
-              <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax" max="99999999">
-            </div>
-
-            <div class="col-3 p-0  ">
-              <div class="btn-group col-sm " role="group">
-                <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
-                <button class="btn btn-light btn-block d-none d-sm-block" id="clearRangeFilter">Limpiar</button>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div id="productContainer" class="row gy-4 gx-4">
-
-      </div>
+    </div>
+    <div id="productContainer" class="row gy-4 gx-4">
+    </div>
   </main>
+
 
 
   <footer class="text-muted">
