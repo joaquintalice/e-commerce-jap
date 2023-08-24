@@ -72,7 +72,7 @@ function showProducts(productArray) {
                         <li class="list-group-item">Vendidos: ${product.soldCount}</li>
                         </ul>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary">Buy now</a>
+                        <a href="#" class="btn btn-primary">Add to cart <i class="bi bi-cart"></i></a>
                     </div>
                 </div>
             </div>
