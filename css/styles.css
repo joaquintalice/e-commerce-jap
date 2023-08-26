@@ -22,6 +22,7 @@ nav a {
   user-select: none;
 }
 
+
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
@@ -193,4 +194,8 @@ a.custom-card:hover {
 
 img {
   max-width: 100%;
+}
+
+.hover:hover {
+  background-color: #ffebcc4b;
 }
