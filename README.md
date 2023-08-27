@@ -4,11 +4,10 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-  <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+    Welcome to E-Mercado
 </p>
 
-## <img src="https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/StarredRepositoryYellow.svg"> Description 
+## <img src="https://cdn-icons-png.flaticon.com/512/8655/8655461.png" width='25'> Description 
   Project to JaP in Q3-Q4 2K23 <br>
 
 
