@@ -44,18 +44,16 @@ function showProducts(productsArray) {
         template +=
             `
             <div class="col-12 col-md-4 col-xxl-3 d-flex mt-5">
-                <div class="card" >
+                <div class="card cursor-active" >
                     <img class="card-img-top" src="${product.image}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">${product.name}</h5>
                         <p>${product.currency} ${product.cost}</p>
                         <p class="card-text">${product.description}</p>
                         </div>
-                        <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Vendidos: ${product.soldCount}</li>
-                        </ul>
+                        
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary">Buy now</a>
+                        <h6>Vendidos: ${product.soldCount}</h6>
                     </div>
                 </div>
             </div>
@@ -70,7 +68,7 @@ function filterProductosFor(productsArray, minCount, maxCount) {
     return filteredProducts;
 }
 
-function productsOrdered(arrProducts,order) {
+function productsOrdered(arrProducts, order) {
     const sortOption = {
         "sortAsc": () => {
             const productsAsc = arrProducts.toSorted((a, b) => a.cost - b.cost);
@@ -99,7 +97,9 @@ function inputRadioEvents() {
 
     inputsRadios.forEach(input => {
         input.addEventListener('change', () => {
-            const products = productsOrdered(productsDataGlobal, input.id);        
+            const products = productsOrdered(productsDataGlobal, input.id);
+            console.log(products);
+
             showProducts(products);
             input.checked = false
         });
@@ -117,13 +117,15 @@ function filterProductsEvents() {
         const minCount = parseInt(inputMin.value) ? parseInt(inputMin.value) : 0; // Si el inputMin.value es NaN, se le asigna el valor 0.
         const maxCount = parseInt(inputMax.value) ? parseInt(inputMax.value) : Infinity; // Si el inputMax.value es NaN, se le asigna el valor Infinity.
         const products = filterProductosFor(productsDataGlobal, minCount, maxCount);
+        console.log(productsDataGlobal);
+
         showProducts(products);
     });
 
 
     document.getElementById('clearRangeFilter').addEventListener('click', () => {
         inputMin.value = '';
-        inputMax.value = '';     
+        inputMax.value = '';
         showProducts(productsDataGlobal);
     });
 }
@@ -143,7 +145,7 @@ function searchProductEvent() {
             const descripcion = word.description.toLowerCase().includes(buscar.value.toLowerCase());
             return name || descripcion;
         });
-    
+
         showProducts(filteredData);
     });
 }

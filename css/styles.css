@@ -204,3 +204,13 @@ img {
   border: 1px solid rgb(156, 156, 156);
   background-color: #ffebcc91;
 }
+
+.card {
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.card:hover {
+  box-shadow: 1px 1px 55px 12px #d7d7d791;
+  transform: scale(1.009);
+  background-color: rgb(245, 245, 245);
+}
