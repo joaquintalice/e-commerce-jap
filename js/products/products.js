@@ -99,9 +99,7 @@ function inputRadioEvents() {
 
     inputsRadios.forEach(input => {
         input.addEventListener('change', () => {
-            const products = productsOrdered(productsDataGlobal, input.id);
-            console.log(products);
-            
+            const products = productsOrdered(productsDataGlobal, input.id);        
             showProducts(products);
             input.checked = false
         });
@@ -116,11 +114,9 @@ function filterProductsEvents() {
     const inputMax = document.getElementById('rangeFilterCountMax');
 
     document.getElementById('rangeFilterCount').addEventListener('click', () => {
-        const minCount = parseInt(inputMin.value) ?? 0; // Si el inputMin.value es NaN, se le asigna el valor 0.
-        const maxCount = parseInt(inputMax.value) ?? Infinity; // Si el inputMax.value es NaN, se le asigna el valor Infinity.
+        const minCount = parseInt(inputMin.value) ? parseInt(inputMin.value) : 0; // Si el inputMin.value es NaN, se le asigna el valor 0.
+        const maxCount = parseInt(inputMax.value) ? parseInt(inputMax.value) : Infinity; // Si el inputMax.value es NaN, se le asigna el valor Infinity.
         const products = filterProductosFor(productsDataGlobal, minCount, maxCount);
-        console.log(productsDataGlobal);
-        
         showProducts(products);
     });
 
