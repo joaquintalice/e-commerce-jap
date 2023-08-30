@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     searchProductEvent();
 });
 
+const buscar = document.getElementById('buscar');
+
 let productsDataGlobal = [] // Contendrá el array de productos disponible para usar globalmente en caso de que el fetch los traiga correctamente.
 
 // Función que obtiene los productos de la categoría seleccionada
@@ -38,11 +40,12 @@ function showProducts(productsArray) {
     const productContainer = document.getElementById('productContainer');
 
     let template = ``;
+    if (productsArray.length >= 1) {
 
-    for (let product of productsArray) {
+        for (let product of productsArray) {
 
-        template +=
-            `
+            template +=
+                `
             <div class="col-12 col-md-4 col-xxl-3 d-flex mt-5">
                 <div class="card cursor-active" >
                     <img class="card-img-top" src="${product.image}" alt="Card image cap">
@@ -50,7 +53,7 @@ function showProducts(productsArray) {
                         <h5 class="card-title">${product.name}</h5>
                         <p>${product.currency} ${product.cost}</p>
                         <p class="card-text">${product.description}</p>
-                        </div>
+                    </div>
                         
                     <div class="card-footer">
                         <h6>Vendidos: ${product.soldCount}</h6>
@@ -58,8 +61,14 @@ function showProducts(productsArray) {
                 </div>
             </div>
         `;
-    };
-
+        };
+    } else {
+        template = `
+                <div class="col-12 mt-5 text-center text-danger                                                                         " >
+                        <h5 style="margin-top:2rem;">No se encontraron productos</h5>
+                </div>
+        `
+    }
     productContainer.innerHTML = template;
 }
 
@@ -107,17 +116,25 @@ function inputRadioEvents() {
 }
 
 
-// Funcionalidad de los botónes de filtrar y limpiar
+// Funcionalidad del botón de limpiar
 
 function filterProductsEvents() {
     const inputMin = document.getElementById('rangeFilterCountMin');
     const inputMax = document.getElementById('rangeFilterCountMax');
 
-    document.getElementById('rangeFilterCount').addEventListener('click', () => {
+    document.getElementById('rangeFilterCountMin').addEventListener('input', () => {
         const minCount = parseInt(inputMin.value) ? parseInt(inputMin.value) : 0; // Si el inputMin.value es NaN, se le asigna el valor 0.
         const maxCount = parseInt(inputMax.value) ? parseInt(inputMax.value) : Infinity; // Si el inputMax.value es NaN, se le asigna el valor Infinity.
         const products = filterProductosFor(productsDataGlobal, minCount, maxCount);
-        console.log(productsDataGlobal);
+
+        showProducts(products);
+    });
+
+    document.getElementById('rangeFilterCountMax').addEventListener('input', () => {
+        const minCount = parseInt(inputMin.value) ? parseInt(inputMin.value) : 0; // Si el inputMin.value es NaN, se le asigna el valor 0.
+        const maxCount = parseInt(inputMax.value) ? parseInt(inputMax.value) : Infinity; // Si el inputMax.value es NaN, se le asigna el valor Infinity.
+        const products = filterProductosFor(productsDataGlobal, minCount, maxCount);
+        //console.log(products);
 
         showProducts(products);
     });
@@ -126,26 +143,29 @@ function filterProductsEvents() {
     document.getElementById('clearRangeFilter').addEventListener('click', () => {
         inputMin.value = '';
         inputMax.value = '';
+        buscar.value = '';
         showProducts(productsDataGlobal);
     });
 }
 
-// Funcionalidad del buscador
 
+
+// Funcionalidad del buscador
 function searchProductEvent() {
-    const buscar = document.getElementById('buscar');
 
     buscar.addEventListener('input', () => {
         if (buscar.value.length < 1) {
             showProducts(productsDataGlobal);
             return;
         }
-        const filteredData = productsDataGlobal.filter((word) => {
-            const name = word.name.toLowerCase().includes(buscar.value.toLowerCase());
-            const descripcion = word.description.toLowerCase().includes(buscar.value.toLowerCase());
+
+        const filteredData = productsDataGlobal.filter((product) => {
+            const name = product.name.toLowerCase().includes(buscar.value.toLowerCase());
+            const descripcion = product.description.toLowerCase().includes(buscar.value.toLowerCase());
+
             return name || descripcion;
         });
 
-        showProducts(filteredData);
+        showProducts(filteredData)
     });
 }
