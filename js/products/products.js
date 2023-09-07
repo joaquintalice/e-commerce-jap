@@ -34,6 +34,12 @@ async function getProducts() {
     productsDataGlobal = products; // Guardamos los products en una variable global para poderla usar afuera de este scope.
 }
 
+function setProductID(id) {
+    localStorage.setItem("productID", id);
+    window.location = "product-info.html"
+}
+
+
 // Función que muestra los productos en el DOM
 
 function showProducts(productsArray) {
@@ -46,7 +52,7 @@ function showProducts(productsArray) {
 
             template +=
                 `
-            <div class="col-12 col-md-4 col-xxl-3 d-flex mt-5">
+            <div onclick="setProductID(${product.id})" class="col-12 col-md-4 col-xxl-3 d-flex mt-5">
                 <div class="card cursor-active" >
                     <img class="card-img-top" src="${product.image}" alt="Card image cap">
                     <div class="card-body">
