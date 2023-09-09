@@ -215,6 +215,24 @@ img {
   background-color: rgb(245, 245, 245);
 }
 
+.product--not-animation {
+  transition: none;
+}
+
+.product--not-animation:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.product--zoom {
+  object-view-box: inset(0%);
+  transition: all .3s;
+}
+
+.product--zoom:hover {
+  object-view-box: inset(10%);
+}
+
 #commentary-container {
   max-width: 100%;
   min-height: 100px;
