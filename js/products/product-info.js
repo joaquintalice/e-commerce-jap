@@ -115,7 +115,7 @@ async function showComments() {
             template +=
                 `
                 <div onclick="setProductID(${product.id})" class="col-12  mt-5">
-                    <div class="card cursor-active" >
+                    <div class="card" >
                         <div class="card-body">
                             <h5 class="card-title">${product.user}</h5>
                             <p>${product.dateTime}</p>

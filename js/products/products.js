@@ -53,7 +53,7 @@ function showProducts(productsArray) {
             template +=
                 `
             <div onclick="setProductID(${product.id})" class="col-12 col-md-4 col-xxl-3 d-flex mt-5">
-                <div class="card cursor-active" >
+                <div class="card cursor-active product" >
                     <img class="card-img-top" src="${product.image}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">${product.name}</h5>
@@ -70,7 +70,7 @@ function showProducts(productsArray) {
         };
     } else {
         template = `
-                <div class="col-12 mt-5 text-center text-danger                                                                         " >
+                <div class="col-12 mt-5 text-center text-danger" >
                         <h5 style="margin-top:2rem;">No se encontraron productos</h5>
                 </div>
         `
