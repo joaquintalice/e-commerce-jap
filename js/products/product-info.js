@@ -2,14 +2,60 @@ document.addEventListener("DOMContentLoaded", main);
 
 const id = localStorage.getItem("productID");
 const urlComments = `https://japceibal.github.io/emercado-api/products_comments/${id}.json`;
-const dataContainer = document.getElementById('data-container'); // Aloja la data del producto que se traiga con el fetch
-
-
-
+const dataContainer = document.getElementById('data-container');
+const comments = document.getElementById('comments');
+let posicion = 0;
 
 function main() {
     getProducts()
     showComments();
+    showIndividualComent();
+}
+
+function showIndividualComent() {
+    const formulario = document.getElementById("review");
+
+    formulario.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const estrellitas = posicion;
+        let comentario = document.getElementById("commentary-container").value;
+
+        const user = localStorage.getItem('userData');
+        const { username } = JSON.parse(user)
+
+        const date = new Date();
+
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        const hour = date.getHours();
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+
+        const dateNow = `${year}-${month}-${day} ${hour}:${minutes}:${seconds}`;
+
+
+        const review = {
+            id: id,
+            user: username,
+            dateTime: dateNow,
+            description: comentario,
+            score: estrellitas
+        }
+
+
+        if (!localStorage.getItem('comment')) {
+            localStorage.setItem('comment', JSON.stringify([review]));
+        } else {
+            let comment = JSON.parse(localStorage.getItem('comment'));
+            comment = [...comment, review];
+            localStorage.setItem('comment', JSON.stringify(comment));
+        }
+        showComments();
+    })
+
+
 }
 
 
@@ -79,38 +125,50 @@ async function getComments() {
     const response = await fetch(urlComments);
     if (!response.ok) throw new Error(`Code error:${response.status}`);
     const data = await response.json();
-    // console.log(data);
     return data;
+}
 
+const commentScore = (score) => {
+    let templateStars = ``;
+
+    for (let i = 1; i <= 5; i++) {
+        if (i <= score) {
+            templateStars += `
+                <span class="fa fa-star checked"></span>
+                `
+        } else {
+            templateStars += `
+                <span class="fa fa-star"></span>
+                `
+        }
+    }
+
+    return templateStars;
 }
 
 async function showComments() {
     const commentsArray = await getComments();
-    const comments = document.getElementById('comments');
+    const comment = JSON.parse(localStorage.getItem('comment'))
 
-    const commentScore = (score) => {
-        let templateStars = ``;
+    let asd = commentsArray
 
-        for (let i = 1; i <= 5; i++) {
-            if (i <= score) {
-                templateStars += `
-                    <span class="fa fa-star checked"></span>
-                    `
-            } else {
-                templateStars += `
-                    <span class="fa fa-star"></span>
-                    `
-            }
+    if (comment) {
+        const existe = comment.every((element) => element.id == id);
+        if (existe) {
+            asd = [...commentsArray, ...comment]
         }
-
-        return templateStars;
     }
 
+
+    console.log(asd)
+
+
     let template = ``;
-    if (commentsArray.length >= 1) {
+
+    if (asd.length >= 1) {
         // console.log(commentsArray);
 
-        for (let product of commentsArray) {
+        for (let product of asd) {
 
             template +=
                 `
@@ -163,7 +221,6 @@ starOption.addEventListener("mouseover", (e) => {
     const arrHTML = [...starOptionChildrens];
     if (e.target.nodeName == "SPAN") {
         const elementoActual = arrHTML.filter((element) => element == e.target);
-        let posicion = 0;
 
         if (elementoActual.length > 0) {
             posicion = arrHTML.indexOf(elementoActual[0]);
