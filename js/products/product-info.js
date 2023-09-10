@@ -3,14 +3,41 @@ document.addEventListener("DOMContentLoaded", main);
 const id = localStorage.getItem("productID");
 const urlComments = `https://japceibal.github.io/emercado-api/products_comments/${id}.json`;
 const dataContainer = document.getElementById('data-container');
-const comments = document.getElementById('comments');
+const commentsContainer = document.getElementById('comments');
 let posicion = 0;
+
+
 
 function main() {
     getProducts()
     showComments();
     showIndividualComent();
 }
+
+
+
+function dateTimeNow() {
+    const date = new Date();
+
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const hour = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+
+    return `${year}-${month}-${day} ${hour}:${minutes}:${seconds}`;
+}
+
+
+
+function getUserUsername() {
+    const user = localStorage.getItem('userData');
+    const { username } = JSON.parse(user)
+    return username
+}
+
+
 
 function showIndividualComent() {
     const formulario = document.getElementById("review");
@@ -19,31 +46,19 @@ function showIndividualComent() {
         e.preventDefault();
 
         const estrellitas = posicion;
-        let comentario = document.getElementById("commentary-container").value;
+        const comment = document.getElementById("commentary-container").value;
 
-        const user = localStorage.getItem('userData');
-        const { username } = JSON.parse(user)
-
-        const date = new Date();
-
-        const year = date.getFullYear();
-        const month = date.getMonth() + 1;
-        const day = date.getDate();
-        const hour = date.getHours();
-        const minutes = date.getMinutes();
-        const seconds = date.getSeconds();
-
-        const dateNow = `${year}-${month}-${day} ${hour}:${minutes}:${seconds}`;
+        const username = getUserUsername()
+        const currentDateTime = dateTimeNow()
 
 
         const review = {
             id: id,
             user: username,
-            dateTime: dateNow,
-            description: comentario,
+            dateTime: currentDateTime,
+            description: comment,
             score: estrellitas
         }
-
 
         if (!localStorage.getItem('comment')) {
             localStorage.setItem('comment', JSON.stringify([review]));
@@ -54,29 +69,23 @@ function showIndividualComent() {
         }
         showComments();
     })
-
-
 }
+
+
 
 
 async function getProducts() {
-
     const storedValue = localStorage.getItem('productID');
     const URL = `https://japceibal.github.io/emercado-api/products/${storedValue}.json`;
-
     const response = await fetch(URL);
-
     if (!response.ok) throw new Error(`Code error:${response.status}`);
-
     const data = await response.json();
-
-    console.log(data);
-
     showProducts(data);
 }
 
-function showProducts(objeto) {
 
+
+function showProducts(objeto) {
     const { category, cost, currency, description, name, images, relatedProducts, soldCount } = objeto
 
     const template =
@@ -104,6 +113,7 @@ function showProducts(objeto) {
                 </div>
                 `
 
+
     const imgCollection = document.getElementsByClassName('carousel-item'); // Aloja las img para el carousel
     Array.from(imgCollection).forEach((carouselItem, index) => {
         // Imagen dentro de cada .carousel-item
@@ -116,10 +126,12 @@ function showProducts(objeto) {
         }
     });
 
-    dataContainer.innerHTML = template
-    document.getElementById('title').innerHTML = name; // Le asigna el nombre del producto al h1 con el id title del HTML
 
+    dataContainer.innerHTML = template
+    document.getElementById('title').innerHTML = name; // Le asigna el nombre del producto al h1 con el id 'title' del HTML
 }
+
+
 
 async function getComments() {
     const response = await fetch(urlComments);
@@ -128,7 +140,9 @@ async function getComments() {
     return data;
 }
 
-const commentScore = (score) => {
+
+
+function commentScore(score) {
     let templateStars = ``;
 
     for (let i = 1; i <= 5; i++) {
@@ -146,39 +160,37 @@ const commentScore = (score) => {
     return templateStars;
 }
 
+
+
 async function showComments() {
     const commentsArray = await getComments();
     const comment = JSON.parse(localStorage.getItem('comment'))
 
-    let asd = commentsArray
+    let allComments = commentsArray
 
     if (comment) {
-        const existe = comment.every((element) => element.id == id);
-        if (existe) {
-            asd = [...commentsArray, ...comment]
-        }
+        const commentsFiltered = comment.filter((element) => element.id == id);
+        allComments = [...commentsArray, ...commentsFiltered]
     }
 
 
-    console.log(asd)
-
-
     let template = ``;
+    if (allComments.length >= 1) {
 
-    if (asd.length >= 1) {
-        // console.log(commentsArray);
+        for (let product of allComments) {
+            const { id, user, dateTime, score, description } = product
+            const scoreStars = commentScore(score)
 
-        for (let product of asd) {
 
             template +=
                 `
-                <div onclick="setProductID(${product.id})" class="col-12  mt-5">
+                <div onclick="setProductID(${id})" class="col-12  mt-5">
                     <div class="card" >
                         <div class="card-body">
-                            <h5 class="card-title">${product.user}</h5>
-                            <p>${product.dateTime}</p>
-                            <p>${commentScore(product.score)}<p>
-                            <p class="card-text">${product.description}</p>
+                            <h5 class="card-title">${user}</h5>
+                            <p>${dateTime}</p>
+                            <p>${scoreStars}<p>
+                            <p class="card-text">${description}</p>
                             
                         </div>
                     </div>
@@ -188,14 +200,12 @@ async function showComments() {
     } else {
         template = `
                     <div class="col-12 mt-5 text-center text-danger">
-                            <h5 style="margin-top:2rem;">Se el primero en realizar un comentario:</h5>
+                            <h5 class="my-5">Sé la primer persona en realizar un comentario.</h5>
                     </div>
             `
     }
 
-    comments.innerHTML = template
-
-
+    commentsContainer.innerHTML = template
 }
 
 
@@ -216,6 +226,7 @@ const checkHoverStar = (posicion) => {
     })
 
 }
+
 
 starOption.addEventListener("mouseover", (e) => {
     const arrHTML = [...starOptionChildrens];
