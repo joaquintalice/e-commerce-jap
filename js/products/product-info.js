@@ -106,7 +106,7 @@ function showProducts(objeto) {
                             
                     <div class='row text-center my-4'>
                         <div class='col-6'>
-                            <p>Categoría > <a style='text-decoration:none;' class='link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover' href='products.html'>${category}</a></p>
+                            <p><a style='text-decoration:none;' class='link-dark' href='categories.html'>Categoría</a> > <a style='text-decoration:none;' class='link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover' href='products.html'>${category}</a></p>
                         </div>
                         <div class='col-6'>
                             <p>+${soldCount} vendidos</p>
