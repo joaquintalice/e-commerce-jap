@@ -99,26 +99,42 @@ function showProducts(objeto) {
                 <div class='col-12'>
     
                     <div class="row">
-                        <div class="col-12">
-                            <h3>Precio</h3>
-                            <p>${currency} ${cost}</p>        
+                        <div class="col-12 text-center my-4">
+                            <h1>${name}</h1>
                         </div>
-                        <div class="col-12">
-                            <h3>Descripción</h3>
-                            <p>${description}</p>    
+                    </div>
+                            
+                    <div class='row text-center my-4'>
+                        <div class='col-6'>
+                            <p>Categoría > <a class='link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover' href='products.html'>${category}</a></p>
                         </div>
-                        <div class="col-12">
-                            <h3>Categoría</h3>
-                            <p>${category}</p>
+                        <div class='col-6'>
+                            <p>+${soldCount} vendidos</p>
                         </div>
-                        <div class="col-12">
-                            <h3>Vendidos</h3>
-                            <p>${soldCount}</p>
+                    </div>
+
+                    
+
+                    <div class='row my-4'>
+                        <div class='col-12 text-center'>
+                            <h3>${currency} ${cost}</h3>
                         </div>
-                        <div class="col-12">
+                    </div>
+
+                    
+
+                    <div class='row my-4'>
+                        <div class='col-12 text-center'>
+                            <p>${description}</p>
+                        </div>
+                    </div>
+                    
+                    <div class='row my-4'>
+                        <div class='col-12 text-center'>
                             <btn class="btn btn-dark" onclick="alert('Funcionalidad en desarrollo')">Añadir al carrito</btn>
                         </div>
                     </div>
+
                 </div>
                 `
 
@@ -156,7 +172,6 @@ function showProducts(objeto) {
 
     dataContainer.innerHTML = prodTemplate;
     relProdContainer.innerHTML = relProdTemplate;
-    document.getElementById('title').innerHTML = name; // Le asigna el nombre del producto al h1 con el id 'title' del HTML
 }
 
 
