@@ -109,6 +109,9 @@ function showProducts(objeto) {
                             <h3>Vendidos</h3>
                             <p>${soldCount}</p>
                         </div>
+                        <div class="col-12">
+                            <btn class="btn btn-dark" onclick="alert('Funcionalidad en desarrollo')">Añadir al carrito</btn>
+                        </div>
                     </div>
                 </div>
                 `
