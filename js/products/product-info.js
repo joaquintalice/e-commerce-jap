@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", main);
 
 const id = localStorage.getItem("productID");
 const urlComments = `https://japceibal.github.io/emercado-api/products_comments/${id}.json`;
+
 const dataContainer = document.getElementById('data-container');
+const relProdContainer = document.getElementById('rel-prod-container');
 const commentsContainer = document.getElementById('comments');
 let posicion = 0;
 
@@ -84,11 +86,15 @@ async function getProducts() {
 }
 
 
+function goToRelProd(id) {
+    localStorage.setItem('productID', id);
+    location.href = 'product-info.html';
+}
 
 function showProducts(objeto) {
     const { category, cost, currency, description, name, images, relatedProducts, soldCount } = objeto
 
-    const template =
+    const prodTemplate =
         `
                 <div class='col-12'>
     
@@ -116,6 +122,24 @@ function showProducts(objeto) {
                 </div>
                 `
 
+    let relProdTemplate = '';
+    for (let prod of relatedProducts) {
+        const { id, name, image } = prod
+        relProdTemplate +=
+            `
+                <div class='col-12 col-md-6 my-5 cursor-active' onclick='goToRelProd(${id})'>
+                    <div class="row">
+                        <div class="card">
+                            <img class="card-img-top" src="${image}" alt="Card image cap">
+                            <div class="card-body">
+                                <h3 class="card-title text-center">${name}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `
+    }
+
 
     const imgCollection = document.getElementsByClassName('carousel-item'); // Aloja las img para el carousel
     Array.from(imgCollection).forEach((carouselItem, index) => {
@@ -130,7 +154,8 @@ function showProducts(objeto) {
     });
 
 
-    dataContainer.innerHTML = template
+    dataContainer.innerHTML = prodTemplate;
+    relProdContainer.innerHTML = relProdTemplate;
     document.getElementById('title').innerHTML = name; // Le asigna el nombre del producto al h1 con el id 'title' del HTML
 }
 
