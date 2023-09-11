@@ -15,7 +15,7 @@ async function getProducts() {
     const pageTitle = document.getElementById('page-title');
     const prodTitle = document.getElementById('product-title');
     const storedValue = localStorage.getItem('catID'); // Se obtiene el catID que se encuentra en el localstorage, el cual fue guardado en categories.js
-    const URL = `https://japceibal.github.io/emercado-api/cats_products/${storedValue}.json`;
+    const URL = `https://e-mercado-backend-dev.fl0.io/category/${storedValue}`;
 
     const response = await fetch(URL);
 
@@ -23,15 +23,18 @@ async function getProducts() {
 
     const data = await response.json();
 
-    const { products, catName } = data;
 
 
-    showProducts(products);
+    const { Product, name } = data;
 
-    prodTitle.innerHTML = catName;
-    pageTitle.innerHTML = `eMercado - ${catName}`;
+    console.log(Product)
 
-    productsDataGlobal = products; // Guardamos los products en una variable global para poderla usar afuera de este scope.
+    showProducts(Product);
+
+    prodTitle.innerHTML = name;
+    pageTitle.innerHTML = `eMercado - ${name}`;
+
+    productsDataGlobal = Product; // Guardamos los products en una variable global para poderla usar afuera de este scope.
 }
 
 function setProductID(id) {
@@ -49,20 +52,21 @@ function showProducts(productsArray) {
     if (productsArray.length >= 1) {
 
         for (let product of productsArray) {
-
+            const { id, image, name, cost, currency, description, soldCount } = product
+            const img = image[0]
             template +=
                 `
-            <div onclick="setProductID(${product.id})" class="col-12 col-md-4 col-xxl-3 d-flex mt-5">
+            <div onclick="setProductID(${id})" class="col-12 col-md-4 col-xxl-3 d-flex mt-5">
                 <div class="card cursor-active product" >
-                    <img class="card-img-top" src="${product.image}" alt="Card image cap">
+                    <img class="card-img-top" src="${img}" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">${product.name}</h5>
-                        <p>${product.currency} ${product.cost}</p>
-                        <p class="card-text">${product.description}</p>
+                        <h5 class="card-title">${name}</h5>
+                        <p>${currency} ${cost}</p>
+                        <p class="card-text">${description}</p>
                     </div>
                         
                     <div class="card-footer">
-                        <h6>Vendidos: ${product.soldCount}</h6>
+                        <h6>Vendidos: ${soldCount}</h6>
                     </div>
                 </div>
             </div>

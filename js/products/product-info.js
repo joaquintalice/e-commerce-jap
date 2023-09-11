@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", main);
 
 const id = localStorage.getItem("productID");
-const urlComments = `https://japceibal.github.io/emercado-api/products_comments/${id}.json`;
+const URL = `https://e-mercado-backend-dev.fl0.io/product/${id}`;
 
 const dataContainer = document.getElementById('data-container');
 const relProdContainer = document.getElementById('rel-prod-container');
@@ -77,11 +77,10 @@ function showIndividualComent() {
 
 
 async function getProducts() {
-    const storedValue = localStorage.getItem('productID');
-    const URL = `https://japceibal.github.io/emercado-api/products/${storedValue}.json`;
     const response = await fetch(URL);
     if (!response.ok) throw new Error(`Code error:${response.status}`);
     const data = await response.json();
+    console.log(data)
     showProducts(data);
 }
 
@@ -91,8 +90,12 @@ function goToRelProd(id) {
     location.href = 'product-info.html';
 }
 
+
 function showProducts(objeto) {
-    const { category, cost, currency, description, name, images, relatedProducts, soldCount } = objeto
+
+    const { categoryName, cost, currency, description, name, image, relatedProducts, soldCount, commentId } = objeto
+    console.log(commentId)
+
 
     const prodTemplate =
         `
@@ -106,7 +109,7 @@ function showProducts(objeto) {
                             
                     <div class='row text-center my-4'>
                         <div class='col-6'>
-                            <p><a style='text-decoration:none;' class='link-dark' href='categories.html'>Categoría</a> > <a style='text-decoration:none;' class='link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover' href='products.html'>${category}</a></p>
+                            <p><a style='text-decoration:none;' class='link-dark' href='categories.html'>Categoría</a> > <a style='text-decoration:none;' class='link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover' href='products.html'>${categoryName}</a></p>
                         </div>
                         <div class='col-6'>
                             <p>+${soldCount} vendidos</p>
@@ -138,23 +141,23 @@ function showProducts(objeto) {
                 </div>
                 `
 
-    let relProdTemplate = '';
-    for (let prod of relatedProducts) {
-        const { id, name, image } = prod
-        relProdTemplate +=
-            `
-                <div class='col-12 col-md-6 my-5 cursor-active' onclick='goToRelProd(${id})'>
-                    <div class="row">
-                        <div class="card">
-                            <img class="card-img-top" src="${image}" alt="Card image cap">
-                            <div class="card-body">
-                                <h3 class="card-title text-center">${name}</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                `
-    }
+    // let relProdTemplate = '';
+    // for (let prod of relatedProducts) {
+    //     const { id, name, image } = prod
+    //     relProdTemplate +=
+    //         `
+    //             <div class='col-12 col-md-6 my-5 cursor-active' onclick='goToRelProd(${id})'>
+    //                 <div class="row">
+    //                     <div class="card">
+    //                         <img class="card-img-top" src="${image}" alt="Card image cap">
+    //                         <div class="card-body">
+    //                             <h3 class="card-title text-center">${name}</h3>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //             `
+    // }
 
 
     const imgCollection = document.getElementsByClassName('carousel-item'); // Aloja las img para el carousel
@@ -163,24 +166,26 @@ function showProducts(objeto) {
         const img = carouselItem.querySelector('img');
 
         // Verifica si aún hay elementos en images para asignar
-        if (index < images.length) {
+        if (index < image.length) {
             // Asigna el path de la imagen desde el array de imágenes que se desestructuró
-            img.src = images[index];
+            img.src = image[index];
         }
     });
 
 
     dataContainer.innerHTML = prodTemplate;
-    relProdContainer.innerHTML = relProdTemplate;
+    // relProdContainer.innerHTML = relProdTemplate;
 }
 
 
 
 async function getComments() {
-    const response = await fetch(urlComments);
+    const response = await fetch(URL);
     if (!response.ok) throw new Error(`Code error:${response.status}`);
     const data = await response.json();
-    return data;
+    console.log(data)
+    const { commentId } = data
+    return commentId;
 }
 
 
@@ -208,7 +213,7 @@ function commentScore(score) {
 async function showComments() {
     const commentsArray = await getComments();
     const comment = JSON.parse(localStorage.getItem('comment'))
-
+    console.log(commentsArray)
     let allComments = commentsArray
 
     if (comment) {
