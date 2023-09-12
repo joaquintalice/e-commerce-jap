@@ -49,16 +49,18 @@ function showProducts(productsArray) {
     if (productsArray.length >= 1) {
 
         for (let product of productsArray) {
-
+            const { id, image, name, cost, currency, description } = product
             template +=
                 `
-            <div onclick="setProductID(${product.id})" class="col-12 col-md-4 col-xxl-3 d-flex mt-5">
+            <div onclick="setProductID(${id})" class="col-12 col-md-4 col-xxl-3 d-flex mt-5">
                 <div class="card cursor-active product" >
-                    <img class="card-img-top" src="${product.image}" alt="Card image cap">
+                    <img class="card-img-top" src="${image}" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">${product.name}</h5>
-                        <p>${product.currency} ${product.cost}</p>
-                        <p class="card-text">${product.description}</p>
+                        <h5 class="card-title">${name}</h5>
+                        <p>${currency} ${cost}</p>
+                        <div class='overflow-auto' style='height:100px;'>
+                            <p>${description}</p>
+                        </div>
                     </div>
                         
                     <div class="card-footer">
