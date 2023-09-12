@@ -62,7 +62,9 @@ function showProducts(productsArray) {
                     <div class="card-body">
                         <h5 class="card-title">${name}</h5>
                         <p>${currency} ${cost}</p>
-                        <p class="card-text">${description}</p>
+                        <div class='overflow-auto' style='height:100px;'>
+                            <p>${description}</p>
+                        </div>
                     </div>
                         
                     <div class="card-footer">

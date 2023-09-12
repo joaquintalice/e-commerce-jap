@@ -80,7 +80,7 @@ async function getProducts() {
     const response = await fetch(URL);
     if (!response.ok) throw new Error(`Code error:${response.status}`);
     const data = await response.json();
-    console.log(data)
+    // console.log(data)
     showProducts(data);
 }
 
@@ -92,10 +92,8 @@ function goToRelProd(id) {
 
 
 function showProducts(objeto) {
-    console.log(objeto)
-    const { categoryName, cost, currency, description, name, image, relatedProducts, soldCount, commentId } = objeto
-    console.log(relatedProducts)
 
+    const { categoryName, cost, currency, description, name, image, relatedProducts, soldCount, commentId } = objeto
 
     const prodTemplate =
         `
@@ -183,7 +181,7 @@ async function getComments() {
     const response = await fetch(URL);
     if (!response.ok) throw new Error(`Code error:${response.status}`);
     const data = await response.json();
-    console.log(data)
+    // console.log(data)
     const { commentId } = data
     return commentId;
 }
@@ -213,7 +211,7 @@ function commentScore(score) {
 async function showComments() {
     const commentsArray = await getComments();
     const comment = JSON.parse(localStorage.getItem('comment'))
-    console.log(commentsArray)
+    // console.log(commentsArray)
     let allComments = commentsArray
 
     if (comment) {
