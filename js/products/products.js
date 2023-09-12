@@ -49,7 +49,7 @@ function showProducts(productsArray) {
     if (productsArray.length >= 1) {
 
         for (let product of productsArray) {
-            const { id, image, name, cost, currency, description } = product
+            const { id, image, name, cost, currency, description, soldCount } = product
             template +=
                 `
             <div onclick="setProductID(${id})" class="col-12 col-md-4 col-xxl-3 d-flex mt-5">
@@ -64,7 +64,7 @@ function showProducts(productsArray) {
                     </div>
                         
                     <div class="card-footer">
-                        <h6>Vendidos: ${product.soldCount}</h6>
+                        <h6>Vendidos: ${soldCount}</h6>
                     </div>
                 </div>
             </div>
