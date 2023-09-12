@@ -92,9 +92,9 @@ function goToRelProd(id) {
 
 
 function showProducts(objeto) {
-
+    console.log(objeto)
     const { categoryName, cost, currency, description, name, image, relatedProducts, soldCount, commentId } = objeto
-    console.log(commentId)
+    console.log(relatedProducts)
 
 
     const prodTemplate =
@@ -141,23 +141,23 @@ function showProducts(objeto) {
                 </div>
                 `
 
-    // let relProdTemplate = '';
-    // for (let prod of relatedProducts) {
-    //     const { id, name, image } = prod
-    //     relProdTemplate +=
-    //         `
-    //             <div class='col-12 col-md-6 my-5 cursor-active' onclick='goToRelProd(${id})'>
-    //                 <div class="row">
-    //                     <div class="card">
-    //                         <img class="card-img-top" src="${image}" alt="Card image cap">
-    //                         <div class="card-body">
-    //                             <h3 class="card-title text-center">${name}</h3>
-    //                         </div>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //             `
-    // }
+    let relProdTemplate = '';
+    for (const prod of relatedProducts) {
+        const { id, name, image } = prod
+        relProdTemplate +=
+            `
+                    <div class='col-12 col-md-6 my-5 cursor-active' onclick='goToRelProd(${id})'>
+                        <div class="row">
+                            <div class="card">
+                                <img class="card-img-top" src="${image}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h3 class="card-title text-center">${name}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `
+    }
 
 
     const imgCollection = document.getElementsByClassName('carousel-item'); // Aloja las img para el carousel
@@ -174,7 +174,7 @@ function showProducts(objeto) {
 
 
     dataContainer.innerHTML = prodTemplate;
-    // relProdContainer.innerHTML = relProdTemplate;
+    relProdContainer.innerHTML = relProdTemplate;
 }
 
 
