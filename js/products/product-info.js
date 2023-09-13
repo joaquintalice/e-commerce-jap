@@ -6,17 +6,13 @@ const urlComments = `https://japceibal.github.io/emercado-api/products_comments/
 const dataContainer = document.getElementById('data-container');
 const relProdContainer = document.getElementById('rel-prod-container');
 const commentsContainer = document.getElementById('comments');
-let posicion = 0;
-
-
 
 function main() {
     getProducts()
     showComments();
     showIndividualComent();
+    commentEvents();
 }
-
-
 
 function dateTimeNow() {
     const date = new Date();
@@ -31,23 +27,27 @@ function dateTimeNow() {
     return `${year}-${month}-${day} ${hour}:${minutes}:${seconds}`;
 }
 
-
-
 function getUserUsername() {
     const user = localStorage.getItem('userData');
     const { username } = JSON.parse(user)
     return username
 }
 
-
-
 function showIndividualComent() {
     const formulario = document.getElementById("review");
 
     formulario.addEventListener('submit', (e) => {
         e.preventDefault();
+        const starOption = document.getElementById("starOption");
+        const starOptionChildrens = starOption.children;
+        let estrellitas = 0;
 
-        const estrellitas = posicion;
+        for(let i = starOptionChildrens.length - 1; i > 0; i--) {
+            if(starOptionChildrens[i].classList.contains("clicked")) {
+                estrellitas = starOptionChildrens[i].getAttribute("data-index")
+            }
+        }
+
         const comment = document.getElementById("commentary-container").value;
 
         const username = getUserUsername()
@@ -73,9 +73,6 @@ function showIndividualComent() {
     })
 }
 
-
-
-
 async function getProducts() {
     const storedValue = localStorage.getItem('productID');
     const URL = `https://japceibal.github.io/emercado-api/products/${storedValue}.json`;
@@ -84,7 +81,6 @@ async function getProducts() {
     const data = await response.json();
     showProducts(data);
 }
-
 
 function goToRelProd(id) {
     localStorage.setItem('productID', id);
@@ -156,7 +152,6 @@ function showProducts(objeto) {
                 `
     }
 
-
     const imgCollection = document.getElementsByClassName('carousel-item'); // Aloja las img para el carousel
     Array.from(imgCollection).forEach((carouselItem, index) => {
         // Imagen dentro de cada .carousel-item
@@ -174,8 +169,6 @@ function showProducts(objeto) {
     relProdContainer.innerHTML = relProdTemplate;
 }
 
-
-
 async function getComments() {
     const response = await fetch(urlComments);
     if (!response.ok) throw new Error(`Code error:${response.status}`);
@@ -183,37 +176,15 @@ async function getComments() {
     return data;
 }
 
-
-
-function commentScore(score) {
-    let templateStars = ``;
-
-    for (let i = 1; i <= 5; i++) {
-        if (i <= score) {
-            templateStars += `
-                <span class="fa fa-star checked"></span>
-                `
-        } else {
-            templateStars += `
-                <span class="fa fa-star"></span>
-                `
-        }
-    }
-
-    return templateStars;
-}
-
-
-
 async function showComments() {
-    const commentsArray = await getComments();
-    const comment = JSON.parse(localStorage.getItem('comment'))
+    const commentsArray = await getComments(); // Array de comentarios de la API
+    const comment = JSON.parse(localStorage.getItem('comment')) // Array de comentarios del localStorage
 
     let allComments = commentsArray
 
     if (comment) {
-        const commentsFiltered = comment.filter((element) => element.id == id);
-        allComments = [...commentsArray, ...commentsFiltered]
+        const commentsFiltered = comment.filter((element) => element.id == id); // Array de comentarios filtrados por id
+        allComments = [...commentsArray, ...commentsFiltered] // Array de todos los comentarios
     }
 
 
@@ -251,38 +222,80 @@ async function showComments() {
     commentsContainer.innerHTML = template
 }
 
+function commentScore(score) {
+    let templateStars = ``;
 
-
-const starOption = document.getElementById("starOption");
-const starOptionChildrens = starOption.children;
-
-const checkHoverStar = (posicion) => {
-    for (let i = 0; i <= posicion; i++) {
-        starOptionChildrens[i].classList.add("checked");
-    }
-
-    starOption.addEventListener("mouseout", (e) => {
-        const arrHTML = [...starOptionChildrens];
-        arrHTML.map(element => {
-            element.classList.remove("checked")
-        })
-    })
-
-}
-
-
-starOption.addEventListener("mouseover", (e) => {
-    const arrHTML = [...starOptionChildrens];
-    if (e.target.nodeName == "SPAN") {
-        const elementoActual = arrHTML.filter((element) => element == e.target);
-
-        if (elementoActual.length > 0) {
-            posicion = arrHTML.indexOf(elementoActual[0]);
-            checkHoverStar(posicion);
+    for (let i = 1; i <= 5; i++) {
+        if (i <= score) {
+            templateStars += `
+                <span class="fa fa-star checked"></span>
+                `
+        } else {
+            templateStars += `
+                <span class="fa fa-star"></span>
+                `
         }
     }
 
-})
+    return templateStars;
+}
+
+function commentEvents() {
+    const starOption = document.getElementById("starOption");
+    const starOptionChildrens = starOption.children; // HTMLCollection
+    const arrHTML = [...starOptionChildrens]; // Array de HTMLCollection
+
+    const checkHoverStar = (posicion) => { 
+        for (let i = 0; i <= 5; i++) { 
+            if(starOptionChildrens[i].classList.contains("checked")) {
+                starOptionChildrens[i].classList.remove("checked");
+            }
+        }
+
+        for(let i = 0; i <= posicion; i++) {
+            starOptionChildrens[i].classList.add("checked");
+        }
+    }
+    
+    starOption.addEventListener("mouseover", (e) => {
+        // checkea si alguna estrella está clickeada
+        let starIsClicked = arrHTML.some(element => element.classList.contains("clicked"));  
+    
+        if (e.target.nodeName === "SPAN" && !starIsClicked) {
+            const spanEstrella = e.target.getAttribute("data-index");
+            checkHoverStar(spanEstrella);
+        }
+    
+    }) 
+
+    starOption.addEventListener("mouseout", () => {
+        // checkea si alguna estrella está clickeada
+        let starIsClicked = arrHTML.some(element => element.classList.contains("clicked"));
+    
+        if(!starIsClicked) {
+            arrHTML.map(element => {
+                element.classList.remove("checked")
+            })     
+        } 
+    
+    })         
+    
+    starOption.addEventListener("click", (e) => {
+        const spanEstrella = e.target;
+        if(spanEstrella.nodeName !== "SPAN") return;
+
+        const spanIndice = spanEstrella.getAttribute("data-index");
+    
+        for (let i = 0; i <= 5; i++) { 
+            if(starOptionChildrens[i].classList.contains("clicked")) {
+                starOptionChildrens[i].classList.remove("clicked");
+            }
+        }
+
+        spanEstrella.classList.add("clicked")    
+        checkHoverStar(spanIndice);    
+    })
+}
 
 
 
