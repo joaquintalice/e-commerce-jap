@@ -42,8 +42,8 @@ function showIndividualComent() {
         const starOptionChildrens = starOption.children;
         let estrellitas = 0;
 
-        for(let i = starOptionChildrens.length - 1; i > 0; i--) {
-            if(starOptionChildrens[i].classList.contains("clicked")) {
+        for (let i = starOptionChildrens.length - 1; i > 0; i--) {
+            if (starOptionChildrens[i].classList.contains("clicked")) {
                 estrellitas = starOptionChildrens[i].getAttribute("data-index")
             }
         }
@@ -141,7 +141,7 @@ function showProducts(objeto) {
             `
                 <div class='col-12 col-md-6 my-5 cursor-active' onclick='goToRelProd(${id})'>
                     <div class="row">
-                        <div class="card">
+                        <div class="card product">
                             <img class="card-img-top" src="${image}" alt="Card image cap">
                             <div class="card-body">
                                 <h3 class="card-title text-center">${name}</h3>
@@ -199,7 +199,7 @@ async function showComments() {
             template +=
                 `
                 <div onclick="setProductID(${id})" class="col-12  mt-5">
-                    <div class="card" >
+                    <div class="card product" >
                         <div class="card-body">
                             <h5 class="card-title">${user}</h5>
                             <p>${dateTime}</p>
@@ -245,55 +245,55 @@ function commentEvents() {
     const starOptionChildrens = starOption.children; // HTMLCollection
     const arrHTML = [...starOptionChildrens]; // Array de HTMLCollection
 
-    const checkHoverStar = (posicion) => { 
-        for (let i = 0; i <= 5; i++) { 
-            if(starOptionChildrens[i].classList.contains("checked")) {
+    const checkHoverStar = (posicion) => {
+        for (let i = 0; i <= 5; i++) {
+            if (starOptionChildrens[i].classList.contains("checked")) {
                 starOptionChildrens[i].classList.remove("checked");
             }
         }
 
-        for(let i = 0; i <= posicion; i++) {
+        for (let i = 0; i <= posicion; i++) {
             starOptionChildrens[i].classList.add("checked");
         }
     }
-    
+
     starOption.addEventListener("mouseover", (e) => {
         // checkea si alguna estrella está clickeada
-        let starIsClicked = arrHTML.some(element => element.classList.contains("clicked"));  
-    
+        let starIsClicked = arrHTML.some(element => element.classList.contains("clicked"));
+
         if (e.target.nodeName === "SPAN" && !starIsClicked) {
             const spanEstrella = e.target.getAttribute("data-index");
             checkHoverStar(spanEstrella);
         }
-    
-    }) 
+
+    })
 
     starOption.addEventListener("mouseout", () => {
         // checkea si alguna estrella está clickeada
         let starIsClicked = arrHTML.some(element => element.classList.contains("clicked"));
-    
-        if(!starIsClicked) {
+
+        if (!starIsClicked) {
             arrHTML.map(element => {
                 element.classList.remove("checked")
-            })     
-        } 
-    
-    })         
-    
+            })
+        }
+
+    })
+
     starOption.addEventListener("click", (e) => {
         const spanEstrella = e.target;
-        if(spanEstrella.nodeName !== "SPAN") return;
+        if (spanEstrella.nodeName !== "SPAN") return;
 
         const spanIndice = spanEstrella.getAttribute("data-index");
-    
-        for (let i = 0; i <= 5; i++) { 
-            if(starOptionChildrens[i].classList.contains("clicked")) {
+
+        for (let i = 0; i <= 5; i++) {
+            if (starOptionChildrens[i].classList.contains("clicked")) {
                 starOptionChildrens[i].classList.remove("clicked");
             }
         }
 
-        spanEstrella.classList.add("clicked")    
-        checkHoverStar(spanIndice);    
+        spanEstrella.classList.add("clicked")
+        checkHoverStar(spanIndice);
     })
 }
 
