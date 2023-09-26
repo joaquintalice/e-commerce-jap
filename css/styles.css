@@ -219,8 +219,8 @@ img {
 
 .dark-product {
   transition: box-shadow 0.3s, transform 0.3s;
-  background-color: #ffffff15;
-  color: white;
+  background-color: #ffffff15 !important;
+  color: white !important;
 }
 
 .dark-product:hover {
@@ -270,12 +270,11 @@ img {
 
 .filters {
   color: rgb(0, 0, 0) !important;
-  background-color: rgb(255, 255, 255) !important;
+
 }
 
 .filters:hover {
   box-shadow: 1px 1px 55px 12px #89898991;
-  background-color: #ffffff !important;
 }
 
 .dark-filters {
