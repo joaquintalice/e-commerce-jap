@@ -270,7 +270,7 @@ img {
 
 .filters {
   color: rgb(0, 0, 0) !important;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255) !important;
 }
 
 .filters:hover {
@@ -279,8 +279,8 @@ img {
 }
 
 .dark-filters {
-  color: white;
-  background-color: rgb(44, 43, 43);
+  color: white !important;
+  background-color: rgb(44, 43, 43) !important;
 }
 
 .dark-filters:hover {
