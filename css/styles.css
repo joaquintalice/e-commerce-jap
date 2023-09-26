@@ -254,7 +254,9 @@ img {
 }
 
 .dark-mode {
-  background-image: url('https://images.pexels.com/photos/3473569/pexels-photo-3473569.jpeg');
+  background-image: url('https://images.pexels.com/photos/3213357/pexels-photo-3213357.jpeg');
+  background-position: center;
+  background-size: cover;
   color: rgb(255, 255, 255);
 }
 
@@ -275,6 +277,7 @@ img {
 
 .filters:hover {
   box-shadow: 1px 1px 55px 12px #89898991;
+  background-color: #ffffff91;
 }
 
 .dark-filters {
