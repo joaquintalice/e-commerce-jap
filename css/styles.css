@@ -269,13 +269,13 @@ img {
 }
 
 .filters {
-  color: white;
-  background-color: rgb(44, 43, 43);
+  color: rgb(0, 0, 0) !important;
+  background-color: rgb(255, 255, 255);
 }
 
 .filters:hover {
-  color: white !important;
-  background-color: #505050 !important;
+  box-shadow: 1px 1px 55px 12px #89898991;
+  background-color: #ffffff !important;
 }
 
 .dark-filters {
@@ -285,5 +285,6 @@ img {
 
 .dark-filters:hover {
   color: rgb(255, 255, 255) !important;
-  background-color: #4c4c4c2d !important;
+  box-shadow: 1px 1px 55px 12px #7e7e7e91;
+  background-color: rgb(44, 43, 43) !important;
 }
