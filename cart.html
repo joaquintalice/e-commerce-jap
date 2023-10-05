@@ -57,12 +57,88 @@
     </div>
   </nav>
   <main>
+
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div class="row">
+        <div class="col-12 text-center p-4">
+          <h2>Carrito <i class="bi bi-cart"></i></h2>
+          <p class="lead">Verás aquí los productos en tu carrito.</p>
+        </div>
+
+        <div class="col-12 my-4">
+          <h3><i class="bi bi-box-seam"></i> Artículos a comprar</h3>
+        </div>
+
+        <div class="col-12 my-3">
+          <table class="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th><i class="bi bi-info-circle"></i> Nombre</th>
+                <th>Costo(US$)</th>
+                <th><i class="bi bi-plus-square"></i> Cantidad</th>
+                <th>Subtotal(US$)</th>
+              </tr>
+            </thead>
+            <tbody id="data-container">
+              <!-- acá va la data de los productos  -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!--Tipo de envio del producto-->
+      <div class="container my-5" id="sendType">
+        <h2><i class="bi bi-truck"></i> Tipo de envío</h2>
+        <select class="form-select" required>
+          <option selected disabled>Elije el tipo de envio que deseas </option>
+          <option value="Premium"> Premium, llega a tu casa en 2 a 5 días (+15%)</option>
+          <option value="Express"> Express, llega a tu casa en 5 a 8 días (+7%)
+          </option>
+          <option value="Standard"> Standard, llega a tu casa en 12 a 15 días (+5%)
+          </option>
+        </select>
+      </div>
+
+      <div class="container">
+        <h4>Premium <i class="bi bi-gem"></i> / Express <i class="bi bi-fast-forward"></i> / Standard
+          <i class="bi bi-badge-sd"></i>
+        </h4>
+      </div>
+
+      <div class="row">
+        <div class="col-12 my-4">
+          <h3><i class="bi bi-pin-map"></i> Dirección de envío</h3>
+        </div>
+        <div class="col-12 d-md-flex flex-column">
+          <form>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="calleNombre">Nombre de la Calle <i class="bi bi-building-add"></i></label>
+                  <input type="text" class="form-control" id="calleNombre" placeholder="Ingrese el nombre de su calle">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="numeroPuerta">Número de puerta <i class="bi bi-shop"></i></label>
+                  <input type="number" class="form-control" id="numeroPuerta" placeholder="Ingrese el número de puerta">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="esquinaNombre">Nombre de la Esquina <i class="bi bi-building-fill-add"></i></label>
+                  <input type="text" class="form-control" id="esquinaNombre"
+                    placeholder="Ingrese el nombre de su esquina">
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </main>
+
   <footer>
     <div class="container footer">
       <p class="float-end footer">

@@ -87,9 +87,12 @@ function goToRelProd(id) {
     location.href = 'product-info.html';
 }
 
-function showProducts(objeto) {
-    const { category, cost, currency, description, name, images, relatedProducts, soldCount } = objeto
 
+function showProducts(objeto) {
+
+
+
+    const { category, cost, currency, description, name, images, relatedProducts, soldCount } = objeto
     const prodTemplate =
         `
                 <div class='col-12'>
@@ -102,10 +105,10 @@ function showProducts(objeto) {
                             
                     <div class='row text-center my-4'>
                         <div class='col-6'>
-                            <p><a style='text-decoration:none; color: gray'  href='categories.html'>Categoría</a> > <a style='text-decoration:none;' class='link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover' href='products.html'>${category}</a></p>
+                            <p><i class="bi bi-bookmark"></i> <a style='text-decoration:none; color: gray'  href='categories.html'>Categoría</a> > <a style='text-decoration:none;' class='link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover' href='products.html'> ${category}</a></p>
                         </div>
                         <div class='col-6'>
-                            <p>+${soldCount} vendidos</p>
+                            <p><i class="bi bi-award"></i> +${soldCount} vendidos</p>
                         </div>
                     </div>
 
@@ -121,18 +124,28 @@ function showProducts(objeto) {
 
                     <div class='row my-4'>
                         <div class='col-12 text-center'>
-                            <p>${description}</p>
+                            <p><i class="bi bi-info-square-fill"></i> ${description}</p>
                         </div>
                     </div>
                     
                     <div class='row my-4'>
                         <div class='col-12 text-center'>
-                            <btn class="btn btn-dark" onclick="alert('Funcionalidad en desarrollo')">Añadir al carrito</btn>
+                            <btn class="btn btn-dark" id='test'>Añadir al carrito
+                            <i class="bi bi-cart-plus-fill"></i>
+                            </btn>
                         </div>
                     </div>
 
                 </div>
                 `
+
+    setTimeout(() => {
+        const cartBtn = document.getElementById('test');
+        cartBtn.addEventListener('click', () => {
+            addToCart(objeto)
+        })
+    }, 1000);
+
 
     let relProdTemplate = '';
     for (let prod of relatedProducts) {
@@ -201,11 +214,10 @@ async function showComments() {
                 <div onclick="setProductID(${id})" class="col-12  mt-5">
                     <div class="card product" >
                         <div class="card-body">
-                            <h5 class="card-title">${user}</h5>
-                            <p>${dateTime}</p>
-                            <p>${scoreStars}<p>
+                            <h5 class="card-title"><i class="bi bi-person-circle"></i> ${user}</h5>
+                            <p><i class="bi bi-clock"></i> ${dateTime}<p>
                             <p class="card-text">${description}</p>
-                            
+                            <p class="card-text">${scoreStars}</p>
                         </div>
                     </div>
                 </div>
@@ -297,6 +309,37 @@ function commentEvents() {
     })
 }
 
+
+function addToCart(producto) {
+    const productWithCount = {
+        ...producto,
+        count: 1
+    }
+    const localStorageData = JSON.parse(localStorage.getItem('carrito'));
+
+    if (!localStorageData) {
+        localStorage.setItem('carrito', JSON.stringify([productWithCount]));
+        return;
+    }
+
+    console.log(localStorageData)
+    const yaExisteElProducto = localStorageData.some((element) => {
+        return producto.id === element.id;
+    })
+
+    console.log(yaExisteElProducto)
+
+    if (yaExisteElProducto) {
+        const productRepeated = localStorageData.find(element => {
+            element.id === producto.id;
+        })
+        console.log(productRepeated);
+        //productRepeated.count += 1;
+        return;
+    }
+
+    localStorage.setItem('carrito', JSON.stringify([...localStorageData, productWithCount]));
+}
 
 
 
