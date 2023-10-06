@@ -1,191 +1,278 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>eMercado - Todo lo que busques está aquí</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="./img/favicon.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="css/indexCarousel.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+  </head>
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link href="css/styles.css" rel="stylesheet">
-  <link rel="shortcut icon" href="./img/favicon.svg" type="image/x-icon">
-  <link rel="stylesheet" href="css/indexCarousel.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-</head>
-
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
-    <div class="container">
-      <a class="navbar-brand d-lg-none" href="index.html">
-        <img src="img/loginAndRegistration/icon.svg" alt="Logo" width="180">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between align-items-center">
-          <li class="nav-item">
-            <a class="navbar-brand d-none d-lg-block" href="index.html">
-              <img src="img/loginAndRegistration/icon.svg" alt="Logo" width="180">
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item nav-menu-login">
-            <a id="login" class="nav-link" href="loginAndRegistration.html"></a>
-            <div id="menuLogout" class="user-logout">
-              <a class="nav-link" href="my-profile.html">Mi Perfil</a>
-              <a class="nav-link" href="cart.html">Mi carrito</a>
-              <a id="logout" class="nav-link" href="loginAndRegistration.html">Cerrar Sesión</a>
-              <div class="text-center">
-                <button class="btn rounded-fill" id="btn-darkmode"><i id="dl-icon" class="bi bi-moon-fill"></i></button>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
+      <div class="container">
+        <a class="navbar-brand d-lg-none" href="index.html">
+          <img src="img/loginAndRegistration/icon.svg" alt="Logo" width="180" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul
+            class="navbar-nav w-100 justify-content-between align-items-center"
+          >
+            <li class="nav-item">
+              <a class="navbar-brand d-none d-lg-block" href="index.html">
+                <img
+                  src="img/loginAndRegistration/icon.svg"
+                  alt="Logo"
+                  width="180"
+                />
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="categories.html">Categorías</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sell.html">Vender</a>
+            </li>
+            <li class="nav-item nav-menu-login">
+              <a
+                id="login"
+                class="nav-link"
+                href="loginAndRegistration.html"
+              ></a>
+              <div id="menuLogout" class="user-logout">
+                <a class="nav-link" href="my-profile.html">Mi Perfil</a>
+                <a class="nav-link" href="cart.html">Mi carrito</a>
+                <a id="logout" class="nav-link" href="loginAndRegistration.html"
+                  >Cerrar Sesión</a
+                >
+                <div class="text-center">
+                  <button class="btn rounded-fill" id="btn-darkmode">
+                    <i id="dl-icon" class="bi bi-moon-fill"></i>
+                  </button>
+                </div>
               </div>
-            </div>
-          </li>
-        </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-  <main>
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-8 mb-3">
-
-          <div id="carouselExampleIndicators" class="carousel slide">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
-                aria-label="Slide 4"></button>
+    </nav>
+    <main>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-lg-8 mb-3">
+            <div id="carouselExampleIndicators" class="carousel slide">
+              <div class="carousel-indicators">
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to="0"
+                  class="active"
+                  aria-current="true"
+                  aria-label="Slide 1"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to="1"
+                  aria-label="Slide 2"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to="2"
+                  aria-label="Slide 3"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to="3"
+                  aria-label="Slide 4"
+                ></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="" class="d-block w-100" alt="" />
+                </div>
+                <div class="carousel-item">
+                  <img src="" class="d-block w-100" alt="" />
+                </div>
+                <div class="carousel-item">
+                  <img src="" class="d-block w-100" alt="" />
+                </div>
+                <div class="carousel-item">
+                  <img src="" class="d-block w-100" alt="" />
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="" class="d-block w-100" alt="">
-              </div>
-              <div class="carousel-item">
-                <img src="" class="d-block w-100" alt="">
-              </div>
-              <div class="carousel-item">
-                <img src="" class="d-block w-100" alt="">
-              </div>
-              <div class="carousel-item">
-                <img src="" class="d-block w-100" alt="">
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-              data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-              data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
           </div>
-        </div>
 
-        <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
-          <div class="row gy-4 gx-4" id="data-container"></div>
-        </div>
-
-      </div>
-
-
-
-      <div class="row">
-
-        <div class="col-12 text-center">
-          <h2 class="mt-5"><i class="bi bi-award"></i> Reseñas</h2>
-        </div>
-
-        <div class="col-12">
-          <div id="comments" class="row"></div>
+          <div
+            class="col-12 col-lg-4 d-flex justify-content-center align-items-center"
+          >
+            <div class="row gy-4 gx-4" id="data-container"></div>
+          </div>
         </div>
 
         <div class="row">
-          <div class="col-12 my-5 text-center">
-            <h2><i class="bi bi-blockquote-left"></i> Dinos tu opinión</h2>
-          </div>
           <div class="col-12 text-center">
+            <h2 class="mt-5"><i class="bi bi-award"></i> Reseñas</h2>
+          </div>
 
-            <form id="review">
+          <div class="col-12">
+            <div id="comments" class="row"></div>
+          </div>
 
-              <div class="col-12">
-                <textarea name="commentary" id="commentary-container" cols="65" rows="7"></textarea>
-              </div>
-
-              <div class="col-12 my-4">
-                <div id="starOption">
-                  <h3 class="footer">Calificar</h3>
-                  <span data-index="1" style="cursor: pointer;" class="fa fa-star"></span>
-                  <span data-index="2" style="cursor: pointer;" class="fa fa-star"></span>
-                  <span data-index="3" style="cursor: pointer;" class="fa fa-star"></span>
-                  <span data-index="4" style="cursor: pointer;" class="fa fa-star"></span>
-                  <span data-index="5" style="cursor: pointer;" class="fa fa-star"></span>
+          <div class="row">
+            <div class="col-12 my-5 text-center">
+              <h2>Dinos tu opinión <i class="bi bi-pencil-square"></i></h2>
+            </div>
+            <div class="col-12 text-center">
+              <form id="review">
+                <div class="col-12">
+                  <textarea
+                    name="commentary"
+                    id="commentary-container"
+                    cols="65"
+                    rows="7"
+                  ></textarea>
                 </div>
-              </div>
 
-              <input type="submit" value="Enviar" class="btn btn-dark">
-            </form>
+                <div class="col-12 my-4">
+                  <div id="starOption">
+                    <h3 class="footer">Calificar</h3>
+                    <span
+                      data-index="1"
+                      style="cursor: pointer"
+                      class="fa fa-star"
+                    ></span>
+                    <span
+                      data-index="2"
+                      style="cursor: pointer"
+                      class="fa fa-star"
+                    ></span>
+                    <span
+                      data-index="3"
+                      style="cursor: pointer"
+                      class="fa fa-star"
+                    ></span>
+                    <span
+                      data-index="4"
+                      style="cursor: pointer"
+                      class="fa fa-star"
+                    ></span>
+                    <span
+                      data-index="5"
+                      style="cursor: pointer"
+                      class="fa fa-star"
+                    ></span>
+                  </div>
+                </div>
+
+                <input type="submit" value="Enviar" class="btn btn-dark" />
+              </form>
+            </div>
           </div>
         </div>
+
+        <h2 class="text-center my-5">
+          <i class="bi bi-book"></i> Productos relacionados
+        </h2>
+        <div
+          id="rel-prod-container"
+          class="row gy-4 gx-4 justify-content-center"
+        ></div>
       </div>
+    </main>
 
-      <h2 class="text-center my-5"> <i class="bi bi-book"></i> Productos relacionados</h2>
-      <div id="rel-prod-container" class="row gy-4 gx-4 justify-content-center"></div>
-
+    <footer>
+      <div class="container footer">
+        <p class="float-end footer">
+          <a href="#" class="btn btn-outline-dark filters">Volver arriba</a>
+        </p>
+        <p>
+          Este sitio forma parte de
+          <a
+            href="https://jovenesaprogramar.edu.uy/"
+            target="_blank"
+            class="text-muted footer"
+            >Jovenes a Programar</a
+          >
+        </p>
+      </div>
+    </footer>
+    <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
-  </main>
-
-
-
-
-
-
-
-
-
-
-  <footer>
-    <div class="container footer">
-      <p class="float-end footer">
-        <a href="#" class="btn btn-outline-dark filters">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
-          class="text-muted footer">Jovenes a Programar</a>
-      </p>
-    </div>
-  </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <script src="js/darkmode/darkmode.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
-  <script src="js/init.js"></script>
-  <script src="js/products/product-info.js"></script>
-  <script src="js/navbar/navbar.js"></script>
-</body>
-
+    <script src="js/darkmode/darkmode.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/init.js"></script>
+    <script src="js/products/product-info.js"></script>
+    <script src="js/navbar/navbar.js"></script>
+  </body>
 </html>
