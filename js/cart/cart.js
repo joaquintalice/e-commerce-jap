@@ -30,18 +30,31 @@ function showCartData(data) {
                 <td><img width="120px" src="${image}" alt="Image ${name}"/></td>
                 <td>${name}</td>
                 <td>${currency} ${unitCost}</td>
-                <td><input type="number" id="prodCount${index}" min="1" max="100" value="${count}"></td>
+                <td><input type="number" id="prodCount${index}" min="1" max="50" value="${count}"></td>
                 <td id="subtotal">${currency} ${subtotal}</td>
             `;
         containerArticles.appendChild(row);
 
-        // Controlador de eventos para actualizar el subtotal según lo que se ingrese en el input
-        document.getElementById(`prodCount${index}`).addEventListener('change', (event) => {
+        const prodCount = document.getElementById(`prodCount${index}`);
+
+        // Controlador de eventos para actualizar el subtotal según lo que se ingrese en el input prodCount
+        prodCount.addEventListener('change', (event) => {
             const newCount = event.target.value;
             const newSubtotal = unitCost * newCount;
             document.getElementById(`subtotal`).innerText = `${currency} ${newSubtotal}`;
         });
 
-
-    });
-}
+        // Establece el valor minimo y maximo del input prodCount e impide que se ingresen letras
+        prodCount.addEventListener('input', function (e) {
+            let max = parseInt(e.target.max);
+            let min = parseInt(e.target.min);
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+            if (e.target.value > max) {
+              e.target.value = max;
+            }
+            if (e.target.value < min) {
+              e.target.value = ``;
+            }
+          });
+          });
+        }
