@@ -311,6 +311,7 @@ function commentEvents() {
 
 
 function addToCart(producto) {
+
     const productWithCount = {
         ...producto,
         count: 1
@@ -322,23 +323,28 @@ function addToCart(producto) {
         return;
     }
 
-    console.log(localStorageData)
     const yaExisteElProducto = localStorageData.some((element) => {
         return producto.id === element.id;
     })
 
-    console.log(yaExisteElProducto)
 
-    if (yaExisteElProducto) {
-        const productRepeated = localStorageData.find(element => {
-            element.id === producto.id;
-        })
-        console.log(productRepeated);
-        //productRepeated.count += 1;
+    if (!yaExisteElProducto) {
+        localStorage.setItem('carrito', JSON.stringify([...localStorageData, productWithCount]));
         return;
     }
 
-    localStorage.setItem('carrito', JSON.stringify([...localStorageData, productWithCount]));
+    const productoExistente = localStorageData.find(element => {
+        return element.id === producto.id;
+    })
+    productoExistente.count += 1;
+
+    const filteredArray = localStorageData.filter(elem => {
+        return elem.id !== producto.id
+    });
+
+    localStorage.removeItem('carrito')
+    localStorage.setItem('carrito', JSON.stringify([...filteredArray, productoExistente]));
+
 }
 
 

@@ -13,48 +13,45 @@ async function getCartData() {
     return data
 }
 
-function getLocalStorageData() {
-
-}
-
 function showCartData(data) {
     const { articles, user } = data;
     const containerArticles = document.getElementById("data-container");
-    console.log("user:" + user);
+    const productsStorage = JSON.parse(localStorage.getItem("carrito"));
+    console.log(productsStorage)
 
-    articles.map((element, index) => {
+    const products = (productsStorage) ? [...articles, ...productsStorage] : [...articles]
+
+    products.map((element, index) => {
         const row = document.createElement("tr");
-        const { name, count, unitCost, currency, image } = element;
+
+        const { name, count, unitCost, currency, image, images, cost } = element;
         const subtotal = unitCost * count;
+        const subtotal2je = cost * count;
+
         row.innerHTML += `
-                <td><img width="120px" src="${image}" alt="Image ${name}"/></td>
+                <td><img width="120px" src="${image || images[0]}" alt="Image ${name}"/></td>
                 <td>${name}</td>
-                <td>${currency} ${unitCost}</td>
-                <td><input type="number" id="prodCount${index}" min="1" max="50" value="${count}"></td>
-                <td id="subtotal">${currency} ${subtotal}</td>
+                <td>${currency} ${unitCost || cost}</td>
+                <td><input type="number" id="prodCount${index}" min="1" max="100" value="${count}"></td>
+                <td id="subtotal${index}">${currency} ${subtotal || subtotal2je}</td>
             `;
         containerArticles.appendChild(row);
 
-        const prodCount = document.getElementById(`prodCount${index}`);
 
-        // Controlador de eventos para actualizar el subtotal según lo que se ingrese en el input prodCount
-        prodCount.addEventListener('change', (event) => {
-            const newCount = event.target.value;
-            const newSubtotal = unitCost * newCount;
-            document.getElementById(`subtotal`).innerText = `${currency} ${newSubtotal}`;
+        // Controlador de eventos para actualizar el subtotal según lo que se ingrese en el input
+        document.getElementById(`prodCount${index}`).addEventListener('input', (event) => {
+            if (event.target.value < 1) {
+                event.target.value = 1;
+            }
+            if (event.target.value > 1000) {
+                event.target.value = 1000;
+            }
+            let newCount = event.target.value;
+            const newSubtotal = (cost || unitCost) * newCount;
+
+            document.getElementById(`subtotal${index}`).innerText = `${currency} ${newSubtotal}`;
         });
 
-        // Establece el valor minimo y maximo del input prodCount e impide que se ingresen letras
-        prodCount.addEventListener('input', function (e) {
-            let max = parseInt(e.target.max);
-            let min = parseInt(e.target.min);
-            e.target.value = e.target.value.replace(/[^0-9]/g, '');
-            if (e.target.value > max) {
-              e.target.value = max;
-            }
-            if (e.target.value < min) {
-              e.target.value = ``;
-            }
-          });
-          });
-        }
+    });
+
+}
