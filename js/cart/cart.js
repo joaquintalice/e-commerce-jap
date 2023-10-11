@@ -26,7 +26,7 @@ function showCartData() {
     productsStorage.map((element, index) => {
         const row = document.createElement("tr");
 
-        const { name, count, unitCost, currency, image, images, cost } = element;
+        const { name, count, unitCost, currency, image } = element;
         const subtotal = unitCost * count;
 
         row.innerHTML += `
@@ -54,5 +54,4 @@ function showCartData() {
         });
 
     });
-
 }
