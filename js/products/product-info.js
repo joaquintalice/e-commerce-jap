@@ -143,8 +143,9 @@ function showProducts(objeto) {
         const cartBtn = document.getElementById('test');
         cartBtn.addEventListener('click', () => {
             addToCart(objeto)
+            alert('producto agregado jeje')
         })
-    }, 1000);
+    }, 500);
 
 
     let relProdTemplate = '';
@@ -313,9 +314,14 @@ function commentEvents() {
 function addToCart(producto) {
 
     const productWithCount = {
-        ...producto,
-        count: 1
+        currency: producto.currency,
+        id: producto.id,
+        image: producto.images[0],
+        name: producto.name,
+        count: 1,
+        unitCost: producto.cost
     }
+    console.log(productWithCount)
     const localStorageData = JSON.parse(localStorage.getItem('carrito'));
 
     if (!localStorageData) {
