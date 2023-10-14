@@ -8,7 +8,7 @@ const relProdContainer = document.getElementById('rel-prod-container');
 const commentsContainer = document.getElementById('comments');
 
 function main() {
-    getProducts()
+    getProduct()
     showComments();
     showIndividualComent();
     commentEvents();
@@ -73,13 +73,13 @@ function showIndividualComent() {
     })
 }
 
-async function getProducts() {
+async function getProduct() {
     const storedValue = localStorage.getItem('productID');
     const URL = `https://japceibal.github.io/emercado-api/products/${storedValue}.json`;
     const response = await fetch(URL);
     if (!response.ok) throw new Error(`Code error:${response.status}`);
     const data = await response.json();
-    showProducts(data);
+    showProduct(data);
 }
 
 function goToRelProd(id) {
@@ -88,99 +88,96 @@ function goToRelProd(id) {
 }
 
 
-function showProducts(objeto) {
-
-
+function showProduct(objeto) {
 
     const { category, cost, currency, description, name, images, relatedProducts, soldCount } = objeto
-    const prodTemplate =
-        `
-                <div class='col-12'>
-    
-                    <div class="row">
-                        <div class="col-12 text-center my-4">
-                            <h1>${name}</h1>
-                        </div>
-                    </div>
-                            
-                    <div class='row text-center my-4'>
-                        <div class='col-6'>
-                            <p><i class="bi bi-bookmark"></i> <a style='text-decoration:none; color: gray'  href='categories.html'>Categoría</a> > <a style='text-decoration:none;' class='link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover' href='products.html'><br><i class="bi bi-bookmark-fill"></i> ${category}</a></p>
-                        </div>
-                        <div class='col-6'>
-                            <p><i class="bi bi-award"></i> +${soldCount} vendidos</p>
-                        </div>
-                    </div>
 
-                    
-
-                    <div class='row my-4'>
-                        <div class='col-12 text-center'>
-                            <h3>${currency} ${cost}</h3>
-                        </div>
-                    </div>
-
-                    
-
-                    <div class='row my-4'>
-                        <div class='col-12 text-center'>
-                            <p><i class="bi bi-info-square-fill"></i> ${description}</p>
-                        </div>
-                    </div>
-                    
-                    <div class='row my-4'>
-                        <div class='col-12 text-center'>
-                            <btn class="btn btn-dark" id='test'>Añadir al carrito
-                            <i class="bi bi-cart-plus-fill"></i>
-                            </btn>
-                        </div>
-                    </div>
-
-                </div>
-                `
-
-    setTimeout(() => {
-        const cartBtn = document.getElementById('test');
+    createTemplate(name, category, cost, currency, description, soldCount, images, relatedProducts).then(() => {
+        const cartBtn = document.getElementById(`${name}`);
         cartBtn.addEventListener('click', () => {
             addToCart(objeto)
-            alert('producto agregado jeje')
-        })
-    }, 500);
-
-
-    let relProdTemplate = '';
-    for (let prod of relatedProducts) {
-        const { id, name, image } = prod
-        relProdTemplate +=
-            `
-                <div class='col-12 col-md-6 my-5 cursor-active' onclick='goToRelProd(${id})'>
-                    <div class="row">
-                        <div class="card product">
-                            <img class="card-img-top" src="${image}" alt="Card image cap">
-                            <div class="card-body">
-                                <h3 class="card-title text-center">${name}</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                `
-    }
-
-    const imgCollection = document.getElementsByClassName('carousel-item'); // Aloja las img para el carousel
-    Array.from(imgCollection).forEach((carouselItem, index) => {
-        // Imagen dentro de cada .carousel-item
-        const img = carouselItem.querySelector('img');
-
-        // Verifica si aún hay elementos en images para asignar
-        if (index < images.length) {
-            // Asigna el path de la imagen desde el array de imágenes que se desestructuró
-            img.src = images[index];
-        }
+            alert('Producto agregado al carrito')
+        }) 
     });
 
+    async function createTemplate(name, category, cost, currency, description, soldCount, images, relatedProducts) {
+        const prodTemplate = `
+            <div class='col-12'>
 
-    dataContainer.innerHTML = prodTemplate;
-    relProdContainer.innerHTML = relProdTemplate;
+                <div class="row">
+                    <div class="col-12 text-center my-4">
+                        <h1>${name}</h1>
+                    </div>
+                </div>
+                        
+                <div class='row text-center my-4'>
+                    <div class='col-6'>
+                        <p><i class="bi bi-bookmark"></i> <a style='text-decoration:none; color: gray'  href='categories.html'>Categoría</a> > <a style='text-decoration:none;' class='link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover' href='products.html'><br><i class="bi bi-bookmark-fill"></i> ${category}</a></p>
+                    </div>
+                    <div class='col-6'>
+                        <p><i class="bi bi-award"></i> +${soldCount} vendidos</p>
+                    </div>
+                </div>
+                
+                <div class='row my-4'>
+                    <div class='col-12 text-center'>
+                        <h3>${currency} ${cost}</h3>
+                    </div>
+                </div>
+
+                <div class='row my-4'>
+                    <div class='col-12 text-center'>
+                        <p><i class="bi bi-info-square-fill"></i> ${description}</p>
+                    </div>
+                </div>
+                
+                <div class='row my-4'>
+                    <div class='col-12 text-center'>
+                        <button class="btn btn-dark" id="${name}"> Añadir al carrito
+                            <i class="bi bi-cart-plus-fill"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            `;
+
+            let relProdTemplate = '';
+            for (let prod of relatedProducts) {
+                const { id, name, image } = prod
+                relProdTemplate +=
+                    `
+                        <div class='col-12 col-md-6 my-5 cursor-active' onclick='goToRelProd(${id})'>
+                            <div class="row">
+                                <div class="card product">
+                                    <img class="card-img-top" src="${image}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h3 class="card-title text-center">${name}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        `
+            }
+
+            const imgCollection = document.getElementsByClassName('carousel-item'); // Aloja las img para el carousel
+            Array.from(imgCollection).forEach((carouselItem, index) => {
+                // Imagen dentro de cada .carousel-item
+                const img = carouselItem.querySelector('img');
+        
+                // Verifica si aún hay elementos en images para asignar
+                if (index < images.length) {
+                    // Asigna el path de la imagen desde el array de imágenes que se desestructuró
+                    img.src = images[index];
+                }
+            });
+
+            dataContainer.innerHTML = prodTemplate;
+            relProdContainer.innerHTML = relProdTemplate;
+
+            return prodTemplate;
+    }
+
 }
 
 async function getComments() {
@@ -312,7 +309,6 @@ function commentEvents() {
 
 
 function addToCart(producto) {
-
     const productWithCount = {
         currency: producto.currency,
         id: producto.id,
@@ -349,7 +345,7 @@ function addToCart(producto) {
     });
 
     localStorage.removeItem('carrito')
-    localStorage.setItem('carrito', JSON.stringify([...filteredArray, productoExistente]));
+    localStorage.setItem('carrito', JSON.stringify([...filteredArray, productoExistente])); 
 
 }
 
