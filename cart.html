@@ -93,13 +93,10 @@
       <!--Tipo de envio del producto-->
       <div class="container my-5" id="sendType">
         <h2 class="my-4 text-center text-sm-start"><i class="bi bi-truck"></i> Tipo de envío</h2>
-        <select class="form-select" required>
-          <option selected disabled>Elige el tipo de envio que deseas </option>
+        <select class="form-select" id="select-delivery" required>
+          <option value="Standard"> Standard, llega a tu casa en 12 a 15 días (+5%)</option>
+          <option value="Express"> Express, llega a tu casa en 5 a 8 días (+7%)</option>
           <option value="Premium"> Premium, llega a tu casa en 2 a 5 días (+15%)</option>
-          <option value="Express"> Express, llega a tu casa en 5 a 8 días (+7%)
-          </option>
-          <option value="Standard"> Standard, llega a tu casa en 12 a 15 días (+5%)
-          </option>
         </select>
       </div>
 
@@ -139,6 +136,36 @@
         </div>
       </div>
 
+      <hr />
+      <h4 class="mb-3">Precio</h4>
+      <ul class="list-group mb-3">
+        <li href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">SubTotal</h5>
+            <small class="fs-5" id="subtotal">0</small>
+          </div>
+          <p class="mb-1">Costo unitario por cantidad
+          </p>
+        </li>
+
+        <li href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Costo de Envío</h5>
+            <small class="fs-5" id="costo-envio">0</small>
+          </div>
+          <p class="mb-1">Costo unitario por cantidad
+          </p>
+        </li>
+
+        <li href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between align-items-center">
+            <h5 class="mb-1">Total ($)</h5>
+            <small class="fs-3" id="total">0</small>
+          </div>
+        </li>
+      </ul>
+
+    </div>
   </main>
 
   <footer>
