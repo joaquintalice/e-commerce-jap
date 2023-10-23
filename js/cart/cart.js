@@ -116,8 +116,8 @@ function updateTotalPrice() {
 
     const totalPrice = deliveryCost[selectDelivery.value];
 
-    subtotalHtml.innerHTML = `USD ${!isNaN(+parseFloat(totalPrice)) ? +parseFloat(totalPrice).toFixed(2) : 0} `
-    deliveryCostHtml.innerHTML = `USD ${subtotal} `
+    subtotalHtml.innerHTML = `USD ${subtotal} `
+    deliveryCostHtml.innerHTML = `USD ${!isNaN(+parseFloat(totalPrice)) ? +parseFloat(totalPrice).toFixed(2) : 0} `
     totalHtml.innerHTML = `USD ${parseFloat(total[selectDelivery.value]).toFixed(2) ?? 0} `
 
     selectDelivery.addEventListener('change', () => {
@@ -125,6 +125,7 @@ function updateTotalPrice() {
     })
 
 }
+
 
 function paymentType() {
     const formaDePagoContainer = document.getElementById('formaDePagoSpan');
@@ -150,8 +151,8 @@ function paymentType() {
         if (e.target.value) {
             numeroTarjeta.disabled = true;
             codigoSeguridad.disabled = true;
-            numeroCuenta.disabled = false;
             vencimiento.disabled = true;
+            numeroCuenta.disabled = false;
             formaDePagoContainer.textContent = 'Transferencia Bancaria';
 
         }
@@ -243,7 +244,7 @@ function handleSubmit() {
 
 
         if (!lsData.length) {
-            alert('no hay productos jiji')
+            alert('no hay productos')
             return;
         }
 
@@ -251,13 +252,31 @@ function handleSubmit() {
 
         successSaleAlert.classList.remove('d-none')
         successSaleAlert.classList.add('d-flex')
+
+        // se resetea el local storage y todos los elementos del DOM
+
         localStorage.setItem('carrito', JSON.stringify([]));
-        setTimeout(() => {
-            location.reload()
-        }, 1000);
+        calle.value = "";
+        numero.value = "";
+        esquina.value = "";
+        numeroTarjeta.value = "";
+        codigoSeguridad.value = "";
+        vencimiento.value = "";
+        numeroCuenta.value = "";
+        numeroTarjeta.disabled = false;
+        codigoSeguridad.disabled = false;
+        vencimiento.disabled = false;
+        numeroCuenta.disabled = false;
+        credito.checked = false;
+        transferencia.checked = false;
+        formaDePagoContainer.textContent = 'No ha seleccionado'
+
+        const containerArticles = document.getElementById("data-container");
+        while (containerArticles.firstChild) {
+            containerArticles.removeChild(containerArticles.firstChild);
+        }
+        updateTotalPrice()
     })
-
-
 }
 
 function deleteProduct(id) {
