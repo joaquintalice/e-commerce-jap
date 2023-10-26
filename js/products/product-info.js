@@ -97,10 +97,11 @@ function showProduct(objeto) {
         cartBtn.addEventListener('click', () => {
             addToCart(objeto)
             alert('Producto agregado al carrito')
-        }) 
+        })
     });
 
     async function createTemplate(name, category, cost, currency, description, soldCount, images, relatedProducts) {
+        const USD_COST = currency === 'UYU' ? parseFloat(cost / 39).toFixed(2) : cost
         const prodTemplate = `
             <div class='col-12'>
 
@@ -121,7 +122,7 @@ function showProduct(objeto) {
                 
                 <div class='row my-4'>
                     <div class='col-12 text-center'>
-                        <h3>${currency} ${cost}</h3>
+                        <h3>USD ${USD_COST}</h3>
                     </div>
                 </div>
 
@@ -142,11 +143,11 @@ function showProduct(objeto) {
             </div>
             `;
 
-            let relProdTemplate = '';
-            for (let prod of relatedProducts) {
-                const { id, name, image } = prod
-                relProdTemplate +=
-                    `
+        let relProdTemplate = '';
+        for (let prod of relatedProducts) {
+            const { id, name, image } = prod
+            relProdTemplate +=
+                `
                         <div class='col-12 col-md-6 my-5 cursor-active' onclick='goToRelProd(${id})'>
                             <div class="row">
                                 <div class="card product">
@@ -158,24 +159,24 @@ function showProduct(objeto) {
                             </div>
                         </div>
                         `
+        }
+
+        const imgCollection = document.getElementsByClassName('carousel-item'); // Aloja las img para el carousel
+        Array.from(imgCollection).forEach((carouselItem, index) => {
+            // Imagen dentro de cada .carousel-item
+            const img = carouselItem.querySelector('img');
+
+            // Verifica si aún hay elementos en images para asignar
+            if (index < images.length) {
+                // Asigna el path de la imagen desde el array de imágenes que se desestructuró
+                img.src = images[index];
             }
+        });
 
-            const imgCollection = document.getElementsByClassName('carousel-item'); // Aloja las img para el carousel
-            Array.from(imgCollection).forEach((carouselItem, index) => {
-                // Imagen dentro de cada .carousel-item
-                const img = carouselItem.querySelector('img');
-        
-                // Verifica si aún hay elementos en images para asignar
-                if (index < images.length) {
-                    // Asigna el path de la imagen desde el array de imágenes que se desestructuró
-                    img.src = images[index];
-                }
-            });
+        dataContainer.innerHTML = prodTemplate;
+        relProdContainer.innerHTML = relProdTemplate;
 
-            dataContainer.innerHTML = prodTemplate;
-            relProdContainer.innerHTML = relProdTemplate;
-
-            return prodTemplate;
+        return prodTemplate;
     }
 
 }
@@ -345,7 +346,7 @@ function addToCart(producto) {
     });
 
     localStorage.removeItem('carrito')
-    localStorage.setItem('carrito', JSON.stringify([...filteredArray, productoExistente])); 
+    localStorage.setItem('carrito', JSON.stringify([...filteredArray, productoExistente]));
 
 }
 

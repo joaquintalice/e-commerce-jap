@@ -13,9 +13,23 @@ document.addEventListener("DOMContentLoaded", () => {
 async function getCartData() {
     const response = await fetch("https://japceibal.github.io/emercado-api/user_cart/25801.json")
     const data = await response.json();
-    const lsData = localStorage.getItem('carrito');
+    const lsData = JSON.parse(localStorage.getItem('carrito'));
+
+
     if (!lsData) {
         localStorage.setItem('carrito', JSON.stringify(data.articles))
+    } else {
+        const products = lsData.map(elem => {
+            if (elem.currency === 'UYU') {
+                elem.currency = "USD"
+                elem.unitCost = +parseFloat(elem.unitCost / 39).toFixed(2)
+            }
+            return {
+                ...elem
+            }
+        })
+        localStorage.removeItem('carrito')
+        localStorage.setItem('carrito', JSON.stringify(products));
     }
     return data
 }
@@ -88,7 +102,7 @@ function showCartData() {
     }
 }
 
-
+// pauta 1
 function updateTotalPrice() {
     const subtotalHtml = document.getElementById('subtotal')
     const deliveryCostHtml = document.getElementById('costo-envio')
@@ -114,11 +128,12 @@ function updateTotalPrice() {
         "Standard": subtotal * 0.05
     }
 
-    const totalPrice = deliveryCost[selectDelivery.value];
+    const deliveryPrice = deliveryCost[selectDelivery.value];
 
     subtotalHtml.innerHTML = `USD ${subtotal} `
-    deliveryCostHtml.innerHTML = `USD ${!isNaN(+parseFloat(totalPrice)) ? +parseFloat(totalPrice).toFixed(2) : 0} `
-    totalHtml.innerHTML = `USD ${parseFloat(total[selectDelivery.value]).toFixed(2) ?? 0} `
+    deliveryCostHtml.innerHTML = `USD ${deliveryPrice.toFixed(2)}`
+    totalHtml.innerHTML = `USD ${total[selectDelivery.value].toFixed(2)} `
+
 
     selectDelivery.addEventListener('change', () => {
         updateTotalPrice()
@@ -126,7 +141,7 @@ function updateTotalPrice() {
 
 }
 
-
+// pauta 2
 function paymentType() {
     const formaDePagoContainer = document.getElementById('formaDePagoSpan');
     const credito = document.getElementById("credito")
@@ -143,7 +158,7 @@ function paymentType() {
             codigoSeguridad.disabled = false;
             vencimiento.disabled = false;
             numeroCuenta.disabled = true;
-            formaDePagoContainer.textContent = 'Tarjeta de crédito'
+            formaDePagoContainer.textContent = 'Tarjeta de crédito / débito'
         }
     })
 
@@ -160,6 +175,7 @@ function paymentType() {
 
 }
 
+// pauta3
 function handleSubmit() {
     const saleBtn = document.getElementById('sale-btn');
     const formaDePagoContainer = document.getElementById('formaDePagoSpan');
@@ -184,6 +200,7 @@ function handleSubmit() {
     // Datos cuenta bancaria
     const transferencia = document.getElementById("transferencia")
     const numeroCuenta = document.getElementById("numeroCuenta")
+
 
 
     saleBtn.addEventListener('click', () => {
@@ -279,6 +296,7 @@ function handleSubmit() {
     })
 }
 
+// desafiate
 function deleteProduct(id) {
     const lsData = JSON.parse(localStorage.getItem('carrito'));
     const filteredData = lsData.filter(prod => prod.id != id)
@@ -293,3 +311,11 @@ function deleteProduct(id) {
     updateTotalPrice()
     showCartData();
 }
+
+
+/* 
+pauta 1 - fabi / debo
+pauta 2 - bruno
+pauta 3 - seba / joaco
+pauta 4 - santi
+ */

@@ -50,6 +50,10 @@ function showProducts(productsArray) {
 
         for (let product of productsArray) {
             const { id, image, name, cost, currency, description, soldCount } = product
+            console.log(currency)
+            const USD_COST = currency === 'UYU' ? parseFloat(cost / 39).toFixed(2) : cost
+
+
             template +=
                 `
             <div onclick="setProductID(${id})" class="col-12 col-md-4 col-xxl-3 d-flex mt-5">
@@ -57,7 +61,7 @@ function showProducts(productsArray) {
                     <img class="card-img-top" src="${image}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">${name}</h5>
-                        <p>${currency} ${cost}</p>
+                        <p>USD ${USD_COST}</p>
                         <div class='overflow-auto' style='height:100px;'>
                             <p>${description}</p>
                         </div>
