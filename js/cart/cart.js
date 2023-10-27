@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     paymentType()
 })
 
-// Obtiene el producto almacenado en el LocalStorage
+// Obtiene los productos almacenados en el LocalStorage
 async function getCartData() {
     const response = await fetch("https://japceibal.github.io/emercado-api/user_cart/25801.json")
     const data = await response.json();
@@ -34,7 +34,7 @@ async function getCartData() {
     return data
 }
 
-// Muestra los productos del carrito
+// Muestra los productos agregados al carrito por el cliente
 function showCartData() {
 
     const containerArticles = document.getElementById("data-container");
@@ -101,8 +101,7 @@ function showCartData() {
         containerArticles.appendChild(row);
     }
 }
-
-// pauta 1
+// Actualiza el total de la compra según las variables seleccionadas por el cliente
 function updateTotalPrice() {
     const subtotalHtml = document.getElementById('subtotal')
     const deliveryCostHtml = document.getElementById('costo-envio')
@@ -141,7 +140,7 @@ function updateTotalPrice() {
 
 }
 
-// pauta 2
+// Deshabilita los inputs innecesarios según la forma de pago seleccionada
 function paymentType() {
     const formaDePagoContainer = document.getElementById('formaDePagoSpan');
     const credito = document.getElementById("credito")
@@ -175,7 +174,7 @@ function paymentType() {
 
 }
 
-// pauta3
+// Funcionalidad del botón de finalizar compra
 function handleSubmit() {
     const saleBtn = document.getElementById('sale-btn');
     const formaDePagoContainer = document.getElementById('formaDePagoSpan');
@@ -296,7 +295,7 @@ function handleSubmit() {
     })
 }
 
-// desafiate
+// Elimina el producto del carrito y actualiza el total
 function deleteProduct(id) {
     const lsData = JSON.parse(localStorage.getItem('carrito'));
     const filteredData = lsData.filter(prod => prod.id != id)
@@ -311,11 +310,3 @@ function deleteProduct(id) {
     updateTotalPrice()
     showCartData();
 }
-
-
-/* 
-pauta 1 - fabi / debo
-pauta 2 - bruno
-pauta 3 - seba / joaco
-pauta 4 - santi
- */
