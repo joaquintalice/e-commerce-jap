@@ -45,7 +45,7 @@ function showCartData() {
             const row = document.createElement("tr");
 
             const { name, count, unitCost, currency, image, id } = element;
-            const subtotal = unitCost * count;
+            const subtotal = (unitCost * count).toFixed(2);
             row.innerHTML += `
                 <td><img width="120px" src="${image}" alt="Image ${name}"/></td>
                 <td>${name}</td>
@@ -69,7 +69,7 @@ function showCartData() {
                     event.target.value = 1000;
                 }
                 let newCount = event.target.value;
-                const newSubtotal = (unitCost) * newCount;
+                const newSubtotal = ((unitCost) * newCount).toFixed(2);
 
 
                 const findProduct = productsStorage.find(element => +element.id === +event.target.id);

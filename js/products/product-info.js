@@ -14,19 +14,6 @@ function main() {
     commentEvents();
 }
 
-function dateTimeNow() {
-    const date = new Date();
-
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    const hour = date.getHours();
-    const minutes = date.getMinutes();
-    const seconds = date.getSeconds();
-
-    return `${year}-${month}-${day} ${hour}:${minutes}:${seconds}`;
-}
-
 function getUserUsername() {
     const user = localStorage.getItem('userData');
     const { username } = JSON.parse(user)
@@ -51,13 +38,12 @@ function showIndividualComent() {
         const comment = document.getElementById("commentary-container").value;
 
         const username = getUserUsername()
-        const currentDateTime = dateTimeNow()
-
+        const dateTime = new Date()
 
         const review = {
             id: id,
             user: username,
-            dateTime: currentDateTime,
+            dateTime: dateTime.toString(),
             description: comment,
             score: estrellitas
         }
@@ -185,6 +171,32 @@ async function getComments() {
     const response = await fetch(urlComments);
     if (!response.ok) throw new Error(`Code error:${response.status}`);
     const data = await response.json();
+    data.map(element => {
+        const dateProduct = new Date();
+        const datosFecha = element.dateTime.split(" "); // ["año-mes-dia", "hora:minuto:segundo"]
+
+        const fecha = datosFecha[0].split("-"); // año-mes-dia
+        const hora = datosFecha[1].split(":"); // hora:minuto:segundo
+    
+        const year = fecha[0]
+        const month = fecha[1]
+        const day = fecha[2]
+    
+        const hours = hora[0];
+        const minutes = hora[1];
+        const seconds = hora[2];
+    
+        dateProduct.setFullYear(year)
+        dateProduct.setMonth(month - 1) // de 0 a 11
+        dateProduct.setDate(day)
+    
+        dateProduct.setHours(hours);
+        dateProduct.setMinutes(minutes); 
+        dateProduct.setSeconds(seconds);
+
+        element.dateTime = dateProduct.toString();
+    })
+
     return data;
 }
 
@@ -192,7 +204,7 @@ async function showComments() {
     const commentsArray = await getComments(); // Array de comentarios de la API
     const comment = JSON.parse(localStorage.getItem('comment')) // Array de comentarios del localStorage
 
-    let allComments = commentsArray
+    let allComments = [...commentsArray]
 
     if (comment) {
         const commentsFiltered = comment.filter((element) => element.id == id); // Array de comentarios filtrados por id
@@ -202,9 +214,11 @@ async function showComments() {
 
     let template = ``;
     if (allComments.length >= 1) {
-
         for (let product of allComments) {
             const { id, user, dateTime, score, description } = product
+
+            const tiempoRelativo = relativeDate(dateTime);
+
             const scoreStars = commentScore(score)
 
 
@@ -214,7 +228,7 @@ async function showComments() {
                     <div class="card product" >
                         <div class="card-body">
                             <h5 class="card-title"><i class="bi bi-person-circle"></i> ${user}</h5>
-                            <p><i class="bi bi-clock"></i> ${dateTime}<p>
+                            <p><i class="bi bi-clock"></i> ${tiempoRelativo}<p>
                             <p class="card-text">${description}</p>
                             <p class="card-text">${scoreStars}</p>
                         </div>
@@ -231,6 +245,35 @@ async function showComments() {
     }
 
     commentsContainer.innerHTML = template
+}
+
+function relativeDate(dateTime) {
+    const rtf2 = new Intl.RelativeTimeFormat('es', { numeric: 'auto' });
+
+    const dateNow = new Date();
+    const dateProduct = new Date(dateTime);
+
+    const differenceYear = dateProduct.getFullYear() - dateNow.getFullYear();
+    const differenceMonth = dateProduct.getMonth() - dateNow.getMonth();
+    const differenceDays = dateProduct.getDay() - dateNow.getDay();
+    const differenceHours = dateProduct.getHours() - dateNow.getHours();
+    const differenceMinutes = dateProduct.getMinutes() - dateNow.getMinutes();
+    const differenceSeconds = dateProduct.getSeconds() - dateNow.getSeconds();
+
+    if (differenceYear) {
+        return rtf2.format(differenceYear, 'year')
+    } else if (differenceMonth) {
+        return rtf2.format(differenceMonth, 'month')
+    } else if (differenceDays) {
+        return rtf2.format(differenceDays, 'day')
+    } else if (differenceHours) {
+        return rtf2.format(differenceHours, 'hour')
+    } else if (differenceMinutes) {
+        return rtf2.format(differenceMinutes, 'minute')
+    } else {
+        return rtf2.format(differenceSeconds, 'second')
+    }
+
 }
 
 function commentScore(score) {
