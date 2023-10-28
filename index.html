@@ -1,297 +1,195 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
-    <title>eMercado - Todo lo que busques está aquí</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    <link href="css/styles.css" rel="stylesheet" />
-    <link rel="shortcut icon" href="./img/favicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="css/indexCarousel.css" />
-    <link rel="stylesheet" href="css/indexLogosCarousel.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-    />
-  </head>
 
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
+  <title>eMercado - Todo lo que busques está aquí</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <link href="css/styles.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="./img/favicon.svg" type="image/x-icon" />
+  <link rel="stylesheet" href="css/indexCarousel.css" />
+  <link rel="stylesheet" href="css/indexLogosCarousel.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
+    <div class="container">
+      <a class="navbar-brand d-lg-none" href="index.html">
+        <img src="img/loginAndRegistration/icon.svg" alt="Logo" width="180" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between align-items-center">
+          <li class="nav-item">
+            <a class="navbar-brand d-none d-lg-block" href="index.html">
+              <img src="img/loginAndRegistration/icon.svg" alt="Logo" width="180" />
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Inicio <i class="bi bi-house"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html">Categorías <i class="bi bi-bookmarks"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender <i class="bi bi-basket3"></i></a>
+          </li>
+          <li class="nav-item nav-menu-login">
+            <a id="login" class="nav-link" href="loginAndRegistration.html"></a>
+            <div id="menuLogout" class="user-logout">
+              <a class="nav-link" href="my-profile.html"><i class="bi bi-person-fill-gear"></i> Mi Perfil</a>
+              <a class="nav-link" href="cart.html"><i class="bi bi-cart-fill"></i> Mi carrito</a>
+              <a id="logout" class="nav-link" href="loginAndRegistration.html"><i class="bi bi-person-fill-dash"></i>
+                Cerrar Sesión</a>
+              <div class="text-center">
+                <button class="btn rounded-fill" id="btn-darkmode">
+                  <i id="dl-icon" class="bi bi-moon-fill"></i>
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="carousel-container">
+      <div class="slider-wrapper">
+        <div class="slider">
+          <img id="slide-1" class="img-fluid" src="img/banner.png" alt="Banner principal" />
+          <img id="slide-2" class="img-fluid" src="img/logisticBanner.png" alt="Banner publcitario de logística" />
+          <img id="slide-3" class="img-fluid" src="img/carBanner.png" alt="Banner publcitario de autos" />
+          <img id="slide-3" class="img-fluid" src="img/techBanner.png" alt="Banner publcitario de tecnología" />
+          <img id="slide-3" class="img-fluid" src="img/toolsBanner.png" alt="Banner publcitario de herramientas" />
+          <img id="slide-3" class="img-fluid" src="img/toysBanner.png" alt="Banner publcitario de juguetes" />
+        </div>
+        <div class="slider-nav"></div>
+      </div>
+    </section>
+    <div class="album py-5">
       <div class="container">
-        <a class="navbar-brand d-lg-none" href="index.html">
-          <img src="img/loginAndRegistration/icon.svg" alt="Logo" width="180" />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul
-            class="navbar-nav w-100 justify-content-between align-items-center"
-          >
-            <li class="nav-item">
-              <a class="navbar-brand d-none d-lg-block" href="index.html">
-                <img
-                  src="img/loginAndRegistration/icon.svg"
-                  alt="Logo"
-                  width="180"
-                />
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="index.html"
-                >Inicio <i class="bi bi-house"></i
-              ></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="categories.html"
-                >Categorías <i class="bi bi-bookmarks"></i
-              ></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="sell.html"
-                >Vender <i class="bi bi-basket3"></i
-              ></a>
-            </li>
-            <li class="nav-item nav-menu-login">
-              <a
-                id="login"
-                class="nav-link"
-                href="loginAndRegistration.html"
-              ></a>
-              <div id="menuLogout" class="user-logout">
-                <a class="nav-link" href="my-profile.html"
-                  ><i class="bi bi-person-fill-gear"></i> Mi Perfil</a
-                >
-                <a class="nav-link" href="cart.html"
-                  ><i class="bi bi-cart-fill"></i> Mi carrito</a
-                >
-                <a id="logout" class="nav-link" href="loginAndRegistration.html"
-                  ><i class="bi bi-person-fill-dash"></i> Cerrar Sesión</a
-                >
-                <div class="text-center">
-                  <button class="btn rounded-fill" id="btn-darkmode">
-                    <i id="dl-icon" class="bi bi-moon-fill"></i>
-                  </button>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <main>
-      <section class="carousel-container">
-        <div class="slider-wrapper">
-          <div class="slider">
-            <img
-              id="slide-1"
-              class="img-fluid"
-              src="img/banner.png"
-              alt="Banner principal"
-            />
-            <img
-              id="slide-2"
-              class="img-fluid"
-              src="img/logisticBanner.png"
-              alt="Banner publcitario de logística"
-            />
-            <img
-              id="slide-3"
-              class="img-fluid"
-              src="img/carBanner.png"
-              alt="Banner publcitario de autos"
-            />
-            <img
-              id="slide-3"
-              class="img-fluid"
-              src="img/techBanner.png"
-              alt="Banner publcitario de tecnología"
-            />
-            <img
-              id="slide-3"
-              class="img-fluid"
-              src="img/toolsBanner.png"
-              alt="Banner publcitario de herramientas"
-            />
-            <img
-              id="slide-3"
-              class="img-fluid"
-              src="img/toysBanner.png"
-              alt="Banner publcitario de juguetes"
-            />
-          </div>
-          <div class="slider-nav"></div>
-        </div>
-      </section>
-      <div class="album py-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4">
-              <div
-                class="card product product--not-animation mb-4 shadow-sm border-0 rounded custom-card cursor-active"
-                id="autos"
-              >
-                <img
-                  class="card-img-top product--zoom"
-                  src="img/cars_index.jpg"
-                  alt="Imagen representativa de la categoría 'Autos'"
-                />
-                <div class="card-body">
-                  <h3 class="card-title">Autos</h3>
-                  <p class="card-text">
-                    Explora los mejores precios en autos 0 kilómetro y de alta
-                    gama.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div
-                class="card product product--not-animation mb-4 shadow-sm border-0 rounded custom-card cursor-active"
-                id="juguetes"
-              >
-                <img
-                  class="card-img-top product--zoom"
-                  src="img/toys_index.jpg"
-                  alt="Imagen representativa de la categoría 'Juguetes'"
-                />
-                <div class="card-body">
-                  <h3 class="card-title">Juguetes</h3>
-                  <p class="card-text">
-                    Encuentra los mejores precios en juguetes para niños/as de
-                    todas las edades.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div
-                class="card product product--not-animation mb-4 shadow-sm border-0 rounded custom-card cursor-active"
-                id="muebles"
-              >
-                <img
-                  class="card-img-top product--zoom"
-                  src="img/muebles_index.png"
-                  alt="Imagen representativa de la categoría 'Muebles'"
-                />
-                <div class="card-body">
-                  <h3 class="card-title">Muebles</h3>
-                  <p class="card-text">
-                    Descubre una variedad de muebles antiguos y modernos para
-                    todos los gustos.
-                  </p>
-                </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card product product--not-animation mb-4 shadow-sm border-0 rounded custom-card cursor-active"
+              id="autos">
+              <img class="card-img-top product--zoom" src="img/cars_index.jpg"
+                alt="Imagen representativa de la categoría 'Autos'" />
+              <div class="card-body">
+                <h3 class="card-title">Autos</h3>
+                <p class="card-text">
+                  Explora los mejores precios en autos 0 kilómetro y de alta
+                  gama.
+                </p>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col text-center">
-              <a
-                class="btn btn-outline-dark btn-lg filters"
-                href="categories.html"
-                >¡Y mucho más!</a
-              >
+          <div class="col-md-4">
+            <div class="card product product--not-animation mb-4 shadow-sm border-0 rounded custom-card cursor-active"
+              id="juguetes">
+              <img class="card-img-top product--zoom" src="img/toys_index.jpg"
+                alt="Imagen representativa de la categoría 'Juguetes'" />
+              <div class="card-body">
+                <h3 class="card-title">Juguetes</h3>
+                <p class="card-text">
+                  Encuentra los mejores precios en juguetes para niños/as de
+                  todas las edades.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card product product--not-animation mb-4 shadow-sm border-0 rounded custom-card cursor-active"
+              id="muebles">
+              <img class="card-img-top product--zoom" src="img/muebles_index.png"
+                alt="Imagen representativa de la categoría 'Muebles'" />
+              <div class="card-body">
+                <h3 class="card-title">Muebles</h3>
+                <p class="card-text">
+                  Descubre una variedad de muebles antiguos y modernos para
+                  todos los gustos.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="sliderCont">
-        <div class="slide-track">
-          <div class="slideImg">
-            <img
-              src="img/logos/adultosaprogramar.svg"
-              alt="carousel logo sponsor"
-            />
-          </div>
-          <div class="slideImg">
-            <img src="img/logos/cathub.svg" alt="carousel logo sponsor" />
-          </div>
-          <div class="slideImg">
-            <img src="img/logos/ceibol.svg" alt="carousel logo sponsor" />
-          </div>
-          <div class="slideImg">
-            <img src="img/logos/spacek.svg" alt="carousel logo sponsor" />
-          </div>
-          <div class="slideImg">
-            <img src="img/logos/messicard.svg" alt="carousel logo sponsor" />
-          </div>
-          <div class="slideImg">
-            <img src="img/logos/kioskopago.svg" alt="carousel logo sponsor" />
-          </div>
-
-          <div class="slideImg">
-            <img
-              src="img/logos/adultosaprogramar.svg"
-              alt="carousel logo sponsor"
-            />
-          </div>
-          <div class="slideImg">
-            <img src="img/logos/cathub.svg" alt="carousel logo sponsor" />
-          </div>
-          <div class="slideImg">
-            <img src="img/logos/ceibol.svg" alt="carousel logo sponsor" />
-          </div>
-          <div class="slideImg">
-            <img src="img/logos/spacek.svg" alt="carousel logo sponsor" />
-          </div>
-          <div class="slideImg">
-            <img src="img/logos/messicard.svg" alt="carousel logo sponsor" />
-          </div>
-          <div class="slideImg">
-            <img src="img/logos/kioskopago.svg" alt="carousel logo sponsor" />
+        <div class="row">
+          <div class="col text-center">
+            <a class="btn btn-outline-dark btn-lg filters" href="categories.html">¡Y mucho más!</a>
           </div>
         </div>
       </div>
-    </main>
-    <footer>
-      <div class="container footer">
-        <p class="float-end footer">
-          <a href="#" class="btn btn-outline-dark filters">Volver arriba</a>
-        </p>
-        <p>
-          Este sitio forma parte de
-          <a
-            href="https://jovenesaprogramar.edu.uy/"
-            target="_blank"
-            class="text-muted footer"
-            >Jovenes a Programar</a
-          >
-        </p>
-      </div>
-    </footer>
+    </div>
 
-    <script src="js/darkmode/darkmode.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
-    <script src="js/index.js"></script>
-    <script src="js/init.js"></script>
-    <script src="js/navbar/navbar.js"></script>
-    <script src="js/indexCarousel.js"></script>
-  </body>
+    <div class="sliderCont">
+      <div class="slide-track">
+        <div class="slideImg">
+          <img src="img/logos/adultosaprogramar.svg" alt="carousel logo sponsor" />
+        </div>
+        <div class="slideImg">
+          <img src="img/logos/cathub.svg" alt="carousel logo sponsor" />
+        </div>
+        <div class="slideImg">
+          <img src="img/logos/ceibol.svg" alt="carousel logo sponsor" />
+        </div>
+        <div class="slideImg">
+          <img src="img/logos/spacek.svg" alt="carousel logo sponsor" />
+        </div>
+        <div class="slideImg">
+          <img src="img/logos/messicard.svg" alt="carousel logo sponsor" />
+        </div>
+        <div class="slideImg">
+          <img src="img/logos/kioskopago.svg" alt="carousel logo sponsor" />
+        </div>
+
+        <div class="slideImg">
+          <img src="img/logos/adultosaprogramar.svg" alt="carousel logo sponsor" />
+        </div>
+        <div class="slideImg">
+          <img src="img/logos/cathub.svg" alt="carousel logo sponsor" />
+        </div>
+        <div class="slideImg">
+          <img src="img/logos/ceibol.svg" alt="carousel logo sponsor" />
+        </div>
+        <div class="slideImg">
+          <img src="img/logos/spacek.svg" alt="carousel logo sponsor" />
+        </div>
+        <div class="slideImg">
+          <img src="img/logos/messicard.svg" alt="carousel logo sponsor" />
+        </div>
+        <div class="slideImg">
+          <img src="img/logos/kioskopago.svg" alt="carousel logo sponsor" />
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="container footer">
+      <p class="float-end footer">
+        <a href="#" class="btn btn-outline-dark filters">Volver arriba</a>
+      </p>
+      <p>
+        Este sitio forma parte de
+        <a href="https://jovenesaprogramar.edu.uy/" target="_blank" class="text-muted footer">Jovenes a Programar</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/darkmode/darkmode.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="js/index.js"></script>
+  <script src="js/navbar/navbar.js"></script>
+  <script src="js/indexCarousel.js"></script>
+</body>
+
 </html>
