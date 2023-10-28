@@ -9,17 +9,17 @@ let maxCount = undefined;
 
 function sortCategories(criteria, array) {
     const result = {
-        "AZ" : () => {
-            return array.toSorted((a,b) => a.name.localCompare(b.name))
+        "AZ": () => {
+            return array.toSorted((a, b) => a.name.localCompare(b.name))
         },
-        "ZA" : () => {
-            return array.toSorted((a,b) => b.name.localCompare(a.name))
+        "ZA": () => {
+            return array.toSorted((a, b) => b.name.localCompare(a.name))
         },
-        "Cant." : () => {
-            return array.toSorted((a,b) => a.productCount - b.productCount)
+        "Cant.": () => {
+            return array.toSorted((a, b) => a.productCount - b.productCount)
         }
     }
-    
+
     return result[criteria]();
 }
 
@@ -88,9 +88,17 @@ function sortAndShowCategories(sortCriteria, categoriesArray) {
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
+let showSpinner = function () {
+    document.getElementById("spinner-wrapper").style.display = "block";
+}
+
+let hideSpinner = function () {
+    document.getElementById("spinner-wrapper").style.display = "none";
+}
 
 const getCategories = (url) => {
     let result = {};
+    showSpinner();
     return fetch(url)
         .then((response) => {
             if (response.ok) {
@@ -102,11 +110,13 @@ const getCategories = (url) => {
         .then((response) => {
             result.status = 'ok';
             result.data = response;
+            hideSpinner();
             return result;
         })
         .catch((error) => {
             result.status = 'error';
             result.data = error;
+            hideSpinner();
             return result;
         });
 }
