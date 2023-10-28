@@ -1,3 +1,4 @@
+const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
 const ORDER_ASC_BY_NAME = "AZ";
 const ORDER_DESC_BY_NAME = "ZA";
 const ORDER_BY_PROD_COUNT = "Cant.";
@@ -7,31 +8,19 @@ let minCount = undefined;
 let maxCount = undefined;
 
 function sortCategories(criteria, array) {
-    let result = [];
-    if (criteria === ORDER_ASC_BY_NAME) {
-        result = array.sort(function (a, b) {
-            if (a.name < b.name) { return -1; }
-            if (a.name > b.name) { return 1; }
-            return 0;
-        });
-    } else if (criteria === ORDER_DESC_BY_NAME) {
-        result = array.sort(function (a, b) {
-            if (a.name > b.name) { return -1; }
-            if (a.name < b.name) { return 1; }
-            return 0;
-        });
-    } else if (criteria === ORDER_BY_PROD_COUNT) {
-        result = array.sort(function (a, b) {
-            let aCount = parseInt(a.productCount);
-            let bCount = parseInt(b.productCount);
-
-            if (aCount > bCount) { return -1; }
-            if (aCount < bCount) { return 1; }
-            return 0;
-        });
+    const result = {
+        "AZ" : () => {
+            return array.toSorted((a,b) => a.name.localCompare(b.name))
+        },
+        "ZA" : () => {
+            return array.toSorted((a,b) => b.name.localCompare(a.name))
+        },
+        "Cant." : () => {
+            return array.toSorted((a,b) => a.productCount - b.productCount)
+        }
     }
-
-    return result;
+    
+    return result[criteria]();
 }
 
 // Esta función es la encargada de enviar al localStorage el ID de la categoría en la que hagamos click en categories.html
@@ -99,12 +88,34 @@ function sortAndShowCategories(sortCriteria, categoriesArray) {
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
+
+const getCategories = (url) => {
+    let result = {};
+    return fetch(url)
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw Error(response.statusText);
+            }
+        })
+        .then((response) => {
+            result.status = 'ok';
+            result.data = response;
+            return result;
+        })
+        .catch((error) => {
+            result.status = 'error';
+            result.data = error;
+            return result;
+        });
+}
+
 document.addEventListener("DOMContentLoaded", function (e) {
-    getJSONData(CATEGORIES_URL).then(function (resultObj) {
+    getCategories(CATEGORIES_URL).then(function (resultObj) {
         if (resultObj.status === "ok") {
             currentCategoriesArray = resultObj.data
             showCategoriesList()
-            //sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
         }
     });
 
