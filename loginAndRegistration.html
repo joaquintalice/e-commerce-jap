@@ -1,217 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>eMercado - Todo lo que busques está aquí</title>
-    <link rel="stylesheet" href="./css/loginAndRegistration/styles.css" />
-    <link rel="shortcut icon" href="./img/favicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="css/indexCarousel.css" />
-  </head>
 
-  <body>
-    <main>
-      <div class="box">
-        <div class="inner-box">
-          <div class="forms-wrap">
-            <form
-              action="index.html"
-              autocomplete="off"
-              class="sign-in-form"
-              id="form-login"
-            >
-              <div class="logo">
-                <img
-                  src="./img/loginAndRegistration/svg-jap.svg"
-                  alt="Jóvenes a Programar logo"
-                />
-                <h4>Jóvenes a Programar</h4>
-              </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>eMercado - Todo lo que busques está aquí</title>
+  <link rel="stylesheet" href="./css/loginAndRegistration/styles.css" />
+  <link rel="shortcut icon" href="./img/favicon.svg" type="image/x-icon" />
+  <link rel="stylesheet" href="css/indexCarousel.css" />
+</head>
 
-              <div class="heading">
-                <h2>Bienvenido!</h2>
-                <h6>No estás registrado aún?</h6>
-                <a href="#" class="toggle">Registrarse</a>
-              </div>
-
-              <div class="actual-form">
-                <div class="input-wrap">
-                  <input
-                    type="text"
-                    minlength="4"
-                    class="input-field"
-                    autocomplete="off"
-                    id="user-login"
-                    required
-                  />
-                  <label>Usuario</label>
-                </div>
-
-                <div class="input-wrap">
-                  <input
-                    type="password"
-                    minlength="4"
-                    class="input-field"
-                    autocomplete="off"
-                    id="password-login"
-                    required
-                  />
-                  <label>Contraseña</label>
-                </div>
-
-                <div
-                  id="alert-message-login"
-                  style="display: none"
-                  class="alert"
-                  role="alert"
-                ></div>
-
-                <input type="submit" value="Ingresar" class="sign-btn" />
-
-                <p class="text">
-                  Olvidaste tu contraseña o tus datos de login?
-                  <a href="#">Obten ayuda </a> para ingresar. <br />
-                  Este sitio forma parte de
-                  <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
-                    >Jovenes a Programar</a
-                  >
-                </p>
-              </div>
-            </form>
-
-            <form
-              action="index.html"
-              autocomplete="off"
-              class="sign-up-form"
-              id="form-registro"
-            >
-              <div class="logo">
-                <img
-                  src="./img/loginAndRegistration/svg-jap.svg"
-                  alt="Jóvenes a Programar logo"
-                />
-                <h4>Jóvenes a Programar</h4>
-              </div>
-
-              <div class="heading">
-                <h2>Regístrate</h2>
-                <h6>Ya tienes una cuenta?</h6>
-                <a href="#" class="toggle">Ingresa</a>
-              </div>
-
-              <div class="actual-form">
-                <div class="input-wrap">
-                  <input
-                    type="text"
-                    minlength="4"
-                    class="input-field"
-                    autocomplete="off"
-                    id="user-register"
-                    required
-                  />
-                  <label>Usuario</label>
-                </div>
-
-                <div class="input-wrap">
-                  <input
-                    type="email"
-                    class="input-field"
-                    autocomplete="off"
-                    id="email-register"
-                    required
-                  />
-                  <label>Email</label>
-                </div>
-
-                <div class="input-wrap">
-                  <input
-                    type="password"
-                    minlength="4"
-                    class="input-field"
-                    autocomplete="off"
-                    id="password-register"
-                    required
-                  />
-                  <label>Contraseña</label>
-                </div>
-
-                <div class="input-wrap">
-                  <input
-                    type="password"
-                    minlength="4"
-                    class="input-field"
-                    autocomplete="off"
-                    id="password-verify"
-                    required
-                  />
-                  <label>Contraseña</label>
-                </div>
-
-                <div
-                  id="alert-message-register"
-                  style="display: none"
-                  class="alert"
-                  role="alert"
-                ></div>
-
-                <input type="submit" value="Registrarme" class="sign-btn" />
-
-                <p class="text">
-                  Al registrarme, Estoy de acuerdo con los
-                  <a href="#">Terminos de Servicio</a> y las
-                  <a href="#">Políticas de privacidad</a><br />
-                  Este sitio forma parte de
-                  <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
-                    >Jovenes a Programar</a
-                  >
-                </p>
-              </div>
-            </form>
-          </div>
-
-          <div class="carousel">
-            <div class="images-wrapper">
-              <img
-                src="./img/loginAndRegistration/image1.svg"
-                class="image img-1 show"
-                alt=""
-              />
-              <img
-                src="./img/loginAndRegistration/image2.svg"
-                class="image img-2"
-                alt=""
-              />
-              <img
-                src="./img/loginAndRegistration/image3.svg"
-                class="image img-3"
-                alt=""
-              />
+<body>
+  <main>
+    <!-- Pagina de inicio de sesion a usuario registrado -->
+    <div class="box">
+      <div class="inner-box">
+        <div class="forms-wrap">
+          <form action="index.html" autocomplete="off" class="sign-in-form" id="form-login">
+            <div class="logo">
+              <img src="./img/loginAndRegistration/svg-jap.svg" alt="Jóvenes a Programar logo" />
+              <h4>Jóvenes a Programar</h4>
             </div>
 
-            <div class="text-slider">
-              <div class="text-wrap">
-                <div class="text-group">
-                  <h2>Compra con seguridad</h2>
-                  <h2>Somos una empresa líder</h2>
-                  <h2>Disfruta de nuestros productos</h2>
-                </div>
+            <div class="heading">
+              <h2>Bienvenido!</h2>
+              <h6>No estás registrado aún?</h6>
+              <a href="#" class="toggle">Registrarse</a>
+            </div>
+
+            <div class="actual-form">
+              <div class="input-wrap">
+                <input type="text" minlength="4" class="input-field" autocomplete="off" id="user-login" required />
+                <label>Usuario</label>
               </div>
 
-              <div class="bullets">
-                <span class="active" data-value="1"></span>
-                <span data-value="2"></span>
-                <span data-value="3"></span>
+              <div class="input-wrap">
+                <input type="password" minlength="4" class="input-field" autocomplete="off" id="password-login"
+                  required />
+                <label>Contraseña</label>
               </div>
+
+              <div id="alert-message-login" style="display: none" class="alert" role="alert"></div>
+
+              <input type="submit" value="Ingresar" class="sign-btn" />
+
+              <p class="text">
+                Olvidaste tu contraseña o tus datos de login?
+                <a href="#">Obten ayuda </a> para ingresar. <br />
+                Este sitio forma parte de
+                <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+              </p>
+            </div>
+          </form>
+
+          <!-- Pagina de registro para nuevo usuario -->
+          <form action="index.html" autocomplete="off" class="sign-up-form" id="form-registro">
+            <div class="logo">
+              <img src="./img/loginAndRegistration/svg-jap.svg" alt="Jóvenes a Programar logo" />
+              <h4>Jóvenes a Programar</h4>
+            </div>
+
+            <div class="heading">
+              <h2>Regístrate</h2>
+              <h6>Ya tienes una cuenta?</h6>
+              <a href="#" class="toggle">Ingresa</a>
+            </div>
+
+            <div class="actual-form">
+              <div class="input-wrap">
+                <input type="text" minlength="4" class="input-field" autocomplete="off" id="user-register" required />
+                <label>Usuario</label>
+              </div>
+
+              <div class="input-wrap">
+                <input type="email" class="input-field" autocomplete="off" id="email-register" required />
+                <label>Email</label>
+              </div>
+
+              <div class="input-wrap">
+                <input type="password" minlength="4" class="input-field" autocomplete="off" id="password-register"
+                  required />
+                <label>Contraseña</label>
+              </div>
+
+              <div class="input-wrap">
+                <input type="password" minlength="4" class="input-field" autocomplete="off" id="password-verify"
+                  required />
+                <label>Contraseña</label>
+              </div>
+
+              <div id="alert-message-register" style="display: none" class="alert" role="alert"></div>
+
+              <input type="submit" value="Registrarme" class="sign-btn" />
+
+              <p class="text">
+                Al registrarme, Estoy de acuerdo con los
+                <a href="#">Terminos de Servicio</a> y las
+                <a href="#">Políticas de privacidad</a><br />
+                Este sitio forma parte de
+                <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+              </p>
+            </div>
+          </form>
+        </div>
+
+        <div class="carousel">
+          <div class="images-wrapper">
+            <img src="./img/loginAndRegistration/image1.svg" class="image img-1 show" alt="" />
+            <img src="./img/loginAndRegistration/image2.svg" class="image img-2" alt="" />
+            <img src="./img/loginAndRegistration/image3.svg" class="image img-3" alt="" />
+          </div>
+
+          <div class="text-slider">
+            <div class="text-wrap">
+              <div class="text-group">
+                <h2>Compra con seguridad</h2>
+                <h2>Somos una empresa líder</h2>
+                <h2>Disfruta de nuestros productos</h2>
+              </div>
+            </div>
+
+            <div class="bullets">
+              <span class="active" data-value="1"></span>
+              <span data-value="2"></span>
+              <span data-value="3"></span>
             </div>
           </div>
         </div>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <!-- Javascript file -->
+  <!-- Javascript file -->
 
-    <script src="./js/loginAndRegistration/animations.js"></script>
-    <script src="./js/loginAndRegistration/localStorage.js"></script>
-  </body>
+  <script src="./js/loginAndRegistration/animations.js"></script>
+  <script src="./js/loginAndRegistration/localStorage.js"></script>
+</body>
+
 </html>
