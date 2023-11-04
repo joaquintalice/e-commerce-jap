@@ -1,0 +1,15 @@
+.dark-mode {
+    background-image:
+        linear-gradient(rgb(0, 0, 0, 0.2), rgb(0, 0, 0, 0.2)),
+        url("/img/darkmode/32524.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: rgb(255, 255, 255);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.dark-default {
+    background-color: #242424 !important;
+    color: #eee;
+}

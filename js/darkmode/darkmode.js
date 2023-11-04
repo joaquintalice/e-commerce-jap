@@ -6,24 +6,79 @@ const cardsCollection = document.getElementsByClassName('product');
 const footerCollection = document.getElementsByClassName('footer');
 const filtersCollection = document.getElementsByClassName('filters');
 
-darkModeBtn.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    storeDarkModeState(body.classList.contains('dark-mode'));
-    updateCardStyles();
-    location.reload()
-});
-
 function main() {
     loadDarkModeState();
-    updateCardStyles();
+
+    const previewDefaultColor = localStorage.getItem("darkmode")
+
+    if (!previewDefaultColor) {
+        console.log("no hay nada en storage")
+        const defaultColor = getPreferredColorScheme();
+        storeDarkModeState(defaultColor)
+
+        if (defaultColor) {
+            // El sistema del usuario prefiere el modo oscuro
+            switchMode()
+        }
+    } else {
+        console.log("hola1")
+
+        if (JSON.parse(previewDefaultColor) === "true") {
+            console.log("hola2")
+            initialDarkMode()
+        }
+    }
+
+
+}
+
+function getPreferredColorScheme() {
+    const colorScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return colorScheme;
+}
+
+darkModeBtn.addEventListener('click', () => {
+    loadDarkModeState()
+    //location.reload()
+    switchMode()
+});
+
+function initialDarkMode() {
+    /*
+        los productos vienen de forma asincronica,
+        por eso necesitamos usar setTimeOut.
+    */
+    setTimeout(() => {
+        if (body.classList.contains('dark-mode')) {
+            const cards = document.getElementsByClassName("card")
+
+            for (let i = 0; i < cards.length; i++) {
+                cards[i].classList.add("dark-default")
+            }
+
+            const btns = document.getElementsByClassName("btn")
+
+            for (let i = 0; i < btns.length; i++) {
+                btns[i].classList.add("dark-default")
+            }
+        }
+    }, 300);
+}
+
+function switchMode() {
+    body.classList.toggle('dark-mode');
+    storeDarkModeState(body.classList.contains('dark-mode'));
+    carouselStyle();
+    cardsStyle();
+    buttonStyle();
 }
 
 function storeDarkModeState(value) {
-    localStorage.setItem('darkmode', value ? 'true' : 'false');
+    localStorage.setItem('darkmode', value ? JSON.stringify('true') : JSON.stringify('false'));
 }
 
 function loadDarkModeState() {
-    const darkmode = localStorage.getItem('darkmode');
+    const darkmode = JSON.parse(localStorage.getItem('darkmode'));
     if (darkmode === 'true') {
         body.classList.add('dark-mode');
         document.querySelector('#dl-icon').setAttribute('class', 'bi bi-sun-fill text-white');
@@ -32,24 +87,27 @@ function loadDarkModeState() {
     }
 }
 
-function updateCardStyles() {
-    const darkmode = body.classList.contains('dark-mode');
+function carouselStyle() {
+    const carousel = document.getElementById("carousel-slider")
+    if (!carousel) return;
+    for (let i = 0; i < carousel.children.length; i++) {
+        // carousel.children[i].style.backgroundColor = "#242424"
+    }
 
-    setTimeout(() => {
-        Array.from(cardsCollection).forEach(elem => {
-            elem.classList.toggle('product', !darkmode);
-            elem.classList.toggle('dark-product', darkmode);
-        });
-    }, 300);
+}
 
-    Array.from(footerCollection).forEach(elem => {
-        elem.classList.toggle('footer', !darkmode)
-        elem.classList.toggle('dark-footer', darkmode)
-    })
+function cardsStyle() {
+    const cards = document.getElementsByClassName("card")
+    for (let i = 0; i < cards.length; i++) {
+        console.log(cards[i])
+        cards[i].classList.toggle("dark-default")
+    }
+}
 
-    Array.from(filtersCollection).forEach(elem => {
-        elem.classList.toggle('filters', !darkmode)
-        elem.classList.toggle('dark-filters', darkmode)
-    })
+function buttonStyle() {
+    const btns = document.getElementsByClassName("btn")
+    for (let i = 0; i < btns.length; i++) {
 
+        btns[i].classList.toggle("dark-default")
+    }
 }
