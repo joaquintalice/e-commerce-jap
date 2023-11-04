@@ -18,6 +18,8 @@ function showUserMenu(e) {
 function deleteUserStorage(e) {
     e.preventDefault();
     localStorage.removeItem("userData");
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("userImg");
     window.location = "loginAndRegistration.html" // Al eliminarse el usuario del localStorage, lo redirige al login
 }
 
