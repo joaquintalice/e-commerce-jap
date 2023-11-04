@@ -88,13 +88,13 @@
               </tr>
             </thead>
             <tbody id="data-container">
-              <!-- acá va la data de los productos  -->
+              <!-- acá va la data de los productos que se trae del js  -->
             </tbody>
           </table>
         </div>
       </div>
 
-      <!--Tipo de envio del producto-->
+      <!-- Tipo de envio del producto -->
       <div class="container my-5" id="sendType">
         <h2 class="my-4 text-center text-sm-start">
           <i class="bi bi-truck"></i> Tipo de envío
@@ -112,6 +112,7 @@
         </select>
       </div>
 
+      <!-- Dirección de envío de los productos en el carrito -->
       <div class="row my-4">
         <div class="col-12 my-4 text-center text-sm-start">
           <h3><i class="bi bi-pin-map"></i> Dirección de envío</h3>
@@ -159,6 +160,8 @@
       </div>
 
       <hr />
+
+      <!-- Precio de los productos en el carrito -->
       <h4 class="mb-3"><i class="bi bi-tags"></i> Precio</h4>
       <ul class="list-group my-5">
         <li href="#" class="list-group-item list-group-item-action flex-column align-items-start">
@@ -187,9 +190,8 @@
 
       <hr />
 
+      <!-- Forma de pago de los productos en el carrito -->
       <h4 class="my-5"><i class="bi bi-wallet2"></i> Forma de pago</i></h4>
-
-      <!-- Pauta 2 modal  -->
       <section class="d-flex w-100 gap-4 mt-5">
         <div class="align-self-center">
           <span id="formaDePagoSpan">No ha seleccionado</span>
@@ -278,7 +280,8 @@
           </div>
         </div>
       </section>
-      <!-- Pauta 2 mensaje de error  -->
+
+      <!-- Botón para finalizar la compra y funcionalidad del mismo-->
       <div class="align-self-center mt-3 mb-5 text-danger d-none" id="paymentType-alert">
         <span id="formaDePagoSpan">Debe seleccionar una forma de pago</span>
       </div>

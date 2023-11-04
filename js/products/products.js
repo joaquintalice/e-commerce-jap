@@ -10,7 +10,6 @@ const buscar = document.getElementById('buscar');
 let productsDataGlobal = [] // Contendrá el array de productos disponible para usar globalmente en caso de que el fetch los traiga correctamente.
 
 // Función que obtiene los productos de la categoría seleccionada
-
 async function getProducts() {
     const pageTitle = document.getElementById('page-title');
     const prodTitle = document.getElementById('product-title');

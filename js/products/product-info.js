@@ -10,7 +10,7 @@ const commentsContainer = document.getElementById('comments');
 function main() {
     getProduct()
     showComments();
-    showIndividualComent();
+    showIndividualComment();
     commentEvents();
 }
 
@@ -20,7 +20,8 @@ function getUserUsername() {
     return username
 }
 
-function showIndividualComent() {
+// Muestra los comentarios, agrega la funcionalidad de ponerle puntaje mediante estrellas
+function showIndividualComment() {
     const formulario = document.getElementById("review");
 
     formulario.addEventListener('submit', (e) => {
@@ -68,7 +69,7 @@ async function getProduct() {
     showProduct(data);
 }
 
-function goToRelProd(id) {
+function goToRelatedProd(id) {
     localStorage.setItem('productID', id);
     location.href = 'product-info.html';
 }
@@ -177,21 +178,21 @@ async function getComments() {
 
         const fecha = datosFecha[0].split("-"); // año-mes-dia
         const hora = datosFecha[1].split(":"); // hora:minuto:segundo
-    
+
         const year = fecha[0]
         const month = fecha[1]
         const day = fecha[2]
-    
+
         const hours = hora[0];
         const minutes = hora[1];
         const seconds = hora[2];
-    
+
         dateProduct.setFullYear(year)
         dateProduct.setMonth(month - 1) // de 0 a 11
         dateProduct.setDate(day)
-    
+
         dateProduct.setHours(hours);
-        dateProduct.setMinutes(minutes); 
+        dateProduct.setMinutes(minutes);
         dateProduct.setSeconds(seconds);
 
         element.dateTime = dateProduct.toString();
@@ -351,7 +352,7 @@ function commentEvents() {
     })
 }
 
-
+// Agrega el producto seleccionado al carrito y si existe, incrementa la cantidad
 function addToCart(producto) {
     const productWithCount = {
         currency: producto.currency,

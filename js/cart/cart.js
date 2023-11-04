@@ -201,7 +201,7 @@ function handleSubmit() {
     const numeroCuenta = document.getElementById("numeroCuenta")
 
 
-
+    // Alertas en caso de que falte llenar campos a la hora de realizar la compra
     saleBtn.addEventListener('click', () => {
 
         const lsData = JSON.parse(localStorage.getItem('carrito'));
@@ -269,8 +269,7 @@ function handleSubmit() {
         successSaleAlert.classList.remove('d-none')
         successSaleAlert.classList.add('d-flex')
 
-        // se resetea el local storage y todos los elementos del DOM
-
+        // se resetea el local storage y todos los elementos del DOM al finalizar la compra
         localStorage.setItem('carrito', JSON.stringify([]));
         calle.value = "";
         numero.value = "";

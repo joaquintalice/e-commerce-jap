@@ -1,3 +1,4 @@
+// Obtiene las categorías de la API, las muestra y permite ordenarlas
 const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
 const ORDER_ASC_BY_NAME = "AZ";
 const ORDER_DESC_BY_NAME = "ZA";
@@ -59,13 +60,8 @@ function showCategoriesList() {
                         <small class="text-muted">${category.productCount} productos</small>
                     </div>
                 </div>
-
-
     </div>
 `;
-
-
-
         }
 
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
