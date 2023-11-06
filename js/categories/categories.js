@@ -1,4 +1,6 @@
 // Obtiene las categorías de la API, las muestra y permite ordenarlas
+import { initialDarkMode } from "../darkmode/darkmode.js"
+
 const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
 const ORDER_ASC_BY_NAME = "AZ";
 const ORDER_DESC_BY_NAME = "ZA";
@@ -106,15 +108,16 @@ const getCategories = (url) => {
         .then((response) => {
             result.status = 'ok';
             result.data = response;
-            hideSpinner();
             return result;
         })
         .catch((error) => {
             result.status = 'error';
             result.data = error;
-            hideSpinner();
             return result;
-        });
+        })
+        .finally(() => {
+            hideSpinner();
+        })
 }
 
 document.addEventListener("DOMContentLoaded", function (e) {
@@ -122,6 +125,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         if (resultObj.status === "ok") {
             currentCategoriesArray = resultObj.data
             showCategoriesList()
+            initialDarkMode();
         }
     });
 

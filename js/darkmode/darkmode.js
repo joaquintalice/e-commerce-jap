@@ -39,36 +39,29 @@ function getPreferredColorScheme() {
 
 darkModeBtn.addEventListener('click', () => {
     loadDarkModeState()
-    //location.reload()
     switchMode()
 });
 
-function initialDarkMode() {
-    /*
-        los productos vienen de forma asincronica,
-        por eso necesitamos usar setTimeOut.
-    */
-    setTimeout(() => {
-        if (body.classList.contains('dark-mode')) {
-            const cards = document.getElementsByClassName("card")
+export function initialDarkMode() {
 
-            for (let i = 0; i < cards.length; i++) {
-                cards[i].classList.add("dark-default")
-            }
-
-            const btns = document.getElementsByClassName("btn")
-
-            for (let i = 0; i < btns.length; i++) {
-                btns[i].classList.add("dark-default")
-            }
+    if (body.classList.contains('dark-mode')) {
+        const cards = document.getElementsByClassName("card")
+        console.log(cards)
+        for (let i = 0; i < cards.length; i++) {
+            cards[i].classList.add("dark-default")
         }
-    }, 300);
+
+        const btns = document.getElementsByClassName("btn")
+
+        for (let i = 0; i < btns.length; i++) {
+            btns[i].classList.add("dark-default")
+        }
+    }
 }
 
 function switchMode() {
     body.classList.toggle('dark-mode');
     storeDarkModeState(body.classList.contains('dark-mode'));
-    carouselStyle();
     cardsStyle();
     buttonStyle();
 }
@@ -87,14 +80,6 @@ function loadDarkModeState() {
     }
 }
 
-function carouselStyle() {
-    const carousel = document.getElementById("carousel-slider")
-    if (!carousel) return;
-    for (let i = 0; i < carousel.children.length; i++) {
-        // carousel.children[i].style.backgroundColor = "#242424"
-    }
-
-}
 
 function cardsStyle() {
     const cards = document.getElementsByClassName("card")
