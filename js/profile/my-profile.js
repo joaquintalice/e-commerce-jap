@@ -17,7 +17,6 @@ function userProfile() {
             img: './img/img_perfil.png'
         }
 
-        const lsData = JSON.parse(localStorage.getItem('userInfo'));
         const lsUserImg = JSON.parse(localStorage.getItem('userImg'));
 
         if (lsUserImg) {
@@ -107,7 +106,6 @@ function userStorageData() {
     const inputUserSecondLastName = document.getElementById("secondLastName");
     const inputUserEmail = document.getElementById("email");
     const inputUserTel = document.getElementById("tel");
-    const inputUserImage = document.getElementById("img");
 
     const Image = document.getElementById("user-img");
 
