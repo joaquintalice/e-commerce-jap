@@ -11,7 +11,6 @@ function main() {
     const previewDefaultColor = localStorage.getItem("darkmode")
 
     if (!previewDefaultColor) {
-        console.log("no hay nada en storage")
         const defaultColor = getPreferredColorScheme();
         storeDarkModeState(defaultColor)
 
@@ -38,11 +37,10 @@ darkModeBtn.addEventListener('click', () => {
     loadDarkModeState()
 });
 
-export function initialDarkMode() {
+function initialDarkMode() {
 
     if (body.classList.contains('dark-mode')) {
         const cards = document.getElementsByClassName("card")
-        console.log(cards)
         for (let i = 0; i < cards.length; i++) {
             cards[i].classList.add("dark-default")
         }

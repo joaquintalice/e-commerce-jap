@@ -12,6 +12,7 @@ function main() {
     showComments();
     showIndividualComment();
     commentEvents();
+
 }
 
 function getUserUsername() {
@@ -197,7 +198,6 @@ async function getComments() {
 
         element.dateTime = dateProduct.toString();
     })
-
     return data;
 }
 
@@ -362,7 +362,6 @@ function addToCart(producto) {
         count: 1,
         unitCost: producto.cost
     }
-    console.log(productWithCount)
     const localStorageData = JSON.parse(localStorage.getItem('carrito'));
 
     if (!localStorageData) {

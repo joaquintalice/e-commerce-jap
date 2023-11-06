@@ -1,5 +1,5 @@
 // Obtiene las categorías de la API, las muestra y permite ordenarlas
-import { initialDarkMode } from "../darkmode/darkmode.js"
+// import { initialDarkMode } from "../darkmode/darkmode.js"
 
 const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
 const ORDER_ASC_BY_NAME = "AZ";

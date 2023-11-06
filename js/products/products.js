@@ -26,7 +26,7 @@ async function getProducts() {
 
 
     showProducts(products);
-
+    initialDarkMode()
     prodTitle.innerHTML = catName;
     pageTitle.innerHTML = `eMercado - ${catName}`;
 
@@ -49,7 +49,7 @@ function showProducts(productsArray) {
 
         for (let product of productsArray) {
             const { id, image, name, cost, currency, description, soldCount } = product
-            console.log(currency)
+
             const USD_COST = currency === 'UYU' ? parseFloat(cost / 39).toFixed(2) : cost
 
 
@@ -118,8 +118,6 @@ function inputRadioEvents() {
     inputsRadios.forEach(input => {
         input.addEventListener('change', () => {
             const products = productsOrdered(productsDataGlobal, input.id);
-            console.log(products);
-
             showProducts(products);
             input.checked = false
         });
@@ -145,7 +143,6 @@ function filterProductsEvents() {
         const minCount = parseInt(inputMin.value) ? parseInt(inputMin.value) : 0; // Si el inputMin.value es NaN, se le asigna el valor 0.
         const maxCount = parseInt(inputMax.value) ? parseInt(inputMax.value) : Infinity; // Si el inputMax.value es NaN, se le asigna el valor Infinity.
         const products = filterProductosFor(productsDataGlobal, minCount, maxCount);
-        //console.log(products);
 
         showProducts(products);
     });

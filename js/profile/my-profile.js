@@ -80,7 +80,6 @@ function userProfile() {
                 imagenDiv.appendChild(imgElement);
 
                 uploadImgSrc = imgElement.src
-                // console.log(uploadImgSrc)
 
             };
 
