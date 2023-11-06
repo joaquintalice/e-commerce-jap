@@ -8,7 +8,6 @@ const filtersCollection = document.getElementsByClassName('filters');
 
 function main() {
     loadDarkModeState();
-
     const previewDefaultColor = localStorage.getItem("darkmode")
 
     if (!previewDefaultColor) {
@@ -21,14 +20,11 @@ function main() {
             switchMode()
         }
     } else {
-        console.log("hola1")
 
         if (JSON.parse(previewDefaultColor) === "true") {
-            console.log("hola2")
             initialDarkMode()
         }
     }
-
 
 }
 
@@ -38,8 +34,8 @@ function getPreferredColorScheme() {
 }
 
 darkModeBtn.addEventListener('click', () => {
-    loadDarkModeState()
     switchMode()
+    loadDarkModeState()
 });
 
 export function initialDarkMode() {
@@ -84,7 +80,6 @@ function loadDarkModeState() {
 function cardsStyle() {
     const cards = document.getElementsByClassName("card")
     for (let i = 0; i < cards.length; i++) {
-        console.log(cards[i])
         cards[i].classList.toggle("dark-default")
     }
 }
