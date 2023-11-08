@@ -9,7 +9,7 @@ const commentsContainer = document.getElementById('comments');
 
 function main() {
     getProduct()
-    showComments();
+
     showIndividualComment();
     commentEvents();
 
@@ -58,6 +58,7 @@ function showIndividualComment() {
             localStorage.setItem('comment', JSON.stringify(comment));
         }
         showComments();
+
     })
 }
 
@@ -86,6 +87,7 @@ function showProduct(objeto) {
             addToCart(objeto)
             alert('Producto agregado al carrito')
         })
+        showComments();
     });
 
     async function createTemplate(name, category, cost, currency, description, soldCount, images, relatedProducts) {
@@ -198,6 +200,7 @@ async function getComments() {
 
         element.dateTime = dateProduct.toString();
     })
+
     return data;
 }
 
@@ -225,7 +228,7 @@ async function showComments() {
 
             template +=
                 `
-                <div onclick="setProductID(${id})" class="col-12  mt-5">
+                <div class="col-12  mt-5">
                     <div class="card product" >
                         <div class="card-body">
                             <h5 class="card-title"><i class="bi bi-person-circle"></i> ${user}</h5>
@@ -246,6 +249,7 @@ async function showComments() {
     }
 
     commentsContainer.innerHTML = template
+    initialDarkMode();
 }
 
 function relativeDate(dateTime) {
@@ -307,7 +311,7 @@ function commentEvents() {
             }
         }
 
-        for (let i = 0; i <= posicion; i++) {
+        for (let i = 1; i <= posicion; i++) {
             starOptionChildrens[i].classList.add("checked");
         }
     }
@@ -315,7 +319,6 @@ function commentEvents() {
     starOption.addEventListener("mouseover", (e) => {
         // checkea si alguna estrella está clickeada
         let starIsClicked = arrHTML.some(element => element.classList.contains("clicked"));
-
         if (e.target.nodeName === "SPAN" && !starIsClicked) {
             const spanEstrella = e.target.getAttribute("data-index");
             checkHoverStar(spanEstrella);
@@ -323,11 +326,11 @@ function commentEvents() {
 
     })
 
-    starOption.addEventListener("mouseout", () => {
+    starOption.addEventListener("mouseout", (e) => {
         // checkea si alguna estrella está clickeada
         let starIsClicked = arrHTML.some(element => element.classList.contains("clicked"));
 
-        if (!starIsClicked) {
+        if (e.target.nodeName === "SPAN" && !starIsClicked) {
             arrHTML.map(element => {
                 element.classList.remove("checked")
             })

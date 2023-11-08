@@ -81,7 +81,7 @@
           <div class="row">
             <div class="col-md-8 order-md-1">
               <label>Imágenes</label>
-              <div class="needsclick dz-clickable" id="file-upload">
+              <div class="needsclick dz-clickable file-upload-div" id="file-upload">
                 <div class="dz-message needsclick">
                   Arrastra tus fotos aquí<br />
                 </div>
@@ -167,21 +167,21 @@
           <hr class="mb-4" />
           <h4 class="mb-3">Costos</h4>
           <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <li class="resume-list list-group-item d-flex justify-content-between lh-condensed">
               <div>
                 <h6 class="my-0">Precio</h6>
                 <small class="text-muted">Unitario del producto</small>
               </div>
               <span class="text-muted" id="productCostText">-</span>
             </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <li class="resume-list list-group-item d-flex justify-content-between lh-condensed">
               <div>
                 <h6 class="my-0">Porcentaje</h6>
                 <small class="text-muted">Según el tipo de publicación</small>
               </div>
               <span class="text-muted" id="comissionText">-</span>
             </li>
-            <li class="list-group-item d-flex justify-content-between">
+            <li class="resume-list list-group-item d-flex justify-content-between">
               <span>Total ($)</span>
               <strong id="totalCostText">-</strong>
             </li>
@@ -211,7 +211,7 @@
   <!-- Modal con las distintas condiciones de venta dentro de la pagina -->
   <div class="modal fade" tabindex="-1" role="dialog" id="contidionsModal">
     <div class="modal-dialog" role="document">
-      <div class="modal-content card">
+      <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Condiciones de publicación</h5>
         </div>
