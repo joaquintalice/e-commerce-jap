@@ -138,7 +138,7 @@ function showProduct(objeto) {
             const { id, name, image } = prod
             relProdTemplate +=
                 `
-                        <div class='col-12 col-md-6 my-5 cursor-active' onclick='goToRelProd(${id})'>
+                        <div class='col-12 col-md-6 my-5 cursor-active' onclick='goToRelatedProd(${id})'>
                             <div class="row">
                                 <div class="card product">
                                     <img class="card-img-top" src="${image}" alt="Card image cap">
