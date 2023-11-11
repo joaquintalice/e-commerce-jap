@@ -3,8 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
     userStorageData()
 })
 
-// input.addEventListener("change", updateImageDisplay);
-
 function userProfile() {
     const FORM = document.getElementById("user-data");
     let uploadImgSrc = ''
@@ -12,6 +10,7 @@ function userProfile() {
         e.preventDefault();
         const data = Object.fromEntries(new FormData(e.target));
 
+        // Si el usuario nunca eligió una foto, se usa la foto por defecto 
         let userInfo = {
             ...data,
             img: './img/img_perfil.png'
@@ -19,9 +18,11 @@ function userProfile() {
 
         const lsUserImg = JSON.parse(localStorage.getItem('userImg'));
 
+        // Si el usuario ya cargó una foto con anterioridad y no selecciona una nueva foto, se va a usar la imagen guardada en el localStorage
         if (lsUserImg) {
             userInfo.img = lsUserImg
         }
+        // todas las veces que el usuario selecciona una foto, va a usarse esa foto
         if (uploadImgSrc) {
             localStorage.setItem('userImg', JSON.stringify(uploadImgSrc))
             userInfo.img = uploadImgSrc;
@@ -42,12 +43,12 @@ function userProfile() {
     })
 
 
-    // Obten la referencia al input file y al div donde se mostrará la imagen
+    // Obtiene la referencia al input file y al div donde se mostrará la imagen
     const inputFile = document.getElementById("img");
     const imagenDiv = document.getElementById("img-profile");
     const errorDiv = document.getElementById('error-alert')
-    // Agrega un evento para detectar el cambio en el input file
-    inputFile.addEventListener("change", function (event) {
+
+    inputFile.addEventListener("change", (event) => {
         const file = event.target.files[0]; // Obtiene el archivo seleccionado
 
         if (file) {
@@ -61,24 +62,23 @@ function userProfile() {
                     errorDiv.classList.add('d-none');
                 }, 3000);
                 errorDiv.textContent = "El archivo seleccionado es demasiado grande. Por favor, seleccione un archivo más pequeño.";
-                inputFile.value = ''; // Limpia el valor del input file
+                inputFile.value = '';
                 return;
             }
 
-            // Verifica si se seleccionó un archivo
             const reader = new FileReader();
 
-            reader.onload = function (e) {
-                // Cuando se carga la imagen, muestra la vista previa en el div
+            reader.onload = (e) => {
+
                 const imgElement = document.createElement("img");
                 imgElement.style = "object-fit: cover; width:150px; height:100px;"
                 imgElement.alt = "Foto de Perfil del Usuario"
-                imgElement.src = e.target.result; // Asigna la URL de la imagen
+                imgElement.src = e.target.result;
 
-                // Limpia el contenido del div antes de agregar la nueva imagen
                 imagenDiv.innerHTML = '';
                 imagenDiv.appendChild(imgElement);
 
+                // Guardamos la URL en una variable dentro de la misma funcion
                 uploadImgSrc = imgElement.src
 
             };
@@ -86,7 +86,6 @@ function userProfile() {
             // Lee el archivo como una URL de datos
             reader.readAsDataURL(file);
         } else {
-            // Limpiar el div si no se selecciona un archivo
             imagenDiv.innerHTML = '';
         }
     });
