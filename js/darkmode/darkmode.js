@@ -88,24 +88,3 @@ function applyDarkStyles() {
     });
 
 }
-
-function applyDarkStyles2() {
-    const elementsToStyle = [
-        ...document.getElementsByClassName("card"),
-        ...document.getElementsByClassName("btn"),
-        ...document.getElementsByClassName("table"),
-        ...document.getElementsByTagName("input"),
-        ...document.getElementsByClassName("input-group-text"),
-        ...document.getElementsByTagName("select"),
-        ...document.getElementsByClassName("resume-list"),
-        ...document.getElementsByTagName("textarea"),
-        ...document.getElementsByClassName("modal-content"),
-        ...document.getElementsByClassName("file-upload-div")
-
-    ];
-        
-    elementsToStyle.forEach((element) => {
-        element.classList.add('dark-default');
-    });
-
-}
