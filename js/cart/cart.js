@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     getCartData().then(() => {
         showCartData();
         updateTotalPrice();
-        initialDarkMode();
+        applyDarkStyles()
+
     });
     handleSubmit()
     paymentType()
