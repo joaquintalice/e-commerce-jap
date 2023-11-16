@@ -1,6 +1,6 @@
 // Obtiene las categorías de la API, las muestra y permite ordenarlas
 
-const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
+const CATEGORIES_URL = "http://localhost:3005/categories";
 const ORDER_ASC_BY_NAME = "AZ";
 const ORDER_DESC_BY_NAME = "ZA";
 const ORDER_BY_PROD_COUNT = "Cant.";

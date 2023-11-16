@@ -14,7 +14,7 @@ async function getProducts() {
     const pageTitle = document.getElementById('page-title');
     const prodTitle = document.getElementById('product-title');
     const storedValue = localStorage.getItem('catID'); // Se obtiene el catID que se encuentra en el localstorage, el cual fue guardado en categories.js
-    const URL = `https://japceibal.github.io/emercado-api/cats_products/${storedValue}.json`;
+    const URL = `http://localhost:3005/cats_products/${storedValue}`;
 
     const response = await fetch(URL);
 

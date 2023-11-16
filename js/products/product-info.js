@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", main);
 
 const id = localStorage.getItem("productID");
-const urlComments = `https://japceibal.github.io/emercado-api/products_comments/${id}.json`;
+const urlComments = `http://localhost:3005/products_comments/${id}`;
 
 const dataContainer = document.getElementById('data-container');
 const relProdContainer = document.getElementById('rel-prod-container');
@@ -64,7 +64,7 @@ function showIndividualComment() {
 
 async function getProduct() {
     const storedValue = localStorage.getItem('productID');
-    const URL = `https://japceibal.github.io/emercado-api/products/${storedValue}.json`;
+    const URL = `http://localhost:3005/products/${storedValue}`;
     const response = await fetch(URL);
     if (!response.ok) throw new Error(`Code error:${response.status}`);
     const data = await response.json();
@@ -355,6 +355,67 @@ function commentEvents() {
     })
 }
 
+// const CART_URL = 'http://localhost:3005/cart';
+// const res = await fetch(CART_URL);
+// if(!res.ok) return
+// const data = await res.json();
+// console.log(data)
+
+async function getJWTToken() {
+    const TOKEN_URL = 'http://localhost:3005/login';
+    try {
+        const res = await fetch(TOKEN_URL, {
+            method: 'POST',
+            body: JSON.stringify({
+                username: 'admin',
+                password: 'admin'
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!res.ok) {
+            throw new Error('Failed to retrieve JWT token');
+        }
+
+        const data = await res.json();
+        console.log({ token: data });
+        return data.token;  // Assuming the token is in the 'token' property of the response
+    } catch (error) {
+        console.error('Error while fetching JWT token:', error);
+        throw error;
+    }
+}
+
+async function saveCartProds(prodList) {
+    const CART_URL = 'http://localhost:3005/cart';
+
+    try {
+        const token = await getJWTToken();
+
+        const res = await fetch(CART_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'access-token': token
+            },
+            body: JSON.stringify({ products: prodList })
+        });
+
+        if (!res.ok) {
+            throw new Error('Failed to save cart products');
+        }
+
+        const data = await res.json();
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.error('Error while saving cart products:', error);
+        throw error;
+    }
+}
+
 // Agrega el producto seleccionado al carrito y si existe, incrementa la cantidad
 function addToCart(producto) {
     const productWithCount = {
@@ -391,8 +452,11 @@ function addToCart(producto) {
         return elem.id !== producto.id
     });
 
-    localStorage.removeItem('carrito')
+
     localStorage.setItem('carrito', JSON.stringify([...filteredArray, productoExistente]));
+    const prodList = JSON.parse(localStorage.getItem('carrito'));
+    console.log(prodList)
+    saveCartProds(prodList);
 
 }
 

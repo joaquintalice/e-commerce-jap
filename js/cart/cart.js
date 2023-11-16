@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Obtiene los productos almacenados en el LocalStorage
 async function getCartData() {
-    const response = await fetch("https://japceibal.github.io/emercado-api/user_cart/25801.json")
+    const response = await fetch("http://localhost:3005/user_cart")
     const data = await response.json();
     const lsData = JSON.parse(localStorage.getItem('carrito'));
 
