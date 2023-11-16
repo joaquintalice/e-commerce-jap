@@ -26,7 +26,7 @@ async function getProducts() {
 
 
     showProducts(products);
-    initialDarkMode()
+    applyDarkStyles()
     prodTitle.innerHTML = catName;
     pageTitle.innerHTML = `eMercado - ${catName}`;
 

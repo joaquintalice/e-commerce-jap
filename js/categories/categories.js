@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         if (resultObj.status === "ok") {
             currentCategoriesArray = resultObj.data
             showCategoriesList()
-            initialDarkMode();
+            applyDarkStyles()
         }
     });
 
