@@ -249,7 +249,7 @@ async function showComments() {
     }
 
     commentsContainer.innerHTML = template
-    initialDarkMode();
+    applyDarkStyles()
 }
 
 function relativeDate(dateTime) {
