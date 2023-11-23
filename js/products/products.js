@@ -26,7 +26,7 @@ async function getProducts() {
 
 
     showProducts(products);
-    applyDarkStyles()
+
     prodTitle.innerHTML = catName;
     pageTitle.innerHTML = `eMercado - ${catName}`;
 
@@ -81,6 +81,7 @@ function showProducts(productsArray) {
         `
     }
     productContainer.innerHTML = template;
+    applyDarkStyles()
 }
 
 function filterProductosFor(productsArray, minCount, maxCount) {
