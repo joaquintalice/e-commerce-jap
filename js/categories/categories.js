@@ -12,10 +12,10 @@ let maxCount = undefined;
 function sortCategories(criteria, array) {
     const result = {
         "AZ": () => {
-            return array.toSorted((a, b) => a.name.localCompare(b.name))
+            return array.toSorted((a, b) => a.name.localeCompare(b.name))
         },
         "ZA": () => {
-            return array.toSorted((a, b) => b.name.localCompare(a.name))
+            return array.toSorted((a, b) => b.name.localeCompare(a.name))
         },
         "Cant.": () => {
             return array.toSorted((a, b) => a.productCount - b.productCount)
@@ -80,6 +80,8 @@ function sortAndShowCategories(sortCriteria, categoriesArray) {
 
     //Muestro las categorías ordenadas
     showCategoriesList();
+    applyDarkStyles()
+    
 }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
@@ -148,6 +150,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         maxCount = undefined;
 
         showCategoriesList();
+        applyDarkStyles();
     });
 
     document.getElementById("rangeFilterCount").addEventListener("click", function () {
@@ -171,5 +174,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
 
         showCategoriesList();
+        applyDarkStyles();
     });
 });
