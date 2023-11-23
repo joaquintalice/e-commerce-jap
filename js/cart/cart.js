@@ -4,8 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     getCartData().then(() => {
         showCartData();
         updateTotalPrice();
-        applyDarkStyles()
-
     });
     handleSubmit()
     paymentType()
@@ -102,6 +100,8 @@ function showCartData() {
             `;
         containerArticles.appendChild(row);
     }
+
+    applyDarkStyles()
 }
 // Actualiza el total de la compra según las variables seleccionadas por el cliente
 function updateTotalPrice() {
@@ -310,4 +310,5 @@ function deleteProduct(id) {
 
     updateTotalPrice()
     showCartData();
+
 }
