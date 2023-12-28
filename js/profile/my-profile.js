@@ -71,7 +71,7 @@ function userProfile() {
             reader.onload = (e) => {
 
                 const imgElement = document.createElement("img");
-                imgElement.style = "object-fit: cover; width:150px; height:100px;"
+                imgElement.style = "object-fit: contain; width:150px; height:100px;"
                 imgElement.alt = "Foto de Perfil del Usuario"
                 imgElement.src = e.target.result;
 
